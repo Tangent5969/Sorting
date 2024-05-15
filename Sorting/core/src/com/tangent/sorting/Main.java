@@ -10,37 +10,41 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class Main extends ApplicationAdapter {
-	ShapeRenderer sr;
-	Camera mainCamera;
-	Camera settingsCamera;
-	ScreenViewport mainViewport;
-	ScreenViewport settingsViewport;
+	private ShapeRenderer sr;
+	private Camera camera;
+	private StretchViewport viewport;
+
+	Controller controller;
+
+
+
+
 
 	@Override
 	public void create () {
+		controller = new Controller();
 		sr = new ShapeRenderer();
 
-		mainCamera = new OrthographicCamera(Gdx.graphics.getWidth() * 0.8f, Gdx.graphics.getHeight());
-		mainViewport = new ScreenViewport(mainCamera);
-		mainCamera.position.set(mainCamera.viewportWidth/2,mainCamera.viewportHeight/2,0);
+		camera = new OrthographicCamera();
+		viewport = new StretchViewport(Controller.graphWidth, Controller.graphHeight, camera);
+		viewport.apply();
+		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
-		settingsCamera = new OrthographicCamera(Gdx.graphics.getWidth() * 0.2f, Gdx.graphics.getHeight());
-		settingsViewport = new ScreenViewport(settingsCamera);
-		settingsCamera.position.set(mainCamera.viewportWidth,settingsCamera.viewportHeight/2,0);
-
+		controller.logic();
+		System.out.println(Controller.mainArray[1]);
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
-		mainCamera.update();
-		settingsCamera.update();
 
-		sr.setProjectionMatrix(mainCamera.combined);
+
+		sr.setProjectionMatrix(camera.combined);
 		sr.begin(ShapeRenderer.ShapeType.Filled);
-		sr.rect(0, 0, mainCamera.viewportWidth, mainCamera.viewportHeight);
+		controller.renderArray(sr);
 		sr.end();
 
 	}
@@ -52,11 +56,9 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void resize(int width, int height){
-		mainViewport.update((int) (width * 0.8),height);
-		mainCamera.position.set(mainCamera.viewportWidth/2,mainCamera.viewportHeight/2,0);
+		viewport.update((int) (width * 0.8), height);
+		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
-		settingsViewport.update((int) (width * 0.2), height);
-		settingsCamera.position.set(mainCamera.viewportWidth,settingsCamera.viewportHeight/2,0);
 
 	}
 }

@@ -9,6 +9,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("Sound Of Sorting");
+		config.setWindowSizeLimits(640, 480, -1, -1);
 		new Lwjgl3Application(new Main(), config);
 	}
 }
