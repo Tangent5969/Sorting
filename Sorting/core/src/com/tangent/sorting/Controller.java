@@ -5,31 +5,27 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class Controller {
     static final int graphWidth = 2048;
     static final int graphHeight = 1000;
-    private static int totalElements;
-    private static int speed;
-    public static int[] mainArray;
+    static int totalElements;
+    static int speed;
+    static int[] mainArray;
 
-    public void setArray() {
+    static void setArray() {
         mainArray = new int[totalElements];
+        Bar.setWidth();
         Utils.populateArray(mainArray);
     }
 
-    public void logic() {
-        totalElements = 10;
+    static void logic() {
+        totalElements = 100;
         setArray();
+        //Utils.reverse(mainArray);
+        Utils.shuffle(mainArray);
     }
 
-    public void renderArray(ShapeRenderer sr) {
+    static void renderArray(ShapeRenderer sr) {
         for (int i = 0; i < totalElements; i++) {
             new Bar(mainArray[i]).render(i, sr);
         }
     }
 
-    public static int getTotalElements() {
-        return totalElements;
-    }
-
-    public static int getSpeed() {
-        return speed;
-    }
 }

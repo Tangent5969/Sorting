@@ -3,12 +3,14 @@ package com.tangent.sorting;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
@@ -17,7 +19,8 @@ public class Main extends ApplicationAdapter {
 	private Camera camera;
 	private StretchViewport viewport;
 
-	Controller controller;
+	private Camera settingsCamera;
+	private ExtendViewport settingsViewport;
 
 
 
@@ -25,27 +28,37 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		controller = new Controller();
 		sr = new ShapeRenderer();
 
 		camera = new OrthographicCamera();
 		viewport = new StretchViewport(Controller.graphWidth, Controller.graphHeight, camera);
-		viewport.apply();
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
-		controller.logic();
-		System.out.println(Controller.mainArray[1]);
+		settingsCamera = new OrthographicCamera();
+		settingsViewport = new ExtendViewport(Settings.settingsWidth, Settings.settingsHeight, settingsCamera);
+		settingsCamera.position.set(settingsCamera.viewportWidth/2,settingsCamera.viewportHeight/2,0);
+
+
+		Controller.logic();
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
 
-
+		viewport.apply();
 		sr.setProjectionMatrix(camera.combined);
 		sr.begin(ShapeRenderer.ShapeType.Filled);
-		controller.renderArray(sr);
+		Controller.renderArray(sr);
+
+		settingsViewport.apply();
+		sr.setProjectionMatrix(settingsCamera.combined);
+		sr.setColor(Color.GREEN);
+		sr.rect(0, 0, 200, 200);
+
+
 		sr.end();
+
 
 	}
 	
@@ -57,7 +70,12 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void resize(int width, int height){
 		viewport.update((int) (width * 0.8), height);
+		viewport.setScreenPosition(viewport.getScreenX(), viewport.getScreenY());
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
+
+		settingsViewport.update((int) (width * 0.2), height);
+		settingsViewport.setScreenPosition(settingsViewport.getScreenX() + (int) (width * 0.8), settingsViewport.getScreenY());
+		settingsCamera.position.set(settingsCamera.viewportWidth/2,settingsCamera.viewportHeight/2,0);
 
 
 	}
