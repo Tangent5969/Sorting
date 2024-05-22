@@ -15,7 +15,7 @@ public class Bar {
     }
 
     static void setWidth() {
-        width = Controller.graphWidth / Controller.totalElements;
+        width = (int) (Controller.graphWidth * Controller.widthMultiplier) / Controller.totalElements;
     }
 
     public void render(int pos, ShapeRenderer sr) {

@@ -53,7 +53,7 @@ public class Main extends ApplicationAdapter {
 
 		settingsViewport.apply();
 		sr.setProjectionMatrix(settingsCamera.combined);
-		sr.setColor(Color.GREEN);
+		Settings.render(sr);
 		sr.rect(0, 0, 200, 200);
 
 
@@ -69,12 +69,12 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void resize(int width, int height){
-		viewport.update((int) (width * 0.8), height);
+		viewport.update(width, height);
 		viewport.setScreenPosition(viewport.getScreenX(), viewport.getScreenY());
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
-		settingsViewport.update((int) (width * 0.2), height);
-		settingsViewport.setScreenPosition(settingsViewport.getScreenX() + (int) (width * 0.8), settingsViewport.getScreenY());
+		settingsViewport.update(width, height);
+		settingsViewport.setScreenPosition(settingsViewport.getScreenX(), settingsViewport.getScreenY());
 		settingsCamera.position.set(settingsCamera.viewportWidth/2,settingsCamera.viewportHeight/2,0);
 
 
