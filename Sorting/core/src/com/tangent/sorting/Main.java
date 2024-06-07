@@ -54,7 +54,6 @@ public class Main extends ApplicationAdapter {
 		settingsViewport.apply();
 		sr.setProjectionMatrix(settingsCamera.combined);
 		Settings.render(sr);
-		sr.rect(0, 0, 200, 200);
 
 
 		sr.end();

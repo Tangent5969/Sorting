@@ -10,7 +10,7 @@ public class Button {
     private int height;
     private int posX;
     private int posY;
-    private Consumer<> method;
+    //private Consumer<> method;
     private String text;
 
 
@@ -19,16 +19,21 @@ public class Button {
         this.height = height;
         this.posX = posX;
         this.posY = posY;
+        this.colour = Color.GRAY;
 
     }
 
     public void render(ShapeRenderer sr) {
         sr.setColor(colour);
         sr.rect((Settings.settingsWidth * Controller.widthMultiplier) + (posX * Settings.settingsWidthMultiplier), posY, width * Settings.settingsWidthMultiplier, height);
+        //sr.rect(posX, posY, width, height);
     }
 
 
-    private void tempMethod() {
 
-    }
+
+
+
+
 }
+
