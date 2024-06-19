@@ -10,10 +10,7 @@ public class Settings {
     static final float settingsWidthMultiplier = 1 - Controller.widthMultiplier;
 
 
-
-    private static Button startButton = new Button(10000, 100, 0, 0);
-
-
+    private static Button startButton = new Button(200, 100, 0, 0, Button.ButtonMethod.Start);
 
 
     static void render(ShapeRenderer sr) {

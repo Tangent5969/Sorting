@@ -20,7 +20,7 @@ public class Main extends ApplicationAdapter {
 	private StretchViewport viewport;
 
 	private Camera settingsCamera;
-	private ExtendViewport settingsViewport;
+	private StretchViewport settingsViewport;
 
 
 
@@ -35,7 +35,7 @@ public class Main extends ApplicationAdapter {
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
 		settingsCamera = new OrthographicCamera();
-		settingsViewport = new ExtendViewport(Settings.settingsWidth, Settings.settingsHeight, settingsCamera);
+		settingsViewport = new StretchViewport(Settings.settingsWidth, Settings.settingsHeight, settingsCamera);
 		settingsCamera.position.set(settingsCamera.viewportWidth/2,settingsCamera.viewportHeight/2,0);
 
 
