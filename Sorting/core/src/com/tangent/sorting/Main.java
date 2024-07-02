@@ -34,11 +34,6 @@ public class Main extends ApplicationAdapter {
 		viewport = new StretchViewport(Controller.graphWidth, Controller.graphHeight, camera);
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
-		settingsCamera = new OrthographicCamera();
-		settingsViewport = new StretchViewport(Settings.settingsWidth, Settings.settingsHeight, settingsCamera);
-		settingsCamera.position.set(settingsCamera.viewportWidth/2,settingsCamera.viewportHeight/2,0);
-
-
 		Controller.logic();
 	}
 
@@ -50,12 +45,7 @@ public class Main extends ApplicationAdapter {
 		sr.setProjectionMatrix(camera.combined);
 		sr.begin(ShapeRenderer.ShapeType.Filled);
 		Controller.renderArray(sr);
-
-		settingsViewport.apply();
-		sr.setProjectionMatrix(settingsCamera.combined);
 		Settings.render(sr);
-
-
 		sr.end();
 
 
@@ -71,11 +61,6 @@ public class Main extends ApplicationAdapter {
 		viewport.update(width, height);
 		viewport.setScreenPosition(viewport.getScreenX(), viewport.getScreenY());
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
-
-		settingsViewport.update(width, height);
-		settingsViewport.setScreenPosition(settingsViewport.getScreenX(), settingsViewport.getScreenY());
-		settingsCamera.position.set(settingsCamera.viewportWidth/2,settingsCamera.viewportHeight/2,0);
-
 
 	}
 }

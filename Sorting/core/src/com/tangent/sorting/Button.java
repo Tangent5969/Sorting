@@ -31,20 +31,24 @@ public class Button {
 
     public void activateMethod() {
         switch (method) {
-            case Start -> {}
-            case Pause -> {}
-            case Step -> {}
-            case Reset -> {}
-            case Mute -> {}
-            case Random -> {}
-
+            case Start:
+                break;
+            case Pause:
+                break;
+            case Step:
+                break;
+            case Reset:
+                break;
+            case Mute:
+                break;
+            case Random:
+                break;
         }
     }
 
     public void render(ShapeRenderer sr) {
         sr.setColor(colour);
-        sr.rect((Settings.settingsWidth * Controller.widthMultiplier) + (posX * Settings.settingsWidthMultiplier), posY, width, height);
-        //sr.rect(posX, posY, width, height);
+        sr.rect(Settings. posX, posY, width, height);
     }
 
 

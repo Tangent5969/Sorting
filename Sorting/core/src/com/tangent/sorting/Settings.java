@@ -5,9 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import java.util.ArrayList;
 
 public class Settings {
-    static final int settingsWidth = 2000;
-    static final int settingsHeight = 2000;
-    static final float settingsWidthMultiplier = 1 - Controller.widthMultiplier;
+    int startX = (int) (Controller.graphWidth * Controller.widthMultiplier);
 
 
     private static Button startButton = new Button(200, 100, 0, 0, Button.ButtonMethod.Start);
