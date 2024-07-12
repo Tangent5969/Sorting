@@ -34,12 +34,19 @@ public class Main extends ApplicationAdapter {
 		viewport = new StretchViewport(Controller.graphWidth, Controller.graphHeight, camera);
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
+
+
 		Controller.logic();
+
+		Settings.setButtons();
+
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
+
+
 
 		viewport.apply();
 		sr.setProjectionMatrix(camera.combined);

@@ -48,7 +48,7 @@ public class Button {
 
     public void render(ShapeRenderer sr) {
         sr.setColor(colour);
-        sr.rect(Settings. posX, posY, width, height);
+        sr.rect(Settings.getStartX() + posX, posY * Settings.getHeightMultiplier(), width, height * Settings.getHeightMultiplier());
     }
 
 

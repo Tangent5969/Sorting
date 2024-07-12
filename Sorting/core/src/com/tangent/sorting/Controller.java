@@ -3,9 +3,11 @@ package com.tangent.sorting;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Controller {
-    static final int graphWidth = 2048;
-    static final int graphHeight = 1000;
+    static final int graphWidth = 10000;
+    static final int graphHeight = 10000;
     static final float widthMultiplier = 0.9f;
+    static final int minElements = 4;
+    static final int maxElements = 1024;
     static int totalElements;
     static int speed;
     static int[] mainArray;
@@ -17,7 +19,7 @@ public class Controller {
     }
 
     static void logic() {
-        totalElements = 100;
+        totalElements = 10;
         setArray();
         //Utils.reverse(mainArray);
         Utils.shuffle(mainArray);

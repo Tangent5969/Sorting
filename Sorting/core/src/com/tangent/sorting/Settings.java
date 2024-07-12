@@ -5,14 +5,47 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import java.util.ArrayList;
 
 public class Settings {
-    int startX = (int) (Controller.graphWidth * Controller.widthMultiplier);
+    private static int startX = Bar.getWidth() * Controller.totalElements;
+    private static int settingsWidth = Controller.graphWidth - startX;
+    private static int heightMultiplier = 10;
+    private static int settingsHeight = Controller.graphHeight / heightMultiplier;
+    static Button[] buttonList = new Button[6];
+
+    //private static Button startButton = new Button(width, 100, 0, 0, Button.ButtonMethod.Start);
 
 
-    private static Button startButton = new Button(200, 100, 0, 0, Button.ButtonMethod.Start);
+    static void setButtons() {
+        int buttonWidth = (settingsWidth/2) - 50;
+        int buttonHeight = 50;
+        int buttonSpacer = 10;
+
+        buttonList[0] = new Button(buttonWidth, buttonHeight, 0, settingsHeight - buttonHeight, Button.ButtonMethod.Start);
+        buttonList[1] = new Button(buttonWidth, buttonHeight, buttonWidth + 100, settingsHeight - buttonHeight, Button.ButtonMethod.Step);
+        buttonList[2] = new Button(buttonWidth, buttonHeight, 0, settingsHeight - buttonHeight * 2 - buttonSpacer, Button.ButtonMethod.Start);
+        buttonList[3] = new Button(buttonWidth, buttonHeight, buttonWidth + 100, settingsHeight - buttonHeight * 2 - buttonSpacer, Button.ButtonMethod.Reset);
+        buttonList[4] = new Button(buttonWidth, buttonHeight, 0, settingsHeight - buttonHeight * 3 - buttonSpacer * 2, Button.ButtonMethod.Mute);
+        buttonList[5] = new Button(buttonWidth, buttonHeight, buttonWidth + 100, settingsHeight - buttonHeight * 3 - buttonSpacer * 2, Button.ButtonMethod.Random);
+
+    }
+
+    public static int getStartX() {
+        return startX;
+    }
+
+    public static int getWidth() {
+        return settingsWidth;
+    }
+
+    public static int getHeightMultiplier() {
+        return heightMultiplier;
+    }
+
 
 
     static void render(ShapeRenderer sr) {
-        startButton.render(sr);
+        for (Button button : buttonList) {
+            button.render(sr);
+        }
     }
 
 }
