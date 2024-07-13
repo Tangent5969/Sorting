@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Bar {
 
-    private static final int maxHeight = (int) (Controller.graphHeight * 0.9);
+    private static final int maxHeight = (int) (Controller.height * 0.9);
     private static int width;
     private final int height;
     Color colour;
@@ -15,7 +15,7 @@ public class Bar {
     }
 
     static void setWidth() {
-        width = (int) (Controller.graphWidth * Controller.widthMultiplier) / Controller.totalElements;
+        width = (int) (Controller.width * Controller.widthMultiplier) / Controller.totalElements;
     }
 
     public static int getWidth() {

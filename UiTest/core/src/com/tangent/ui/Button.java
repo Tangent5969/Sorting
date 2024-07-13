@@ -1,6 +1,9 @@
-package com.tangent.sorting;
+package com.tangent.ui;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Button {
@@ -26,6 +29,7 @@ public class Button {
         this.posY = posY;
         this.colour = Color.GRAY;
         this.method = method;
+        this.text = "";
 
     }
 
@@ -46,10 +50,22 @@ public class Button {
         }
     }
 
+    public boolean isPressed(int mouseX, int mouseY) {
+        if (mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height) {
+            activateMethod();
+            return true;
+        }
+        return false;
+    }
 
     public void render(ShapeRenderer sr) {
         sr.setColor(colour);
         sr.rect(posX, posY, width, height);
+    }
+
+    public void renderText(SpriteBatch batch, BitmapFont font) {
+        GlyphLayout layout = new GlyphLayout(font, text);
+        font.draw(batch, layout, (posX + (float) width / 2) - (layout.width / 2), (posY + (float) height / 2) + (layout.height / 2));
     }
 
 

@@ -3,8 +3,8 @@ package com.tangent.sorting;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Controller {
-    static final int graphWidth = 10000;
-    static final int graphHeight = 10000;
+    static final int width = 10000;
+    static final int height = 10000;
     static final float widthMultiplier = 0.9f;
     static final int minElements = 4;
     static final int maxElements = 1024;
