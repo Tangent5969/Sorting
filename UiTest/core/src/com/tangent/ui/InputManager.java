@@ -1,4 +1,6 @@
 package com.tangent.ui;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,13 +15,21 @@ public class InputManager extends InputAdapter {
 
         Vector3 coords =  Utils.unproject(x, y, 1000, 1000);
         for (Button current : Controller.buttonList) {
-            System.out.println(current.isPressed((int) coords.x, (int) coords.y));
+            if(current.isPressed((int) coords.x, (int) coords.y)) {
+                return true;
+            }
+        }
+
+        for (DropButton dropButton : Controller.dropButtonList) {
+            if(dropButton.isPressed((int) coords.x, (int) coords.y)) {
+                return true;
+            }
         }
 
         for (Slider slider : Controller.sliderList) {
-            System.out.println(slider.isSelected((int) coords.x, (int) coords.y));
             if (slider.isSelected((int) coords.x, (int) coords.y)) {
                 selectedSlider = slider;
+                return true;
             }
         }
 
@@ -47,6 +57,16 @@ public class InputManager extends InputAdapter {
 
     @Override
     public boolean scrolled (float amountX, float amountY) {
+        System.out.println(amountY);
+        // down positive
+        Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), 1000, 1000);
+        for (DropButton dropButton : Controller.dropButtonList) {
+            System.out.println(dropButton.scrollDetect((int) coords.x, (int) coords.y));
+            if (dropButton.scrollDetect((int) coords.x, (int) coords.y)) {
+                dropButton.scroll(amountY);
+                return true;
+            }
+        }
 
         return true;
     }

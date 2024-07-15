@@ -15,4 +15,5 @@ public class TextMethodPair {
     public ButtonMethods.Method getMethod() {
         return method;
     }
+
 }

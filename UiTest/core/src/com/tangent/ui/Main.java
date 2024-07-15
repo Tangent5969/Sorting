@@ -50,6 +50,9 @@ public class Main extends ApplicationAdapter {
 		for (Button button : Controller.buttonList) {
 			button.render(sr);
 		}
+		for (DropButton dropButton : Controller.dropButtonList) {
+			dropButton.render(sr);
+		}
 		for (Slider slider : Controller.sliderList) {
 			slider.render(sr);
 		}
@@ -61,6 +64,9 @@ public class Main extends ApplicationAdapter {
 		font.getData().setScale(2);
 		for (Button button : Controller.buttonList) {
 			button.renderText(batch, font);
+		}
+		for (DropButton dropButton : Controller.dropButtonList) {
+			dropButton.renderText(batch, font);
 		}
 		for (Slider slider : Controller.sliderList) {
 			slider.renderText(batch, font);
