@@ -2,15 +2,11 @@ package com.tangent.ui;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
@@ -21,8 +17,6 @@ public class Main extends ApplicationAdapter {
 	private BitmapFont font;
 	private Camera camera;
 	private StretchViewport viewport;
-
-
 
 	@Override
 	public void create () {
@@ -37,7 +31,6 @@ public class Main extends ApplicationAdapter {
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
 		Controller.logic();
-
 	}
 
 	@Override
@@ -47,6 +40,7 @@ public class Main extends ApplicationAdapter {
 		viewport.apply();
 		sr.setProjectionMatrix(camera.combined);
 		sr.begin(ShapeRenderer.ShapeType.Filled);
+
 		for (Button button : Controller.buttonList) {
 			button.render(sr);
 		}
@@ -87,6 +81,5 @@ public class Main extends ApplicationAdapter {
 		viewport.update(width, height);
 		viewport.setScreenPosition(viewport.getScreenX(), viewport.getScreenY());
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
-
 	}
 }

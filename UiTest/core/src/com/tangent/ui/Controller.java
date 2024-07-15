@@ -21,6 +21,5 @@ public class Controller
         sliderList[1] = new Slider(-5, 9, 2, 450, 600, 400);
 
         sliderList[1].setText("Number");
-
     }
 }

@@ -1,6 +1,8 @@
-package com.tangent.ui;
+package com.tangent.sorting;
 
+import com.tangent.sorting.ui.*;
 import com.tangent.utils.Utils;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector3;
@@ -12,19 +14,19 @@ public class InputManager extends InputAdapter {
     public boolean touchDown (int x, int y, int pointer, int button) {
 
         Vector3 coords =  Utils.unproject(x, y, 1000, 1000);
-        for (Button current : Controller.buttonList) {
+        for (Button current : Settings.buttonList) {
             if(current.isPressed((int) coords.x, (int) coords.y)) {
                 return true;
             }
         }
 
-        for (DropButton dropButton : Controller.dropButtonList) {
+        for (DropButton dropButton : Settings.dropButtonList) {
             if(dropButton.isPressed((int) coords.x, (int) coords.y)) {
                 return true;
             }
         }
 
-        for (Slider slider : Controller.sliderList) {
+        for (Slider slider : Settings.sliderList) {
             if (slider.isSelected((int) coords.x, (int) coords.y)) {
                 selectedSlider = slider;
                 return true;
@@ -57,8 +59,8 @@ public class InputManager extends InputAdapter {
     public boolean scrolled (float amountX, float amountY) {
         System.out.println(amountY);
         // down positive
-        Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), 1000, 1000);
-        for (DropButton dropButton : Controller.dropButtonList) {
+        Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), Controller.width, Controller.height);
+        for (DropButton dropButton : Settings.dropButtonList) {
             System.out.println(dropButton.scrollDetect((int) coords.x, (int) coords.y));
             if (dropButton.scrollDetect((int) coords.x, (int) coords.y)) {
                 dropButton.scroll(amountY);

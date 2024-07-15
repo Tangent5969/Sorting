@@ -1,4 +1,4 @@
-package com.tangent.ui;
+package com.tangent.sorting.ui;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Slider {
-    private static final int radius = 10;
-    private static final int height = 6;
+    private static final int radius = 50;
+    private static final int height = 15;
     private int min;
     private int max;
     private int value;

@@ -14,13 +14,9 @@ public class Button {
     private int posX;
     private int posY;
     private ButtonMethods.Method method;
-
     private String text;
 
-
-
-
-    Button(int width, int height, int posX, int posY, ButtonMethods.Method method) {
+    public Button(int width, int height, int posX, int posY, ButtonMethods.Method method) {
         this.width = width;
         this.height = height;
         this.posX = posX;
@@ -30,6 +26,10 @@ public class Button {
         this.text = "";
     }
 
+    public Button(int width, int height, int posX, int posY, String text, ButtonMethods.Method method) {
+        this(width, height, posX, posY, method);
+        this.text = text;
+    }
 
     public boolean collisionCheck (int mouseX, int mouseY) {
         return mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height;
@@ -52,7 +52,6 @@ public class Button {
         GlyphLayout layout = new GlyphLayout(font, text);
         font.draw(batch, layout, (posX + (float) width / 2) - (layout.width / 2), (posY + (float) height / 2) + (layout.height / 2));
     }
-
 
     public Color getColour() {
         return colour;

@@ -1,4 +1,4 @@
-package com.tangent.ui;
+package com.tangent.sorting.ui;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -45,29 +45,29 @@ public class DropButton extends Button{
         }
     }
 
-    @Override
-    public boolean isPressed(int mouseX, int mouseY) {
-        if (collisionCheck(mouseX, mouseY)) {
-            show = !show;
-            return true;
-        }
+  @Override
+  public boolean isPressed(int mouseX, int mouseY) {
+     if (collisionCheck(mouseX, mouseY)) {
+         show = !show;
+         return true;
+     }
 
-        if (show) {
-            for (Button sub : currentShown) {
-                sub.isPressed(mouseX, mouseY);
-                System.out.println(sub.getText() + sub.isPressed(mouseX, mouseY));
-            }
-        }
-        return false;
-    }
+     if (show) {
+         for (Button sub : currentShown) {
+             sub.isPressed(mouseX, mouseY);
+             System.out.println(sub.getText() + sub.isPressed(mouseX, mouseY));
+         }
+     }
+     return false;
+  }
 
-    public boolean scrollDetect(int mouseX, int mouseY) {
+  public boolean scrollDetect(int mouseX, int mouseY) {
         return mouseX >= getPosX() && mouseX <= getPosX() + getWidth() && mouseY <= getPosY() && mouseY >= getPosY() - currentShown.length * getHeight();
-    }
+  }
 
-    public void scroll(float scrollAmount) {
-        // down positive
-        if (scrollAmount > 0) {
+  public void scroll(float scrollAmount) {
+      // down positive
+      if (scrollAmount > 0) {
             if (currentPos + currentShown.length < subButtons.length) {
                 currentPos++;
                 updateCurrentShown();
@@ -79,7 +79,7 @@ public class DropButton extends Button{
                 updateCurrentShown();
             }
         }
-    }
+  }
 
     @Override
     public void render(ShapeRenderer sr) {

@@ -1,4 +1,4 @@
-package com.tangent.ui;
+package com.tangent.sorting.ui;
 
 public class ButtonMethods {
     public enum Method {

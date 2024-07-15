@@ -1,6 +1,9 @@
-package com.tangent.sorting;
+package com.tangent.sorting.ui;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Button {
@@ -10,48 +13,45 @@ public class Button {
     private int height;
     private int posX;
     private int posY;
-    private ButtonMethod method;
-
+    private ButtonMethods.Method method;
     private String text;
 
-    public enum ButtonMethod {
-        Start, Pause, Step, Reset, Mute, Random
-    }
-
-
-    Button(int width, int height, int posX, int posY, ButtonMethod method) {
+    public Button(int width, int height, int posX, int posY, ButtonMethods.Method method) {
         this.width = width;
         this.height = height;
         this.posX = posX;
         this.posY = posY;
         this.colour = Color.GRAY;
         this.method = method;
-
+        this.text = "";
     }
 
-    public void activateMethod() {
-        switch (method) {
-            case Start:
-                break;
-            case Pause:
-                break;
-            case Step:
-                break;
-            case Reset:
-                break;
-            case Mute:
-                break;
-            case Random:
-                break;
+    public Button(int width, int height, int posX, int posY, String text, ButtonMethods.Method method) {
+        this(width, height, posX, posY, method);
+        this.text = text;
+    }
+
+    public boolean collisionCheck (int mouseX, int mouseY) {
+        return mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height;
+    }
+
+    public boolean isPressed(int mouseX, int mouseY) {
+        if (collisionCheck(mouseX, mouseY)) {
+            ButtonMethods.activateMethod(method);
+            return true;
         }
+        return false;
     }
-
 
     public void render(ShapeRenderer sr) {
         sr.setColor(colour);
         sr.rect(posX, posY, width, height);
     }
 
+    public void renderText(SpriteBatch batch, BitmapFont font) {
+        GlyphLayout layout = new GlyphLayout(font, text);
+        font.draw(batch, layout, (posX + (float) width / 2) - (layout.width / 2), (posY + (float) height / 2) + (layout.height / 2));
+    }
 
     public Color getColour() {
         return colour;
@@ -93,11 +93,11 @@ public class Button {
         this.posY = posY;
     }
 
-    public ButtonMethod getMethod() {
+    public ButtonMethods.Method getMethod() {
         return method;
     }
 
-    public void setMethod(ButtonMethod method) {
+    public void setMethod(ButtonMethods.Method method) {
         this.method = method;
     }
 
