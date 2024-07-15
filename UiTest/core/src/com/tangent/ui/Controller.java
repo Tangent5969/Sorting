@@ -5,8 +5,8 @@ public class Controller
     static Button[] buttonList = new Button[2];
     static Slider[] sliderList = new Slider[2];
     static void logic() {
-        buttonList[0] = new Button(100, 50, 100, 200, Button.ButtonMethod.Start);
-        buttonList[1] = new Button(100, 50, 150, 300, Button.ButtonMethod.Pause);
+        buttonList[0] = new Button(100, 50, 100, 200, ButtonMethods.Method.Start);
+        buttonList[1] = new Button(100, 50, 150, 300, ButtonMethods.Method.Pause);
 
         buttonList[0].setText("Start");
 

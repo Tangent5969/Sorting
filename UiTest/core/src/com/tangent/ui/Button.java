@@ -13,16 +13,14 @@ public class Button {
     private int height;
     private int posX;
     private int posY;
-    private ButtonMethod method;
+    private ButtonMethods.Method method;
 
     private String text;
 
-    public enum ButtonMethod {
-        Start, Pause, Step, Reset, Mute, Random
-    }
 
 
-    Button(int width, int height, int posX, int posY, ButtonMethod method) {
+
+    Button(int width, int height, int posX, int posY, ButtonMethods.Method method) {
         this.width = width;
         this.height = height;
         this.posX = posX;
@@ -30,29 +28,16 @@ public class Button {
         this.colour = Color.GRAY;
         this.method = method;
         this.text = "";
-
     }
 
-    public void activateMethod() {
-        switch (method) {
-            case Start:
-                break;
-            case Pause:
-                break;
-            case Step:
-                break;
-            case Reset:
-                break;
-            case Mute:
-                break;
-            case Random:
-                break;
-        }
+
+    public boolean collisionCheck (int mouseX, int mouseY) {
+        return mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height;
     }
 
     public boolean isPressed(int mouseX, int mouseY) {
-        if (mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height) {
-            activateMethod();
+        if (collisionCheck(mouseX, mouseY)) {
+            ButtonMethods.activateMethod(method);
             return true;
         }
         return false;
@@ -109,11 +94,11 @@ public class Button {
         this.posY = posY;
     }
 
-    public ButtonMethod getMethod() {
+    public ButtonMethods.Method getMethod() {
         return method;
     }
 
-    public void setMethod(ButtonMethod method) {
+    public void setMethod(ButtonMethods.Method method) {
         this.method = method;
     }
 
