@@ -13,7 +13,7 @@ public class InputManager extends InputAdapter {
     @Override
     public boolean touchDown (int x, int y, int pointer, int button) {
 
-        Vector3 coords =  Utils.unproject(x, y, 1000, 1000);
+        Vector3 coords =  Utils.unproject(x, y, Controller.width, Controller.height);
         for (Button current : Settings.buttonList) {
             if(current.isPressed((int) coords.x, (int) coords.y)) {
                 return true;
@@ -47,7 +47,7 @@ public class InputManager extends InputAdapter {
 
     @Override
     public boolean touchDragged (int x, int y, int pointer) {
-        Vector3 coords =  Utils.unproject(x, y, 1000, 1000);
+        Vector3 coords =  Utils.unproject(x, y, Controller.width, Controller.height);
         if (selectedSlider != null) {
             selectedSlider.updatePosition((int) coords.x);
         }

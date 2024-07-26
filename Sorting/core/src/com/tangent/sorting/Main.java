@@ -30,6 +30,8 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+		Gdx.graphics.setContinuousRendering(false);
+
 		Gdx.input.setInputProcessor(new InputManager());
 
 		sr = new ShapeRenderer();
@@ -40,7 +42,7 @@ public class Main extends ApplicationAdapter {
 		viewport = new StretchViewport(Controller.width, Controller.height, camera);
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
-		Controller.logic();
+		Controller.setArray();
 
 		Settings.setButtons();
 		Settings.setDropButtons();

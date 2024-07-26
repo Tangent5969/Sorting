@@ -9,7 +9,7 @@ public class Controller {
     static final float widthMultiplier = 0.9f;
     static final int minElements = 4;
     static final int maxElements = 1024;
-    static int totalElements;
+    static int totalElements = 10;
     static int speed;
     static int[] mainArray;
 
@@ -19,12 +19,7 @@ public class Controller {
         Utils.populateArray(mainArray);
     }
 
-    static void logic() {
-        totalElements = 10;
-        setArray();
-        //Utils.reverse(mainArray);
-        Utils.shuffle(mainArray);
-    }
+
 
     static void renderArray(ShapeRenderer sr) {
         for (int i = 0; i < totalElements; i++) {
@@ -32,4 +27,12 @@ public class Controller {
         }
     }
 
+    public static void setTotalElements(int totalElements) {
+        Controller.totalElements = totalElements;
+        setArray();
+    }
+
+    public static void setSpeed(int speed) {
+        Controller.speed = speed;
+    }
 }

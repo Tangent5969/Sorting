@@ -20,6 +20,8 @@ public class Settings {
 
 
 
+
+
     static void setButtons() {
         int buttonWidth = (settingsWidth / 2) - 50;
         int buttonHeight = 50;
@@ -47,11 +49,13 @@ public class Settings {
     }
 
     static void setSliders() {
+        int sliderStart = settingsHeight - 210;
         int sliderWidth = (int) (settingsWidth * 0.75);
+        int sliderSpacer = 35;
 
-        sliderList[0] = new Slider(1, 100, 25, settingsWidth/4, 300, sliderWidth, "Speed");
-        sliderList[1] = new Slider(Controller.minElements, Controller.maxElements, 128, settingsWidth/4, 330, sliderWidth, "Size");
-        sliderList[2] = new Slider(1, 5, 3, settingsWidth/4, 360, sliderWidth, "Pitch");
+        sliderList[0] = new Slider(1, 100, 25, settingsWidth/2, sliderStart, sliderWidth, ButtonMethods.SlideMethod.Speed, "Speed");
+        sliderList[1] = new Slider(Controller.minElements, Controller.maxElements, Controller.totalElements, settingsWidth/2, sliderStart - sliderSpacer, sliderWidth,ButtonMethods.SlideMethod.Size, "Size");
+        sliderList[2] = new Slider(1, 5, 3, settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth,ButtonMethods.SlideMethod.Pitch, "Pitch");
 
     }
 

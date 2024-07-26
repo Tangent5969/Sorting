@@ -16,8 +16,9 @@ public class Slider {
     private int width;
     private int position;
     private String text;
+    ButtonMethods.SlideMethod method;
 
-    public Slider(int min, int max, int value, int posX, int posY, int width) {
+    public Slider(int min, int max, int value, int posX, int posY, int width, ButtonMethods.SlideMethod method) {
         this.min = min;
         this.max = max;
         this.value = value;
@@ -25,12 +26,18 @@ public class Slider {
         this.posY = posY;
         this.width = width;
         this.position = (int) ((posX - (float) width / 2) + (width * ((float) (value - min) / (max - min))));
+        this.method = method;
         this.text = "";
     }
 
-    public Slider(int min, int max, int value, int posX, int posY, int width, String text) {
-        this(min, max, value, posX, posY, width);
+    public Slider(int min, int max, int value, int posX, int posY, int width, ButtonMethods.SlideMethod method, String text) {
+        this(min, max, value, posX, posY, width, method);
         this.text = text;
+    }
+
+
+    public void updatePosition() {
+        this.position = (int) ((posX - (float) width / 2) + (width * ((float) (value - min) / (max - min))));
     }
 
     public void updatePosition(int mouseX) {
@@ -47,7 +54,7 @@ public class Slider {
     }
 
     public void updateValue() {
-
+        ButtonMethods.updateSlideValue(method, value);
     }
 
     public boolean isSelected(int mouseX, int mouseY) {
@@ -95,6 +102,7 @@ public class Slider {
 
     public void setPosX(int posX) {
         this.posX = posX;
+        updatePosition();
     }
 
     public int getPosY() {

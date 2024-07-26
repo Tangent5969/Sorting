@@ -32,7 +32,7 @@ public class DropButton extends Button{
     public void populateSubButtons(TextMethodPair[] subParams) {
         for (int i = 0; i < subParams.length; i++) {
             TextMethodPair params = subParams[i];
-            subButtons[i] = new Button(this.getWidth(), getHeight(), getPosX(), getPosY(), params.getMethod());
+            subButtons[i] = new Button(getWidth(), getHeight(), getPosX(), getPosY(), params.getMethod());
             subButtons[i].setText(params.getText());
         }
         updateCurrentShown();
@@ -100,6 +100,36 @@ public class DropButton extends Button{
             }
         }
     }
+
+    @Override
+    public void setPosX(int posX) {
+        super.setPosX(posX);
+        for (Button sub : subButtons) {
+            sub.setPosX(posX);
+        }
+        updateCurrentShown();
+    }
+
+    @Override
+    public void setPosY(int posY) {
+        super.setPosY(posY);
+        for (Button sub : subButtons) {
+            sub.setPosY(posY);
+        }
+        updateCurrentShown();
+    }
+
+    @Override
+    public void setHeight(int height) {
+        super.setHeight(height);
+        for (Button sub : subButtons) {
+            sub.setHeight(height);
+        }
+        updateCurrentShown();
+
+    }
+
+
 
     public Button[] getSubButtons() {
         return subButtons;
