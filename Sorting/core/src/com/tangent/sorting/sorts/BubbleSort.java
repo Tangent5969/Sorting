@@ -1,10 +1,12 @@
-package com.tangent.sorting;
+package com.tangent.sorting.sorts;
 
+import com.badlogic.gdx.Gdx;
+import com.tangent.sorting.Controller;
 import com.tangent.utils.Utils;
 
 public class BubbleSort {
 
-    BubbleSort(int[] array) {
+    public BubbleSort(int[] array) {
             int end = array.length-1;
             boolean swap;
             do {
@@ -13,6 +15,7 @@ public class BubbleSort {
                     if (array[i] > array[i + 1]) {
                         Utils.swap(array, i, i + 1);
                         swap = true;
+                        Gdx.graphics.requestRendering();
                     }
                 }
                 end--;

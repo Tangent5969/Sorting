@@ -16,7 +16,7 @@ public class Slider {
     private int width;
     private int position;
     private String text;
-    ButtonMethods.SlideMethod method;
+    private ButtonMethods.SlideMethod method;
 
     public Slider(int min, int max, int value, int posX, int posY, int width, ButtonMethods.SlideMethod method) {
         this.min = min;

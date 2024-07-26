@@ -1,6 +1,7 @@
 package com.tangent.sorting;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Timer;
 import com.tangent.utils.Utils;
 
 public class Controller {
@@ -11,7 +12,7 @@ public class Controller {
     static final int maxElements = 1024;
     static int totalElements = 10;
     static int speed;
-    static int[] mainArray;
+    public static int[] mainArray;
 
     static void setArray() {
         mainArray = new int[totalElements];
@@ -21,7 +22,7 @@ public class Controller {
 
 
 
-    static void renderArray(ShapeRenderer sr) {
+    public static void renderArray(ShapeRenderer sr) {
         for (int i = 0; i < totalElements; i++) {
             new Bar(mainArray[i]).render(i, sr);
         }

@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -31,7 +32,6 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		Gdx.graphics.setContinuousRendering(false);
-
 		Gdx.input.setInputProcessor(new InputManager());
 
 		sr = new ShapeRenderer();

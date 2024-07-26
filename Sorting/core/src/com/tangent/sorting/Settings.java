@@ -3,11 +3,7 @@ package com.tangent.sorting;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tangent.sorting.ui.*;
-import com.tangent.utils.Utils;
-import com.tangent.sorting.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import java.util.ArrayList;
 
 public class Settings {
     private static int startX = Bar.getWidth() * Controller.totalElements;
@@ -38,7 +34,7 @@ public class Settings {
     }
 
     static void setDropButtons() {
-        TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Blank), new TextMethodPair("Reverse", ButtonMethods.Method.Blank)};
+        TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
         TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Blank)};
 
         int buttonWidth = (settingsWidth / 2);

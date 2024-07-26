@@ -61,7 +61,6 @@ public class InputManager extends InputAdapter {
         // down positive
         Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), Controller.width, Controller.height);
         for (DropButton dropButton : Settings.dropButtonList) {
-            System.out.println(dropButton.scrollDetect((int) coords.x, (int) coords.y));
             if (dropButton.scrollDetect((int) coords.x, (int) coords.y)) {
                 dropButton.scroll(amountY);
                 return true;
