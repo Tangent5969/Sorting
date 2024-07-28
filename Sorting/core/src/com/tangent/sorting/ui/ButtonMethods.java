@@ -3,11 +3,14 @@ package com.tangent.sorting.ui;
 import com.badlogic.gdx.Gdx;
 import com.tangent.sorting.Controller;
 import com.tangent.sorting.sorts.BubbleSort;
+import com.tangent.sorting.sorts.RecursiveBubbleSort;
 import com.tangent.utils.Utils;
 
 public class ButtonMethods {
     public enum Method {
-        Blank, Start, Pause, Step, Reset, Mute, Random, Shuffle, Reverse
+        Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
+        Shuffle, Reverse, // Shuffles
+        Bubble // Sorts
     }
 
 
@@ -20,23 +23,32 @@ public class ButtonMethods {
             case Blank:
                 break;
             case Start:
-                new BubbleSort(Controller.mainArray);
+                Controller.start = true;
+                //Gdx.graphics.requestRendering();
                 break;
             case Pause:
+                Controller.start = false;
                 break;
             case Step:
+                Controller.step = true;
                 break;
             case Reset:
+                Controller.reset();
                 break;
             case Mute:
                 break;
             case Random:
                 break;
             case Shuffle:
+                Controller.reset();
                 Utils.shuffle(Controller.mainArray);
                 break;
             case Reverse:
+                Controller.reset();
                 Utils.reverse(Controller.mainArray);
+                break;
+            case Bubble:
+                Controller.setSortType(Method.Bubble);
                 break;
         }
     }
@@ -49,6 +61,7 @@ public class ButtonMethods {
                 Controller.setSpeed(value);
                 break;
             case Size:
+                Controller.reset();
                 Controller.setTotalElements(value);
                 break;
             case Pitch:

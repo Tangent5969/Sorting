@@ -14,6 +14,11 @@ public class Bar {
         this.colour = Color.LIGHT_GRAY;
     }
 
+    Bar(int value, Color colour) {
+        this.height = (maxHeight / Controller.totalElements) * value;
+        this.colour = colour;
+    }
+
     static void setWidth() {
         width = (int) (Controller.width * Controller.widthMultiplier) / Controller.totalElements;
     }

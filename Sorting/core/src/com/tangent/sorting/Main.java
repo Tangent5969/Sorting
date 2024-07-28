@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.tangent.sorting.sorts.RecursiveBubbleSort;
+import com.tangent.utils.Utils;
 
 public class Main extends ApplicationAdapter {
 	private ShapeRenderer sr;
@@ -53,7 +55,7 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(0, 0, 0, 1);
 
 
 
@@ -70,6 +72,14 @@ public class Main extends ApplicationAdapter {
 		font.getData().setScale(10);
 		Settings.renderText(batch, font);
 		batch.end();
+
+		if (Controller.start) {
+			Controller.sort();
+		}
+		else if (Controller.step) {
+			Controller.step = false;
+			Controller.sort();
+		}
 
 	}
 	

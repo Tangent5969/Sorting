@@ -35,7 +35,7 @@ public class Settings {
 
     static void setDropButtons() {
         TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
-        TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Blank)};
+        TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Bubble)};
 
         int buttonWidth = (settingsWidth / 2);
         int buttonHeight = 50;

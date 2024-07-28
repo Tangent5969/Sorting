@@ -1,8 +1,13 @@
 package com.tangent.sorting;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Timer;
+import com.tangent.sorting.sorts.RecursiveBubbleSort;
+import com.tangent.sorting.ui.ButtonMethods;
 import com.tangent.utils.Utils;
+
+import java.util.ArrayList;
 
 public class Controller {
     static final int width = 10000;
@@ -11,8 +16,13 @@ public class Controller {
     static final int minElements = 4;
     static final int maxElements = 1024;
     static int totalElements = 10;
-    static int speed;
+    public static int speed;
+    static ButtonMethods.Method sortType = ButtonMethods.Method.Blank; // reuse enum with same sort names
     public static int[] mainArray;
+    public static boolean start = false;
+    public static boolean step = false;
+    public static int marker = -1;
+    public static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
     static void setArray() {
         mainArray = new int[totalElements];
@@ -20,11 +30,29 @@ public class Controller {
         Utils.populateArray(mainArray);
     }
 
+    public static void reset() {
+        start = false;
+        marker = -1;
+        specialBars.clear();
+        setArray();
+    }
+
+    static void sort() {
+        switch (sortType) {
+            case Bubble:
+                RecursiveBubbleSort.bubbleSort(mainArray);
+                break;
+        }
+    }
+
 
 
     public static void renderArray(ShapeRenderer sr) {
         for (int i = 0; i < totalElements; i++) {
             new Bar(mainArray[i]).render(i, sr);
+        }
+        for (IntColourPair pair : specialBars) {
+            new Bar(mainArray[pair.getNum()], pair.getColour()).render(pair.getNum(), sr);
         }
     }
 
@@ -35,5 +63,9 @@ public class Controller {
 
     public static void setSpeed(int speed) {
         Controller.speed = speed;
+    }
+
+    public static void setSortType(ButtonMethods.Method sortType) {
+        Controller.sortType = sortType;
     }
 }

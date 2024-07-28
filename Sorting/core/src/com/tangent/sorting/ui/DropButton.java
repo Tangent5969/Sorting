@@ -53,7 +53,9 @@ public class DropButton extends Button{
 
      if (show) {
          for (Button sub : currentShown) {
-             return sub.isPressed(mouseX, mouseY);
+             if (sub.isPressed(mouseX, mouseY)) {
+                 return true;
+             }
          }
      }
      return false;
