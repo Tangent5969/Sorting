@@ -39,6 +39,15 @@ public class Utils {
         }
     }
 
+    public static boolean isSorted(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > array[i+1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // converts screen coordinates to world coordinates
     public static Vector3 unproject (float x, float y, float width, float height) {
         // normalize screen coordinates

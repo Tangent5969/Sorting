@@ -35,7 +35,7 @@ public class Settings {
 
     static void setDropButtons() {
         TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
-        TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Bubble)};
+        TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Bubble), new TextMethodPair("Bogo", ButtonMethods.Method.Bogo)};
 
         int buttonWidth = (settingsWidth / 2);
         int buttonHeight = 50;
@@ -49,7 +49,7 @@ public class Settings {
         int sliderWidth = (int) (settingsWidth * 0.75);
         int sliderSpacer = 35;
 
-        sliderList[0] = new Slider(1, 100, 25, settingsWidth/2, sliderStart, sliderWidth, ButtonMethods.SlideMethod.Speed, "Speed");
+        sliderList[0] = new Slider(Controller.minSpeed, Controller.maxSpeed, Controller.speed, settingsWidth/2, sliderStart, sliderWidth, ButtonMethods.SlideMethod.Speed, "Speed");
         sliderList[1] = new Slider(Controller.minElements, Controller.maxElements, Controller.totalElements, settingsWidth/2, sliderStart - sliderSpacer, sliderWidth,ButtonMethods.SlideMethod.Size, "Size");
         sliderList[2] = new Slider(1, 5, 3, settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth,ButtonMethods.SlideMethod.Pitch, "Pitch");
 

@@ -10,7 +10,7 @@ public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
         Shuffle, Reverse, // Shuffles
-        Bubble // Sorts
+        Bubble, Bogo // Sorts
     }
 
 
@@ -24,7 +24,6 @@ public class ButtonMethods {
                 break;
             case Start:
                 Controller.start = true;
-                //Gdx.graphics.requestRendering();
                 break;
             case Pause:
                 Controller.start = false;
@@ -49,6 +48,9 @@ public class ButtonMethods {
                 break;
             case Bubble:
                 Controller.setSortType(Method.Bubble);
+                break;
+            case Bogo:
+                Controller.setSortType(Method.Bogo);
                 break;
         }
     }

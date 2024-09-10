@@ -3,6 +3,7 @@ package com.tangent.sorting;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Timer;
+import com.tangent.sorting.sorts.BogoSort;
 import com.tangent.sorting.sorts.RecursiveBubbleSort;
 import com.tangent.sorting.ui.ButtonMethods;
 import com.tangent.utils.Utils;
@@ -16,7 +17,9 @@ public class Controller {
     static final int minElements = 4;
     static final int maxElements = 1024;
     static int totalElements = 10;
-    public static int speed;
+    static final int minSpeed = 0;
+    static final int maxSpeed = 100;
+    public static int speed = 25;
     static ButtonMethods.Method sortType = ButtonMethods.Method.Blank; // reuse enum with same sort names
     public static int[] mainArray;
     public static boolean start = false;
@@ -42,6 +45,9 @@ public class Controller {
             case Bubble:
                 RecursiveBubbleSort.bubbleSort(mainArray);
                 break;
+            case Bogo:
+                BogoSort.bogoSort(mainArray);
+                break;
         }
     }
 
@@ -66,6 +72,12 @@ public class Controller {
     }
 
     public static void setSortType(ButtonMethods.Method sortType) {
-        Controller.sortType = sortType;
+        if (Controller.sortType == ButtonMethods.Method.Blank) {
+            Controller.sortType = sortType;
+        }
+        else if (sortType != Controller.sortType) {
+            reset();
+            Controller.sortType = sortType;
+        }
     }
 }
