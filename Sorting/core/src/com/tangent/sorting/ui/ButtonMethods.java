@@ -10,7 +10,7 @@ public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
         Shuffle, Reverse, // Shuffles
-        Bubble, Bogo // Sorts
+        Bubble, Bogo, Bozo // Sorts
     }
 
 
@@ -51,6 +51,9 @@ public class ButtonMethods {
                 break;
             case Bogo:
                 Controller.setSortType(Method.Bogo);
+                break;
+            case Bozo:
+                Controller.setSortType(Method.Bozo);
                 break;
         }
     }

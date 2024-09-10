@@ -35,13 +35,13 @@ public class Settings {
 
     static void setDropButtons() {
         TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
-        TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Bubble), new TextMethodPair("Bogo", ButtonMethods.Method.Bogo)};
+        TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Bubble), new TextMethodPair("Bogo", ButtonMethods.Method.Bogo), new TextMethodPair("Bozo", ButtonMethods.Method.Bozo)};
 
-        int buttonWidth = (settingsWidth / 2);
+        int buttonWidth = (settingsWidth / 2) - 50;
         int buttonHeight = 50;
 
-        dropButtonList[0] = new DropButton(buttonWidth, buttonHeight, settingsWidth/4, 500, "Shuffle", shuffleButton);
-        dropButtonList[1] = new DropButton(buttonWidth, buttonHeight, settingsWidth/4, 400, "Sort", sortButton);
+        dropButtonList[0] = new DropButton(buttonWidth, buttonHeight, 0, 500, "Shuffle", shuffleButton);
+        dropButtonList[1] = new DropButton(buttonWidth, buttonHeight, buttonWidth + 100, 500, "Sort", sortButton);
     }
 
     static void setSliders() {

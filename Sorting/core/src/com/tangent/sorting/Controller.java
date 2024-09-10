@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Timer;
 import com.tangent.sorting.sorts.BogoSort;
+import com.tangent.sorting.sorts.BozoSort;
 import com.tangent.sorting.sorts.RecursiveBubbleSort;
 import com.tangent.sorting.ui.ButtonMethods;
 import com.tangent.utils.Utils;
@@ -47,6 +48,9 @@ public class Controller {
                 break;
             case Bogo:
                 BogoSort.bogoSort(mainArray);
+                break;
+            case Bozo:
+                BozoSort.bozoSort(mainArray);
                 break;
         }
     }
