@@ -1,9 +1,6 @@
 package com.tangent.sorting.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.tangent.sorting.Controller;
-import com.tangent.sorting.sorts.BubbleSort;
-import com.tangent.sorting.sorts.RecursiveBubbleSort;
 import com.tangent.utils.Utils;
 
 public class ButtonMethods {

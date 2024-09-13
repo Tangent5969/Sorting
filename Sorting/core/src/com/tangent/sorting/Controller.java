@@ -1,11 +1,10 @@
 package com.tangent.sorting;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.Timer;
 import com.tangent.sorting.sorts.BogoSort;
 import com.tangent.sorting.sorts.BozoSort;
 import com.tangent.sorting.sorts.RecursiveBubbleSort;
+import com.tangent.sorting.sorts.RecursiveBubbleSort2;
 import com.tangent.sorting.ui.ButtonMethods;
 import com.tangent.utils.Utils;
 
@@ -38,6 +37,7 @@ public class Controller {
         start = false;
         marker = -1;
         specialBars.clear();
+
         setArray();
     }
 
@@ -64,6 +64,10 @@ public class Controller {
         for (IntColourPair pair : specialBars) {
             new Bar(mainArray[pair.getNum()], pair.getColour()).render(pair.getNum(), sr);
         }
+    }
+
+    public static void renderGreenBars() {
+
     }
 
     public static void setTotalElements(int totalElements) {
