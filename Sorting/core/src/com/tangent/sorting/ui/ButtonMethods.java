@@ -20,13 +20,13 @@ public class ButtonMethods {
             case Blank:
                 break;
             case Start:
-                Controller.start = true;
+                Controller.start();
                 break;
             case Pause:
-                Controller.start = false;
+                Controller.pause();
                 break;
             case Step:
-                Controller.step = true;
+                Controller.step();
                 break;
             case Reset:
                 Controller.reset();

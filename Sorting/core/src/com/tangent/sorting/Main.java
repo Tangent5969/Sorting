@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.tangent.sorting.sorts.BubbleSort;
 
 public class Main extends ApplicationAdapter {
 	private ShapeRenderer sr;
@@ -16,7 +17,6 @@ public class Main extends ApplicationAdapter {
 	private BitmapFont font;
 	private Camera camera;
 	private StretchViewport viewport;
-
 
 
 
@@ -64,21 +64,11 @@ public class Main extends ApplicationAdapter {
 		Settings.renderText(batch, font);
 		batch.end();
 
-		if (Controller.start) {
-			Controller.sort();
-		}
-		else if (Controller.step) {
-			Controller.step = false;
-			Controller.sort();
-		}
-		else if (Controller.marker == -2) {
-
-		}
-
 	}
 	
 	@Override
 	public void dispose () {
+		Controller.sortThread.interrupt();
 		sr.dispose();
 		batch.dispose();
 		font.dispose();

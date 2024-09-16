@@ -1,5 +1,6 @@
-package com.tangent.sorting.sorts;
+package com.tangent.sorting.redundant;
 
+/*
 import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -36,3 +37,4 @@ public class BozoSort {
 
     }
 }
+ */

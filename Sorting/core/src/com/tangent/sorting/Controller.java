@@ -1,10 +1,7 @@
 package com.tangent.sorting;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.tangent.sorting.sorts.BogoSort;
-import com.tangent.sorting.sorts.BozoSort;
-import com.tangent.sorting.sorts.RecursiveBubbleSort;
-import com.tangent.sorting.sorts.RecursiveBubbleSort2;
+import com.tangent.sorting.sorts.*;
 import com.tangent.sorting.ui.ButtonMethods;
 import com.tangent.utils.Utils;
 
@@ -22,9 +19,10 @@ public class Controller {
     public static int speed = 25;
     static ButtonMethods.Method sortType = ButtonMethods.Method.Blank; // reuse enum with same sort names
     public static int[] mainArray;
-    public static boolean start = false;
-    public static boolean step = false;
-    public static int marker = -1;
+    public static Thread sortThread = new Thread();
+    public static boolean sorting = false;
+    public static boolean stop = false;
+    public static final Object lock = new Object();
     public static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
     static void setArray() {
@@ -34,27 +32,58 @@ public class Controller {
     }
 
     public static void reset() {
-        start = false;
-        marker = -1;
+        sortThread.interrupt();
+        sorting = false;
         specialBars.clear();
 
         setArray();
     }
 
-    static void sort() {
-        switch (sortType) {
-            case Bubble:
-                RecursiveBubbleSort.bubbleSort(mainArray);
-                break;
-            case Bogo:
-                BogoSort.bogoSort(mainArray);
-                break;
-            case Bozo:
-                BozoSort.bozoSort(mainArray);
-                break;
+
+    public static void start() {
+        if (!sortThread.isAlive()) {
+            sorting = true;
+            newSort();
+
+        }
+        else if (!sorting) {
+            synchronized (lock) {
+                sorting = true;
+                lock.notify();
+            }
         }
     }
 
+    public static void pause() {
+        sorting = false;
+    }
+
+    public static void step() {
+        if (!sortThread.isAlive()) {
+            newSort();
+        }
+
+        synchronized (lock) {
+            stop = true;
+            lock.notify();
+            stop = false;
+        }
+    }
+
+    private static void newSort() {
+        switch (sortType) {
+            case Bubble:
+                sortThread = new Thread(new BubbleSort(mainArray));
+                sortThread.start();
+                break;
+            case Bogo:
+                //BogoSort.bogoSort(mainArray);
+                break;
+            case Bozo:
+                //BozoSort.bozoSort(mainArray);
+                break;
+        }
+    }
 
 
     public static void renderArray(ShapeRenderer sr) {
@@ -66,9 +95,10 @@ public class Controller {
         }
     }
 
-    public static void renderGreenBars() {
 
-    }
+
+
+
 
     public static void setTotalElements(int totalElements) {
         Controller.totalElements = totalElements;

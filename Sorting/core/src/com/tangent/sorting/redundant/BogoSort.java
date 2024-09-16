@@ -1,5 +1,6 @@
-package com.tangent.sorting.sorts;
+package com.tangent.sorting.redundant;
 
+/*
 import com.badlogic.gdx.Gdx;
 import com.tangent.sorting.Controller;
 import com.tangent.utils.Utils;
@@ -27,3 +28,4 @@ public class BogoSort {
 
     }
 }
+*/
