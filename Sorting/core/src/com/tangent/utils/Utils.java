@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 import java.util.Random;
 
 public class Utils {
+    private static final Random rand = new Random();
 
     // populates an array with numbers 1 to n
     public static void populateArray(int[] array) {
@@ -33,13 +34,12 @@ public class Utils {
     // shuffle the elements in an array
     // based of fisher yates shuffle
     public static void shuffle(int[] array) {
-        Random rand = new Random();
         for (int i = array.length - 1; i >= 0; i--) {
             swap(array, i, rand.nextInt(i, array.length));
         }
     }
 
-    // checks if an array is in ascending order
+    // returns if an array is in ascending order
     public static boolean isSorted(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] > array[i+1]) {

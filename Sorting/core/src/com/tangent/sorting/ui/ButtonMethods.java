@@ -1,7 +1,6 @@
 package com.tangent.sorting.ui;
 
 import com.tangent.sorting.Controller;
-import com.tangent.utils.Utils;
 
 public class ButtonMethods {
     public enum Method {
@@ -34,14 +33,13 @@ public class ButtonMethods {
             case Mute:
                 break;
             case Random:
+                Controller.randomSort();
                 break;
             case Shuffle:
-                Controller.reset();
-                Utils.shuffle(Controller.mainArray);
+                Controller.shuffle();
                 break;
             case Reverse:
-                Controller.reset();
-                Utils.reverse(Controller.mainArray);
+                Controller.reverse();
                 break;
             case Bubble:
                 Controller.setSortType(Method.Bubble);

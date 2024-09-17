@@ -32,7 +32,7 @@ public class DropButton extends Button{
     public void populateSubButtons(TextMethodPair[] subParams) {
         for (int i = 0; i < subParams.length; i++) {
             TextMethodPair params = subParams[i];
-            subButtons[i] = new Button(getWidth(), getHeight(), getPosX(), getPosY(), params.getText(),  params.getMethod());
+            subButtons[i] = new Button(getWidth(), getHeight(), getPosX(), getPosY(), params.getText(), params.getMethod());
         }
         updateCurrentShown();
     }
