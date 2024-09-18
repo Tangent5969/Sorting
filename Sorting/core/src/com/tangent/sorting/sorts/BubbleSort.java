@@ -13,6 +13,7 @@ public class BubbleSort extends Sort {
         super(array);
     }
 
+    @Override
     public void run() {
             int end = array.length-1;
             boolean swap;
@@ -36,6 +37,7 @@ public class BubbleSort extends Sort {
                     }
                 end--;
             }
+
             while (swap);
             greenBars();
             Controller.sorting = false;

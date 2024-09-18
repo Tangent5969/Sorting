@@ -16,6 +16,8 @@ public class Main extends ApplicationAdapter {
 	private BitmapFont font;
 	private Camera camera;
 	private StretchViewport viewport;
+	static Audio audio;
+	static Thread audioThread;
 
 
 
@@ -40,6 +42,10 @@ public class Main extends ApplicationAdapter {
 		Settings.setDropButtons();
 		Settings.setSliders();
 		Settings.offsetSettings();
+
+		audio = new Audio();
+		audioThread = new Thread(audio, "audioThread");
+		audioThread.start();
 
 	}
 
@@ -68,6 +74,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		Controller.sortThread.interrupt();
+		audio.close();
 		sr.dispose();
 		batch.dispose();
 		font.dispose();
