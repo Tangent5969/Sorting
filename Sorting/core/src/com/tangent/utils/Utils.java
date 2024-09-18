@@ -50,7 +50,7 @@ public class Utils {
     }
 
     // converts screen coordinates to world coordinates
-    public static Vector3 unproject (float x, float y, float width, float height) {
+    public static Vector3 unproject(float x, float y, float width, float height) {
         // normalize screen coordinates
         x = (2 * x) / Gdx.graphics.getWidth() - 1;
         y = (2 * (Gdx.graphics.getHeight() - y)) / Gdx.graphics.getHeight() - 1;
@@ -61,5 +61,11 @@ public class Utils {
         Matrix4.inv(proj.val);
 
         return new Vector3(x, y, 0).prj(proj);
+    }
+
+    // scales a number from one range onto another
+    public static double mapToScale(int n, int inMin, int inMax, int outMin, int outMax) {
+        return outMin + n * ((double) (outMax - outMin) / (inMax - inMin));
+
     }
 }

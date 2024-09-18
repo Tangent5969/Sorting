@@ -16,7 +16,7 @@ public abstract class Sort implements Runnable{
     protected void checkStatus() {
         try {
             Thread.sleep(Controller.speed);
-            while (!Controller.sorting || Controller.stop) {
+            if (!Controller.sorting || Controller.stop) {
                 synchronized (lock) {
                     lock.wait();
                 }
