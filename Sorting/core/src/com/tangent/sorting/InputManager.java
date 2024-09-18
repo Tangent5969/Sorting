@@ -42,7 +42,7 @@ public class InputManager extends InputAdapter {
             selectedSlider.updateValue();
             selectedSlider = null;
         }
-           return true;
+        return true;
     }
 
     @Override
