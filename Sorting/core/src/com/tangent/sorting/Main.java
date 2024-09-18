@@ -44,8 +44,6 @@ public class Main extends ApplicationAdapter {
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
 
-
-
 		viewport.apply();
 		sr.setProjectionMatrix(camera.combined);
 		sr.begin(ShapeRenderer.ShapeType.Filled);

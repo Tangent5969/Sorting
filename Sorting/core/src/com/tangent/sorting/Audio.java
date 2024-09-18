@@ -1,19 +1,15 @@
-package com.tangent.sorting.redundant;
+package com.tangent.sorting;
 
-/*
-import com.tangent.utils.Utils;
 import org.lwjgl.openal.AL;
 import org.lwjgl.openal.ALC;
 import static org.lwjgl.openal.AL10.*;
 import static org.lwjgl.openal.ALC10.*;
 
 public class Audio implements Runnable{
-    static final int bufferSize = 32;
-    static final int bufferCount = 32;
+    static final int bufferSize = 512;
+    static final int bufferCount = 8;
     static final int sampleRate = 44100;
-    static final int minFrequency = 150;
-    static final int maxFrequency = 750;
-    static double frequency;
+    static int frequency = 440;
     static int wavePos;
 
     private final int[] buffers = new int[bufferCount];
@@ -25,10 +21,6 @@ public class Audio implements Runnable{
     boolean generate;
     private boolean running;
     private boolean closed;
-
-    private boolean pulse;
-    private int pulseCount;
-
 
     Audio() {
         alcMakeContextCurrent(context);
@@ -96,13 +88,6 @@ public class Audio implements Runnable{
         return running;
     }
 
-    public void pulse(int n) {
-        frequency = Utils.mapToScale(n, 0, Controller.totalElements - 1, minFrequency, maxFrequency);
-        pulse = true;
-        play();
-
-    }
-
     private short[] generateSound() {
         if (!generate) {
             return null;
@@ -111,13 +96,6 @@ public class Audio implements Runnable{
         for (int i = 0; i < bufferSize; i++) {
             tones[i] = (short) (Short.MAX_VALUE * Math.sin((2 * Math.PI * frequency) / sampleRate * wavePos));
             wavePos++;
-        }
-        if (pulse) {
-            if (pulseCount == 50) {
-                pulseCount = 0;
-                generate = false;
-            }
-            pulseCount++;
         }
         return tones;
     }
@@ -137,4 +115,3 @@ public class Audio implements Runnable{
         }
     }
 }
- */
