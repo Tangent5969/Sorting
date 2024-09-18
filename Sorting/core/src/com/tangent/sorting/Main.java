@@ -32,7 +32,6 @@ public class Main extends ApplicationAdapter {
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
 		Controller.setArray();
-
 		Settings.setButtons();
 		Settings.setDropButtons();
 		Settings.setSliders();
@@ -66,7 +65,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		Controller.sortThread.interrupt();
-				sr.dispose();
+		sr.dispose();
 		batch.dispose();
 		font.dispose();
 	}
