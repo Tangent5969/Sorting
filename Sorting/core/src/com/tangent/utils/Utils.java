@@ -66,6 +66,5 @@ public class Utils {
     // scales a number from one range onto another
     public static double mapToScale(int n, int inMin, int inMax, int outMin, int outMax) {
         return outMin + n * ((double) (outMax - outMin) / (inMax - inMin));
-
     }
 }

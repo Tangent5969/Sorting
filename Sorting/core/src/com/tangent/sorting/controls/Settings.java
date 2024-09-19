@@ -1,24 +1,33 @@
-package com.tangent.sorting;
+package com.tangent.sorting.controls;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.tangent.sorting.Audio;
+import com.tangent.sorting.Bar;
 import com.tangent.sorting.ui.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Settings {
-    private static int startX = Bar.getWidth() * Controller.totalElements;
-    private static int settingsWidth = Controller.width - startX;
-    private static int heightMultiplier = 10;
-    private static int settingsHeight = Controller.height / heightMultiplier;
-    static Button[] buttonList = new Button[6];
-    static DropButton[] dropButtonList = new DropButton[2];
-    static Slider[] sliderList = new Slider[3];
+    private static final int startX = Bar.getWidth() * MainController.arrayController.getLength();
+    private static final int settingsWidth = MainController.width - startX;
+    private static final int heightMultiplier = 10;
+    private static final int settingsHeight = MainController.height / heightMultiplier;
+
+    public static Button[] buttonList = new Button[6];
+    public static DropButton[] dropButtonList = new DropButton[2];
+    public static Slider[] sliderList = new Slider[3];
 
 
+    public static void initialise() {
+        setButtons();
+        setDropButtons();
+        setSliders();
+        offsetSettings();
+    }
 
 
-
-    static void setButtons() {
+    private static void setButtons() {
         int buttonWidth = (settingsWidth / 2) - 50;
         int buttonHeight = 50;
         int buttonSpacer = 10;
@@ -29,11 +38,9 @@ public class Settings {
         buttonList[3] = new Button(buttonWidth, buttonHeight, buttonWidth + 100, settingsHeight - buttonHeight * 2 - buttonSpacer, "Reset", ButtonMethods.Method.Reset);
         buttonList[4] = new Button(buttonWidth, buttonHeight, 0, settingsHeight - buttonHeight * 3 - buttonSpacer * 2, "Mute", ButtonMethods.Method.Mute);
         buttonList[5] = new Button(buttonWidth, buttonHeight, buttonWidth + 100, settingsHeight - buttonHeight * 3 - buttonSpacer * 2, "Random", ButtonMethods.Method.Random);
-
-
     }
 
-    static void setDropButtons() {
+    private static void setDropButtons() {
         TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
         TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Bubble), new TextMethodPair("Bogo", ButtonMethods.Method.Bogo), new TextMethodPair("Bozo", ButtonMethods.Method.Bozo)};
 
@@ -44,18 +51,22 @@ public class Settings {
         dropButtonList[1] = new DropButton(buttonWidth, buttonHeight, buttonWidth + 100, 500, "Sort", sortButton);
     }
 
-    static void setSliders() {
+    private static void setSliders() {
         int sliderStart = settingsHeight - 210;
         int sliderWidth = (int) (settingsWidth * 0.75);
         int sliderSpacer = 35;
 
-        sliderList[0] = new Slider(Controller.minSpeed, Controller.maxSpeed, Controller.speed, settingsWidth/2, sliderStart, sliderWidth, ButtonMethods.SlideMethod.Speed, "Speed");
-        sliderList[1] = new Slider(Controller.minElements, Controller.maxElements, Controller.totalElements, settingsWidth/2, sliderStart - sliderSpacer, sliderWidth,ButtonMethods.SlideMethod.Size, "Size");
-        sliderList[2] = new Slider(1, 5, 3, settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth,ButtonMethods.SlideMethod.Pitch, "Pitch");
-
+        sliderList[0] = new Slider(MainController.minSpeed, MainController.maxSpeed, MainController.speed, settingsWidth/2, sliderStart, sliderWidth, false, ButtonMethods.SlideMethod.Speed, "Speed");
+        sliderList[1] = new Slider(MainController.minElements, MainController.maxElements, MainController.arrayController.getLength(), settingsWidth/2, sliderStart - sliderSpacer, sliderWidth, false, ButtonMethods.SlideMethod.Size, "Size");
+        sliderList[2] = new Slider(Audio.minPitch, Audio.maxPitch, Audio.midPitch, settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth, true, ButtonMethods.SlideMethod.Pitch, "Pitch");
     }
 
-    static void offsetSettings() {
+    public static void renderStatistics(SpriteBatch batch, BitmapFont font) {
+        GlyphLayout layout = new GlyphLayout(font, "Comparisons\n" + MainController.arrayController.getComparisons() + "\nSwaps\n" + MainController.arrayController.getSwaps() + "\nWrites\n" + MainController.arrayController.getWrites());
+        font.draw(batch, layout, startX + 10, (settingsHeight - 315) * heightMultiplier);
+    }
+
+    private static void offsetSettings() {
         for (Button button : buttonList) {
             button.setPosX(button.getPosX() + startX);
             button.setPosY(button.getPosY() * heightMultiplier);
@@ -74,21 +85,10 @@ public class Settings {
         }
     }
 
-    public static int getStartX() {
-        return startX;
-    }
-
-    public static int getWidth() {
-        return settingsWidth;
-    }
-
-    public static int getHeightMultiplier() {
-        return heightMultiplier;
-    }
 
 
 
-    static void render(ShapeRenderer sr) {
+    public static void render(ShapeRenderer sr) {
         for (Button button : buttonList) {
             button.render(sr);
         }
@@ -100,7 +100,7 @@ public class Settings {
         }
     }
 
-    static void renderText(SpriteBatch batch, BitmapFont font) {
+    public static void renderText(SpriteBatch batch, BitmapFont font) {
         for (Button button : buttonList) {
             button.renderText(batch, font);
         }
@@ -110,6 +110,7 @@ public class Settings {
         for (Slider slider : sliderList) {
             slider.renderText(batch, font);
         }
+        renderStatistics(batch, font);
     }
 
 }

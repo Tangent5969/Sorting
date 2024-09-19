@@ -1,6 +1,7 @@
-package com.tangent.sorting;
+package com.tangent.sorting.ui;
 
-import com.tangent.sorting.ui.*;
+import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.controls.Settings;
 import com.tangent.utils.Utils;
 
 import com.badlogic.gdx.Gdx;
@@ -13,7 +14,7 @@ public class InputManager extends InputAdapter {
     @Override
     public boolean touchDown (int x, int y, int pointer, int button) {
 
-        Vector3 coords =  Utils.unproject(x, y, Controller.width, Controller.height);
+        Vector3 coords =  Utils.unproject(x, y, MainController.width, MainController.height);
         for (Button current : Settings.buttonList) {
             if(current.isPressed((int) coords.x, (int) coords.y)) {
                 return true;
@@ -47,7 +48,7 @@ public class InputManager extends InputAdapter {
 
     @Override
     public boolean touchDragged (int x, int y, int pointer) {
-        Vector3 coords =  Utils.unproject(x, y, Controller.width, Controller.height);
+        Vector3 coords =  Utils.unproject(x, y, MainController.width, MainController.height);
         if (selectedSlider != null) {
             selectedSlider.updatePosition((int) coords.x);
         }
@@ -59,7 +60,7 @@ public class InputManager extends InputAdapter {
     public boolean scrolled (float amountX, float amountY) {
         System.out.println(amountY);
         // down positive
-        Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), Controller.width, Controller.height);
+        Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), MainController.width, MainController.height);
         for (DropButton dropButton : Settings.dropButtonList) {
             if (dropButton.scrollDetect((int) coords.x, (int) coords.y)) {
                 dropButton.scroll(amountY);

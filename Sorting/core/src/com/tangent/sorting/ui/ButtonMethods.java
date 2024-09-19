@@ -1,6 +1,6 @@
 package com.tangent.sorting.ui;
 
-import com.tangent.sorting.Controller;
+import com.tangent.sorting.controls.MainController;
 
 public class ButtonMethods {
     public enum Method {
@@ -14,57 +14,59 @@ public class ButtonMethods {
         Blank, Speed, Size, Pitch
     }
 
-    static void activateMethod(Method method) {
+    protected static void activateMethod(Method method) {
         switch (method) {
             case Blank:
                 break;
             case Start:
-                Controller.start();
+                MainController.start();
                 break;
             case Pause:
-                Controller.pause();
+                MainController.pause();
                 break;
             case Step:
-                Controller.step();
+                MainController.step();
                 break;
             case Reset:
-                Controller.reset();
+                MainController.reset();
                 break;
             case Mute:
+                MainController.audio.mute();
                 break;
             case Random:
-                Controller.randomSort();
+                MainController.randomSort();
                 break;
             case Shuffle:
-                Controller.shuffle();
+                MainController.shuffle();
                 break;
             case Reverse:
-                Controller.reverse();
+                MainController.reverse();
                 break;
             case Bubble:
-                Controller.setSortType(Method.Bubble);
+                MainController.setSortType(Method.Bubble);
                 break;
             case Bogo:
-                Controller.setSortType(Method.Bogo);
+                MainController.setSortType(Method.Bogo);
                 break;
             case Bozo:
-                Controller.setSortType(Method.Bozo);
+                MainController.setSortType(Method.Bozo);
                 break;
         }
     }
 
-    static void updateSlideValue(SlideMethod method, int value) {
+    protected static void updateSlideValue(SlideMethod method, double value) {
         switch (method) {
             case Blank:
                 break;
             case Speed:
-                Controller.setSpeed(value);
+                MainController.setSpeed((int) value);
                 break;
             case Size:
-                Controller.reset();
-                Controller.setTotalElements(value);
+                MainController.reset();
+                MainController.setTotalElements((int) value);
                 break;
             case Pitch:
+                MainController.audio.setPitch(value);
                 break;
         }
     }

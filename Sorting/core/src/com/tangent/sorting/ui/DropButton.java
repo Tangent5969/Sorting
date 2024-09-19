@@ -29,7 +29,7 @@ public class DropButton extends Button{
         this.setText(text);
     }
 
-    public void populateSubButtons(TextMethodPair[] subParams) {
+    private void populateSubButtons(TextMethodPair[] subParams) {
         for (int i = 0; i < subParams.length; i++) {
             TextMethodPair params = subParams[i];
             subButtons[i] = new Button(getWidth(), getHeight(), getPosX(), getPosY(), params.getText(), params.getMethod());
@@ -37,7 +37,7 @@ public class DropButton extends Button{
         updateCurrentShown();
     }
 
-    public void updateCurrentShown() {
+    private void updateCurrentShown() {
         System.arraycopy(subButtons, currentPos, currentShown, 0, currentShown.length);
         for (int i = 0; i < currentShown.length; i++) {
             currentShown[i].setPosY(getPosY() - (i+1) * getHeight());
@@ -45,7 +45,7 @@ public class DropButton extends Button{
     }
 
   @Override
-  public boolean isPressed(int mouseX, int mouseY) {
+  protected boolean isPressed(int mouseX, int mouseY) {
      if (collisionCheck(mouseX, mouseY)) {
          show = !show;
          return true;
@@ -61,11 +61,11 @@ public class DropButton extends Button{
      return false;
   }
 
-  public boolean scrollDetect(int mouseX, int mouseY) {
+  protected boolean scrollDetect(int mouseX, int mouseY) {
         return mouseX >= getPosX() && mouseX <= getPosX() + getWidth() && mouseY <= getPosY() && mouseY >= getPosY() - currentShown.length * getHeight();
   }
 
-  public void scroll(float scrollAmount) {
+  protected void scroll(float scrollAmount) {
       // down positive
       if (scrollAmount > 0) {
             if (currentPos + currentShown.length < subButtons.length) {

@@ -1,51 +1,63 @@
-package com.tangent.sorting;
+package com.tangent.sorting.controls;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.tangent.sorting.Audio;
+import com.tangent.sorting.Bar;
+import com.tangent.sorting.IntColourPair;
 import com.tangent.sorting.sorts.*;
 import com.tangent.sorting.ui.ButtonMethods;
-import com.tangent.utils.Utils;
 
 
-public class Controller {
-    static final int width = 10000;
-    static final int height = 10000;
-    static final float widthMultiplier = 0.9f;
-    static final int minElements = 4;
-    static final int maxElements = 1024;
-    static int totalElements = 10;
-    static final int minSpeed = 0;
-    static final int maxSpeed = 100;
+public class MainController {
+    // window settings
+    public static final int width = 10000;
+    public static final int height = 10000;
+    public static final float widthMultiplier = 0.9f;
+
+    // parameter limits
+    public static final int minElements = 4;
+    public static final int maxElements = 4096;
+    public static final int minSpeed = 0;
+    public static final int maxSpeed = 100;
+
+
     public static int speed = 25;
     static final int sortCount = 3;
-    static ButtonMethods.Method sortType = ButtonMethods.Method.Blank; // reuse enum with same sort names
-    public static int[] mainArray;
-    public static Thread sortThread = new Thread("sortThread");
-    public static boolean sorted = true;
     public static boolean sorting = false;
     public static boolean stop = false;
+
+    static ButtonMethods.Method sortType = ButtonMethods.Method.Blank; // reuse enum with same sort names
+    public static ArrayController arrayController;
+    public static Audio audio;
+    public static Thread sortThread;
     public static final Object lock = new Object();
     private static final Random rand = new Random();
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
-    static void setArray() {
-        mainArray = new int[totalElements];
+
+
+    public static void initialise() {
+        // initial array size
+        arrayController = new ArrayController(10);
+        audio = new Audio();
+        sortThread = new Thread("sortThread");
         Bar.setWidth();
-        Utils.populateArray(mainArray);
-        sorted = true;
     }
+
 
     public static void reset() {
         sortThread.interrupt();
+        audio.stopSound();
         sorting = false;
         specialBars.clear();
-        setArray();
+        arrayController.reset();
     }
 
     public static void start() {
-        if (!sorted && !sortThread.isAlive()) {
+        if (!arrayController.isSorted() && !sortThread.isAlive()) {
             sorting = true;
             newSort();
         }
@@ -62,7 +74,7 @@ public class Controller {
     }
 
     public static void step() {
-        if (!sorted && !sortThread.isAlive()) {
+        if (!arrayController.isSorted() && !sortThread.isAlive()) {
             newSort();
         }
 
@@ -74,21 +86,19 @@ public class Controller {
     }
 
     public static void shuffle() {
-        Controller.reset();
-        Utils.shuffle(Controller.mainArray);
-        Controller.sorted = false;
+        MainController.reset();
+        arrayController.shuffle();
     }
 
     public static void reverse() {
-        Controller.reset();
-        Utils.reverse(Controller.mainArray);
-        Controller.sorted = false;
+        MainController.reset();
+        arrayController.reverse();
     }
 
     private static void newSort() {
         switch (sortType) {
             case Bubble:
-                sortThread = new Thread(new BubbleSort(mainArray), "sortThread");
+                sortThread = new Thread(new BubbleSort(arrayController), "sortThread");
                 sortThread.start();
                 break;
             case Bogo:
@@ -101,23 +111,23 @@ public class Controller {
     }
 
     public static void renderArray(ShapeRenderer sr) {
-        for (int i = 0; i < totalElements; i++) {
-            new Bar(mainArray[i]).render(i, sr);
+        for (int i = 0; i < arrayController.getLength(); i++) {
+            new Bar(arrayController.getElement(i)).render(i, sr);
         }
         synchronized (lock) {
             for (IntColourPair pair : specialBars) {
-                new Bar(mainArray[pair.getNum()], pair.getColour()).render(pair.getNum(), sr);
+                new Bar(arrayController.getElement(pair.getNum()), pair.getColour()).render(pair.getNum(), sr);
             }
         }
     }
 
     public static void setTotalElements(int totalElements) {
-        Controller.totalElements = totalElements;
-        setArray();
+        MainController.arrayController.resize(totalElements);
+        Bar.setWidth();
     }
 
     public static void setSpeed(int speed) {
-        Controller.speed = speed;
+        MainController.speed = speed;
     }
 
     public static void randomSort() {
@@ -130,12 +140,12 @@ public class Controller {
     }
 
     public static void setSortType(ButtonMethods.Method sortType) {
-        if (Controller.sortType == ButtonMethods.Method.Blank) {
-            Controller.sortType = sortType;
+        if (MainController.sortType == ButtonMethods.Method.Blank) {
+            MainController.sortType = sortType;
         }
-        else if (sortType != Controller.sortType) {
+        else if (sortType != MainController.sortType) {
             reset();
-            Controller.sortType = sortType;
+            MainController.sortType = sortType;
         }
     }
 

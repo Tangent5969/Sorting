@@ -1,4 +1,4 @@
-package com.tangent.sorting;
+package com.tangent.sorting.controls;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.tangent.sorting.ui.InputManager;
 
 public class Main extends ApplicationAdapter {
 	private ShapeRenderer sr;
@@ -28,14 +29,11 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 
 		camera = new OrthographicCamera();
-		viewport = new StretchViewport(Controller.width, Controller.height, camera);
+		viewport = new StretchViewport(MainController.width, MainController.height, camera);
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
-		Controller.setArray();
-		Settings.setButtons();
-		Settings.setDropButtons();
-		Settings.setSliders();
-		Settings.offsetSettings();
+		MainController.initialise();
+		Settings.initialise();
 
 
 	}
@@ -47,7 +45,7 @@ public class Main extends ApplicationAdapter {
 		viewport.apply();
 		sr.setProjectionMatrix(camera.combined);
 		sr.begin(ShapeRenderer.ShapeType.Filled);
-		Controller.renderArray(sr);
+		MainController.renderArray(sr);
 		Settings.render(sr);
 		sr.end();
 
@@ -62,7 +60,7 @@ public class Main extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
-		Controller.sortThread.interrupt();
+		MainController.sortThread.interrupt();
 		sr.dispose();
 		batch.dispose();
 		font.dispose();
