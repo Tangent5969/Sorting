@@ -18,7 +18,7 @@ public class Audio {
             this.synthesizer = MidiSystem.getSynthesizer();
             synthesizer.open();
             synthesizer.loadAllInstruments(synthesizer.getDefaultSoundbank());
-            this.channel = synthesizer.getChannels()[10];
+            this.channel = synthesizer.getChannels()[0];
             channel.programChange(getInstrument("square").getPatch().getProgram());
 
         } catch (MidiUnavailableException e) {

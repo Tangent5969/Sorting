@@ -53,6 +53,7 @@ public abstract class Sort implements Runnable{
         greenBars();
         arrayController.display();
         MainController.audio.stopSound();
+        arrayController.setSortingStatus(false);
         MainController.sorting = false;
     }
 }

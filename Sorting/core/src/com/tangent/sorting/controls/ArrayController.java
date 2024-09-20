@@ -1,13 +1,17 @@
 package com.tangent.sorting.controls;
 
 import com.tangent.utils.Utils;
+import java.util.Random;
 
 public class ArrayController {
+    private static final Random rand = new Random();
+
     private int[] array;
     private int length;
     private int comparisons;
     private int swaps;
     private int writes;
+    private boolean sortingStatus;
 
 
     ArrayController(int length) {
@@ -15,7 +19,8 @@ public class ArrayController {
     }
 
     public void reset() {
-        Utils.populateArray(array);
+        sortingStatus = false;
+        populateArray();
         comparisons = 0;
         swaps = 0;
         writes = 0;
@@ -28,9 +33,14 @@ public class ArrayController {
     }
 
     public void swap(int pos1, int pos2) {
-        Utils.swap(array, pos1, pos2);
-        swaps += 1;
-        writes += 2;
+        int temp = array[pos1];
+        array[pos1] = array[pos2];
+        array[pos2] = temp;
+        if (sortingStatus) {
+            swaps += 1;
+            writes += 2;
+        }
+
     }
 
     public void display() {
@@ -40,15 +50,24 @@ public class ArrayController {
     }
 
     public void shuffle() {
-        Utils.shuffle(array);
+        for (int i = array.length - 1; i >= 0; i--) {
+            swap(i, rand.nextInt(i, array.length));
+        }
     }
 
     public void reverse() {
-        Utils.reverse(array);
+        for (int i = 0; i < (length + 1) / 2; i++) {
+            swap(i, length - i - 1);
+        }
     }
 
     public boolean isSorted() {
-        return Utils.isSorted(array);
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > array[i+1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public int getLength() {
@@ -75,8 +94,26 @@ public class ArrayController {
         writes += num;
     }
 
+    public boolean isSorting() {
+        return sortingStatus;
+    }
+
+    public void setSortingStatus(boolean status) {
+        sortingStatus = status;
+    }
+
     public int getWrites() {
         return writes;
+    }
+
+    public Random getRand() {
+        return rand;
+    }
+
+    private void populateArray() {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i + 1;
+        }
     }
 
 }

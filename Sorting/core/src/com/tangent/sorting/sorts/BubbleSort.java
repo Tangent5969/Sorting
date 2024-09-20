@@ -15,32 +15,31 @@ public class BubbleSort extends Sort {
 
     @Override
     public void run() {
-            int end = arrayController.getLength()-1;
-            boolean swap;
-            do {
-                swap = false;
-                    for (int i = 0; i < end; i++) {
-                        MainController.specialBarsClear();
+        int end = arrayController.getLength()-1;
+        boolean swap;
+        do {
+            swap = false;
+                for (int i = 0; i < end; i++) {
+                    MainController.specialBarsClear();
+                    MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+                    Gdx.graphics.requestRendering();
+                    checkStatus();
+                    MainController.specialBarsSet(0, new IntColourPair(i + 1, Color.RED));
+                    Gdx.graphics.requestRendering();
+                    checkStatus();
+                    arrayController.addComparison(1);
+                    MainController.audio.playSound(arrayController.getElement(i + 1));
+                    if (arrayController.getElement(i) > arrayController.getElement(i + 1)) {
+                        arrayController.swap(i, i + 1);
+                        swap = true;
                         MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
                         Gdx.graphics.requestRendering();
                         checkStatus();
-                        MainController.specialBarsSet(0, new IntColourPair(i + 1, Color.RED));
-                        Gdx.graphics.requestRendering();
-                        checkStatus();
-                        arrayController.addComparison(1);
-                        MainController.audio.playSound(arrayController.getElement(i + 1));
-                        if (arrayController.getElement(i) > arrayController.getElement(i + 1)) {
-                            arrayController.swap(i, i + 1);
-                            swap = true;
-                            MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
-                            Gdx.graphics.requestRendering();
-                            checkStatus();
-                        }
                     }
-                end--;
-            }
-
-            while (swap);
-            finished();
+                }
+            end--;
+        }
+        while (swap);
+        finished();
     }
 }

@@ -43,13 +43,13 @@ public class ButtonMethods {
                 MainController.reverse();
                 break;
             case Bubble:
-                MainController.setSortType(Method.Bubble);
+                MainController.setSelectedSort(MainController.SortTypes.Bubble);
                 break;
             case Bogo:
-                MainController.setSortType(Method.Bogo);
+                MainController.setSelectedSort(MainController.SortTypes.Bogo);
                 break;
             case Bozo:
-                MainController.setSortType(Method.Bozo);
+                MainController.setSelectedSort(MainController.SortTypes.Bozo);
                 break;
         }
     }

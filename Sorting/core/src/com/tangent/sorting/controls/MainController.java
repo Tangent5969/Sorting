@@ -29,13 +29,17 @@ public class MainController {
     public static boolean sorting = false;
     public static boolean stop = false;
 
-    static ButtonMethods.Method sortType = ButtonMethods.Method.Blank; // reuse enum with same sort names
+    private static SortTypes selectedSort;
     public static ArrayController arrayController;
     public static Audio audio;
     public static Thread sortThread;
     public static final Object lock = new Object();
     private static final Random rand = new Random();
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
+
+    public enum SortTypes {
+        Bubble, Bogo, Bozo
+    }
 
 
 
@@ -96,18 +100,22 @@ public class MainController {
     }
 
     private static void newSort() {
-        switch (sortType) {
+        if (selectedSort == null) {
+            return;
+        }
+        switch (selectedSort) {
             case Bubble:
                 sortThread = new Thread(new BubbleSort(arrayController), "sortThread");
-                sortThread.start();
                 break;
             case Bogo:
-                //BogoSort.bogoSort(mainArray);
+                sortThread = new Thread(new BogoSort(arrayController), "sortThread");
                 break;
             case Bozo:
-                //BozoSort.bozoSort(mainArray);
+                sortThread = new Thread(new BozoSort(arrayController), "sortThread");
                 break;
         }
+        arrayController.setSortingStatus(true);
+        sortThread.start();
     }
 
     public static void renderArray(ShapeRenderer sr) {
@@ -131,21 +139,21 @@ public class MainController {
     }
 
     public static void randomSort() {
-        ButtonMethods.Method tempSortType;
+        SortTypes tempSort;
         do {
-            tempSortType = ButtonMethods.Method.values()[ButtonMethods.Method.values().length - rand.nextInt(sortCount) - 1];
+            tempSort = SortTypes.values()[SortTypes.values().length - rand.nextInt(sortCount) - 1];
         }
-        while (tempSortType == sortType);
-        setSortType(tempSortType);
+        while (tempSort == selectedSort);
+        setSelectedSort(tempSort);
     }
 
-    public static void setSortType(ButtonMethods.Method sortType) {
-        if (MainController.sortType == ButtonMethods.Method.Blank) {
-            MainController.sortType = sortType;
+    public static void setSelectedSort(SortTypes selectedSort) {
+        if (MainController.selectedSort == null) {
+            MainController.selectedSort = selectedSort;
         }
-        else if (sortType != MainController.sortType) {
+        else if (selectedSort != MainController.selectedSort) {
             reset();
-            MainController.sortType = sortType;
+            MainController.selectedSort = selectedSort;
         }
     }
 
