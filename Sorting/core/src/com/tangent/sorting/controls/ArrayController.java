@@ -1,6 +1,5 @@
 package com.tangent.sorting.controls;
 
-import com.tangent.utils.Utils;
 import java.util.Random;
 
 public class ArrayController {
@@ -11,6 +10,7 @@ public class ArrayController {
     private int comparisons;
     private int swaps;
     private int writes;
+    private int auxWrites;
     private boolean sortingStatus;
 
 
@@ -24,6 +24,7 @@ public class ArrayController {
         comparisons = 0;
         swaps = 0;
         writes = 0;
+        auxWrites = 0;
     }
 
     public void resize(int length) {
@@ -40,13 +41,18 @@ public class ArrayController {
             swaps += 1;
             writes += 2;
         }
-
     }
 
     public void display() {
+        System.out.println("Length : " + length);
         System.out.println("Comparisons : " + comparisons);
         System.out.println("Swaps : " + swaps);
         System.out.println("Writes : " + writes);
+        System.out.println("Aux Writes : " + auxWrites);
+    }
+
+    public String settingsDisplay() {
+        return "\nComparisons\n" + comparisons + "\nSwaps\n" + swaps + "\nWrites\n" + writes + "\nAux Writes\n" + auxWrites;
     }
 
     public void shuffle() {
@@ -78,7 +84,14 @@ public class ArrayController {
         return array[pos];
     }
 
-    public void addComparison(int num) {
+    public void setElement(int pos, int num) {
+        array[pos] = num;
+        if (sortingStatus) {
+            writes += 1;
+        }
+    }
+
+    public void addComparisons(int num) {
         comparisons += num;
     }
 
@@ -86,12 +99,28 @@ public class ArrayController {
         return comparisons;
     }
 
+    public void addSwaps(int num) {
+        swaps += num;
+    }
+
     public int getSwaps() {
         return swaps;
     }
 
-    public void addWrite(int num) {
+    public void addWrites(int num) {
         writes += num;
+    }
+
+    public int getWrites() {
+        return writes;
+    }
+
+    public void addAuxWrites(int num) {
+        auxWrites += num;
+    }
+
+    public int getAuxWrites() {
+        return auxWrites;
     }
 
     public boolean isSorting() {
@@ -102,9 +131,7 @@ public class ArrayController {
         sortingStatus = status;
     }
 
-    public int getWrites() {
-        return writes;
-    }
+
 
     public Random getRand() {
         return rand;

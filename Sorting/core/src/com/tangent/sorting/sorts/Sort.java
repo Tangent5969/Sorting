@@ -10,8 +10,10 @@ import static com.tangent.sorting.controls.MainController.lock;
 
 public abstract class Sort implements Runnable{
     protected ArrayController arrayController;
-    Sort(ArrayController arrayController) {
+    protected final String name;
+    Sort(ArrayController arrayController, String name) {
         this.arrayController = arrayController;
+        this.name = name;
     }
 
     protected void checkStatus() {
@@ -50,10 +52,15 @@ public abstract class Sort implements Runnable{
     }
 
     protected void finished() {
+        display();
         greenBars();
-        arrayController.display();
         MainController.audio.stopSound();
         arrayController.setSortingStatus(false);
         MainController.sorting = false;
+    }
+
+    private void display() {
+        System.out.println("Sort : " + name);
+        arrayController.display();
     }
 }

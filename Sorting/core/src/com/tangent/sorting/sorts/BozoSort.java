@@ -8,14 +8,14 @@ import com.tangent.sorting.controls.MainController;
 
 public class BozoSort extends Sort{
     public BozoSort(ArrayController arrayController) {
-        super(arrayController);
+        super(arrayController, "Bozo");
     }
 
     @Override
     public void run() {
         int pos1, pos2;
         while (!arrayController.isSorted()) {
-            arrayController.addComparison(1);
+
             MainController.specialBarsClear();
             MainController.specialBarsAdd(new IntColourPair(0, Color.GREEN));
             MainController.audio.playSound(arrayController.getElement(0));
@@ -23,6 +23,7 @@ public class BozoSort extends Sort{
             checkStatus();
 
             for (int i = 1; i < arrayController.getLength(); i++) {
+                arrayController.addComparisons(1);
                 MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
                 Gdx.graphics.requestRendering();
                 checkStatus();
@@ -50,6 +51,7 @@ public class BozoSort extends Sort{
             Gdx.graphics.requestRendering();
             checkStatus();
         }
+        arrayController.addComparisons(arrayController.getLength() - 1);
         finished();
     }
 }
