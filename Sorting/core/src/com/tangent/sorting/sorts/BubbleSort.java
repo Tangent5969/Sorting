@@ -10,7 +10,7 @@ import com.tangent.sorting.IntColourPair;
 public class BubbleSort extends Sort {
 
     public BubbleSort(ArrayController arrayController) {
-        super(arrayController);
+        super(arrayController, "Bubble");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class BubbleSort extends Sort {
                     MainController.specialBarsSet(0, new IntColourPair(i + 1, Color.RED));
                     Gdx.graphics.requestRendering();
                     checkStatus();
-                    arrayController.addComparison(1);
+                    arrayController.addComparisons(1);
                     MainController.audio.playSound(arrayController.getElement(i + 1));
                     if (arrayController.getElement(i) > arrayController.getElement(i + 1)) {
                         arrayController.swap(i, i + 1);

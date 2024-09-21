@@ -8,7 +8,6 @@ import com.tangent.sorting.Audio;
 import com.tangent.sorting.Bar;
 import com.tangent.sorting.IntColourPair;
 import com.tangent.sorting.sorts.*;
-import com.tangent.sorting.ui.ButtonMethods;
 
 
 public class MainController {
@@ -29,7 +28,7 @@ public class MainController {
     public static boolean sorting = false;
     public static boolean stop = false;
 
-    private static SortTypes selectedSort;
+    private static SortType selectedSort;
     public static ArrayController arrayController;
     public static Audio audio;
     public static Thread sortThread;
@@ -37,20 +36,19 @@ public class MainController {
     private static final Random rand = new Random();
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
-    public enum SortTypes {
-        Bubble, Bogo, Bozo
+    public enum SortType {
+        Bubble, Merge, Bogo, Bozo
     }
-
 
 
     public static void initialise() {
         // initial array size
         arrayController = new ArrayController(10);
         audio = new Audio();
+        audio.mute();
         sortThread = new Thread("sortThread");
         Bar.setWidth();
     }
-
 
     public static void reset() {
         sortThread.interrupt();
@@ -75,6 +73,7 @@ public class MainController {
 
     public static void pause() {
         sorting = false;
+        audio.stopSound();
     }
 
     public static void step() {
@@ -103,18 +102,25 @@ public class MainController {
         if (selectedSort == null) {
             return;
         }
+
+        Sort sort = null;
         switch (selectedSort) {
             case Bubble:
-                sortThread = new Thread(new BubbleSort(arrayController), "sortThread");
+                sort = new BubbleSort(arrayController);
+                break;
+            case Merge:
+                sort = new MergeSort(arrayController);
                 break;
             case Bogo:
-                sortThread = new Thread(new BogoSort(arrayController), "sortThread");
+                sort = new BogoSort(arrayController);
                 break;
             case Bozo:
-                sortThread = new Thread(new BozoSort(arrayController), "sortThread");
+                sort = new BozoSort(arrayController);
                 break;
         }
+
         arrayController.setSortingStatus(true);
+        sortThread = new Thread(sort, "sortThread");
         sortThread.start();
     }
 
@@ -124,6 +130,9 @@ public class MainController {
         }
         synchronized (lock) {
             for (IntColourPair pair : specialBars) {
+                if (pair == null) {
+                    continue;
+                }
                 new Bar(arrayController.getElement(pair.getNum()), pair.getColour()).render(pair.getNum(), sr);
             }
         }
@@ -139,15 +148,22 @@ public class MainController {
     }
 
     public static void randomSort() {
-        SortTypes tempSort;
+        SortType tempSort;
         do {
-            tempSort = SortTypes.values()[SortTypes.values().length - rand.nextInt(sortCount) - 1];
+            tempSort = SortType.values()[SortType.values().length - rand.nextInt(sortCount) - 1];
         }
         while (tempSort == selectedSort);
         setSelectedSort(tempSort);
     }
 
-    public static void setSelectedSort(SortTypes selectedSort) {
+    public static String getSelectedSort() {
+        if (selectedSort == null) {
+            return "none";
+        }
+        return selectedSort.name();
+    }
+
+    public static void setSelectedSort(SortType selectedSort) {
         if (MainController.selectedSort == null) {
             MainController.selectedSort = selectedSort;
         }
@@ -166,6 +182,12 @@ public class MainController {
     public static void specialBarsSet(int i, IntColourPair pair) {
         synchronized (lock) {
             specialBars.set(i, pair);
+        }
+    }
+
+    public static void specialBarsRemove(int i) {
+        synchronized (lock) {
+            specialBars.remove(i);
         }
     }
 

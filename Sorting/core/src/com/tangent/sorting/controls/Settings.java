@@ -42,13 +42,18 @@ public class Settings {
 
     private static void setDropButtons() {
         TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
-        TextMethodPair[] sortButton = {new TextMethodPair("Bubble", ButtonMethods.Method.Bubble), new TextMethodPair("Bogo", ButtonMethods.Method.Bogo), new TextMethodPair("Bozo", ButtonMethods.Method.Bozo)};
+        // works on assumption SortType name matches that of equivalent ButtonMethod
+        TextMethodPair[] sortButton = new TextMethodPair[MainController.SortType.values().length];
+        for (int i = 0; i < MainController.SortType.values().length; i++) {
+            String sort = MainController.SortType.values()[i].name();
+            sortButton[i] = new TextMethodPair(sort, ButtonMethods.Method.valueOf(sort));
+        }
 
         int buttonWidth = (settingsWidth / 2) - 50;
         int buttonHeight = 50;
 
-        dropButtonList[0] = new DropButton(buttonWidth, buttonHeight, 0, 500, "Shuffle", shuffleButton);
-        dropButtonList[1] = new DropButton(buttonWidth, buttonHeight, buttonWidth + 100, 500, "Sort", sortButton);
+        dropButtonList[0] = new DropButton(buttonWidth, buttonHeight, 0, 450, "Shuffle", shuffleButton);
+        dropButtonList[1] = new DropButton(buttonWidth, buttonHeight, buttonWidth + 100, 450, "Sort", sortButton);
     }
 
     private static void setSliders() {
@@ -59,11 +64,6 @@ public class Settings {
         sliderList[0] = new Slider(MainController.minSpeed, MainController.maxSpeed, MainController.speed, settingsWidth/2, sliderStart, sliderWidth, false, ButtonMethods.SlideMethod.Speed, "Speed");
         sliderList[1] = new Slider(MainController.minElements, MainController.maxElements, MainController.arrayController.getLength(), settingsWidth/2, sliderStart - sliderSpacer, sliderWidth, false, ButtonMethods.SlideMethod.Size, "Size");
         sliderList[2] = new Slider(Audio.minPitch, Audio.maxPitch, Audio.midPitch, settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth, true, ButtonMethods.SlideMethod.Pitch, "Pitch");
-    }
-
-    public static void renderStatistics(SpriteBatch batch, BitmapFont font) {
-        GlyphLayout layout = new GlyphLayout(font, "Comparisons\n" + MainController.arrayController.getComparisons() + "\nSwaps\n" + MainController.arrayController.getSwaps() + "\nWrites\n" + MainController.arrayController.getWrites());
-        font.draw(batch, layout, startX + 10, (settingsHeight - 315) * heightMultiplier);
     }
 
     private static void offsetSettings() {
@@ -86,8 +86,6 @@ public class Settings {
     }
 
 
-
-
     public static void render(ShapeRenderer sr) {
         for (Button button : buttonList) {
             button.render(sr);
@@ -98,6 +96,11 @@ public class Settings {
         for (Slider slider : sliderList) {
             slider.render(sr);
         }
+    }
+
+    public static void renderStatistics(SpriteBatch batch, BitmapFont font) {
+        GlyphLayout layout = new GlyphLayout(font, "Sort\n" + MainController.getSelectedSort() + MainController.arrayController.settingsDisplay());
+        font.draw(batch, layout, startX + 10, (700) * heightMultiplier);
     }
 
     public static void renderText(SpriteBatch batch, BitmapFont font) {

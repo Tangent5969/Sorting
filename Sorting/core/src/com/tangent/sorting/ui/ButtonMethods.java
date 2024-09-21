@@ -6,7 +6,7 @@ public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
         Shuffle, Reverse, // Shuffles
-        Bubble, Bogo, Bozo // Sorts
+        Bubble, Merge, Bogo, Bozo // Sorts
     }
 
 
@@ -43,13 +43,16 @@ public class ButtonMethods {
                 MainController.reverse();
                 break;
             case Bubble:
-                MainController.setSelectedSort(MainController.SortTypes.Bubble);
+                MainController.setSelectedSort(MainController.SortType.Bubble);
                 break;
             case Bogo:
-                MainController.setSelectedSort(MainController.SortTypes.Bogo);
+                MainController.setSelectedSort(MainController.SortType.Bogo);
                 break;
             case Bozo:
-                MainController.setSelectedSort(MainController.SortTypes.Bozo);
+                MainController.setSelectedSort(MainController.SortType.Bozo);
+                break;
+            case Merge:
+                MainController.setSelectedSort(MainController.SortType.Merge);
                 break;
         }
     }
