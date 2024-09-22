@@ -14,6 +14,7 @@ public class InsertionSort extends Sort{
 
     @Override
     public void run() {
+        MainController.specialBarsClear();
         MainController.specialBarsAdd(null);
         MainController.specialBarsAdd(null);
         MainController.specialBarsAdd(null);

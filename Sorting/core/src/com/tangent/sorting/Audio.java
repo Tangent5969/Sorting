@@ -29,11 +29,21 @@ public class Audio {
     }
 
 
-    public void playSound(int n) {
+    public void playSound(int num) {
         if (!channel.getMute()) {
             stopSound();
-            channel.noteOn(28 + 40 * (n) / MainController.arrayController.getLength(), 90);
+            channel.noteOn(28 + 40 * (num) / MainController.arrayController.getLength(), 90);
         }
+    }
+
+    public void playSound(int[] array) {
+        if (!channel.getMute()) {
+            stopSound();
+            for (int num : array) {
+                channel.noteOn(28 + 40 * (num) / MainController.arrayController.getLength(), 90);
+            }
+        }
+
     }
 
     public void mute() {
