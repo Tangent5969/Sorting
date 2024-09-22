@@ -6,12 +6,12 @@ public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
         Shuffle, Reverse, // Shuffles
-        Bubble, Merge, Bogo, Bozo // Sorts
+        Bubble, Merge, Insertion, Bogo, Bozo // Sorts
     }
 
 
     public enum SlideMethod {
-        Blank, Speed, Size, Pitch
+        Blank, Speed, Size, Volume, Pitch
     }
 
     protected static void activateMethod(Method method) {
@@ -45,15 +45,19 @@ public class ButtonMethods {
             case Bubble:
                 MainController.setSelectedSort(MainController.SortType.Bubble);
                 break;
+            case Merge:
+                MainController.setSelectedSort(MainController.SortType.Merge);
+                break;
+            case Insertion:
+                MainController.setSelectedSort(MainController.SortType.Insertion);
+                break;
             case Bogo:
                 MainController.setSelectedSort(MainController.SortType.Bogo);
                 break;
             case Bozo:
                 MainController.setSelectedSort(MainController.SortType.Bozo);
                 break;
-            case Merge:
-                MainController.setSelectedSort(MainController.SortType.Merge);
-                break;
+
         }
     }
 
@@ -67,6 +71,9 @@ public class ButtonMethods {
             case Size:
                 MainController.reset();
                 MainController.setTotalElements((int) value);
+                break;
+            case Volume:
+                MainController.audio.setVolume((int) value);
                 break;
             case Pitch:
                 MainController.audio.setPitch(value);

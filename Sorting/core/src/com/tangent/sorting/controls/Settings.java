@@ -14,9 +14,9 @@ public class Settings {
     private static final int heightMultiplier = 10;
     private static final int settingsHeight = MainController.height / heightMultiplier;
 
-    public static Button[] buttonList = new Button[6];
-    public static DropButton[] dropButtonList = new DropButton[2];
-    public static Slider[] sliderList = new Slider[3];
+    public static Button[] buttonList;
+    public static DropButton[] dropButtonList;
+    public static Slider[] sliderList;
 
 
     public static void initialise() {
@@ -28,6 +28,7 @@ public class Settings {
 
 
     private static void setButtons() {
+        buttonList = new Button[6];
         int buttonWidth = (settingsWidth / 2) - 50;
         int buttonHeight = 50;
         int buttonSpacer = 10;
@@ -41,6 +42,8 @@ public class Settings {
     }
 
     private static void setDropButtons() {
+        dropButtonList  = new DropButton[2];
+
         TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
         // works on assumption SortType name matches that of equivalent ButtonMethod
         TextMethodPair[] sortButton = new TextMethodPair[MainController.SortType.values().length];
@@ -52,18 +55,20 @@ public class Settings {
         int buttonWidth = (settingsWidth / 2) - 50;
         int buttonHeight = 50;
 
-        dropButtonList[0] = new DropButton(buttonWidth, buttonHeight, 0, 450, "Shuffle", shuffleButton);
-        dropButtonList[1] = new DropButton(buttonWidth, buttonHeight, buttonWidth + 100, 450, "Sort", sortButton);
+        dropButtonList[0] = new DropButton(buttonWidth, buttonHeight, 0, 415, "Shuffle", shuffleButton);
+        dropButtonList[1] = new DropButton(buttonWidth, buttonHeight, buttonWidth + 100, 415, "Sort", sortButton);
     }
 
     private static void setSliders() {
+        sliderList  = new Slider[4];
         int sliderStart = settingsHeight - 210;
         int sliderWidth = (int) (settingsWidth * 0.75);
         int sliderSpacer = 35;
 
         sliderList[0] = new Slider(MainController.minSpeed, MainController.maxSpeed, MainController.speed, settingsWidth/2, sliderStart, sliderWidth, false, ButtonMethods.SlideMethod.Speed, "Speed");
         sliderList[1] = new Slider(MainController.minElements, MainController.maxElements, MainController.arrayController.getLength(), settingsWidth/2, sliderStart - sliderSpacer, sliderWidth, false, ButtonMethods.SlideMethod.Size, "Size");
-        sliderList[2] = new Slider(Audio.minPitch, Audio.maxPitch, Audio.midPitch, settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth, true, ButtonMethods.SlideMethod.Pitch, "Pitch");
+        sliderList[2] = new Slider(Audio.minVolume, Audio.maxVolume, MainController.audio.getVolume(), settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth, false, ButtonMethods.SlideMethod.Volume, "Volume");
+        sliderList[3] = new Slider(Audio.minPitch, Audio.maxPitch, Audio.midPitch, settingsWidth/2, sliderStart - sliderSpacer * 3, sliderWidth, true, ButtonMethods.SlideMethod.Pitch, "Pitch");
     }
 
     private static void offsetSettings() {
@@ -100,7 +105,7 @@ public class Settings {
 
     public static void renderStatistics(SpriteBatch batch, BitmapFont font) {
         GlyphLayout layout = new GlyphLayout(font, "Sort\n" + MainController.getSelectedSort() + MainController.arrayController.settingsDisplay());
-        font.draw(batch, layout, startX + 10, (700) * heightMultiplier);
+        font.draw(batch, layout, startX + 10, (665) * heightMultiplier);
     }
 
     public static void renderText(SpriteBatch batch, BitmapFont font) {

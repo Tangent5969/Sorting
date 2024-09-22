@@ -7,6 +7,7 @@ import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
 
 public class MergeSort extends Sort{
+
     public MergeSort(ArrayController arrayController) {
         super(arrayController, "Merge");
     }

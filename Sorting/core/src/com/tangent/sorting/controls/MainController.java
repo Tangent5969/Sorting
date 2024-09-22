@@ -24,7 +24,6 @@ public class MainController {
 
 
     public static int speed = 25;
-    static final int sortCount = 3;
     public static boolean sorting = false;
     public static boolean stop = false;
 
@@ -37,7 +36,7 @@ public class MainController {
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
     public enum SortType {
-        Bubble, Merge, Bogo, Bozo
+        Bubble, Merge, Insertion, Bogo, Bozo
     }
 
 
@@ -45,7 +44,6 @@ public class MainController {
         // initial array size
         arrayController = new ArrayController(10);
         audio = new Audio();
-        audio.mute();
         sortThread = new Thread("sortThread");
         Bar.setWidth();
     }
@@ -59,7 +57,7 @@ public class MainController {
     }
 
     public static void start() {
-        if (!arrayController.isSorted() && !sortThread.isAlive()) {
+        if (!sortThread.isAlive()) {
             sorting = true;
             newSort();
         }
@@ -103,6 +101,10 @@ public class MainController {
             return;
         }
 
+        if (arrayController.isSorted()) {
+            arrayController.shuffle();
+        }
+
         Sort sort = null;
         switch (selectedSort) {
             case Bubble:
@@ -110,6 +112,9 @@ public class MainController {
                 break;
             case Merge:
                 sort = new MergeSort(arrayController);
+                break;
+            case Insertion:
+                sort = new InsertionSort(arrayController);
                 break;
             case Bogo:
                 sort = new BogoSort(arrayController);
@@ -150,10 +155,13 @@ public class MainController {
     public static void randomSort() {
         SortType tempSort;
         do {
-            tempSort = SortType.values()[SortType.values().length - rand.nextInt(sortCount) - 1];
+            tempSort = SortType.values()[SortType.values().length - rand.nextInt(SortType.values().length) - 1];
         }
         while (tempSort == selectedSort);
         setSelectedSort(tempSort);
+        // calling start() while sorting does not start random sort
+        sorting = true;
+        newSort();
     }
 
     public static String getSelectedSort() {

@@ -24,9 +24,11 @@ public class BubbleSort extends Sort {
                     MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
                     Gdx.graphics.requestRendering();
                     checkStatus();
+
                     MainController.specialBarsSet(0, new IntColourPair(i + 1, Color.RED));
                     Gdx.graphics.requestRendering();
                     checkStatus();
+
                     arrayController.addComparisons(1);
                     MainController.audio.playSound(arrayController.getElement(i + 1));
                     if (arrayController.getElement(i) > arrayController.getElement(i + 1)) {

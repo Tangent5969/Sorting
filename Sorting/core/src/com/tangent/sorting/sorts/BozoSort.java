@@ -7,6 +7,7 @@ import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
 
 public class BozoSort extends Sort{
+
     public BozoSort(ArrayController arrayController) {
         super(arrayController, "Bozo");
     }
@@ -15,7 +16,6 @@ public class BozoSort extends Sort{
     public void run() {
         int pos1, pos2;
         while (!arrayController.isSorted()) {
-
             MainController.specialBarsClear();
             MainController.specialBarsAdd(new IntColourPair(0, Color.GREEN));
             MainController.audio.playSound(arrayController.getElement(0));

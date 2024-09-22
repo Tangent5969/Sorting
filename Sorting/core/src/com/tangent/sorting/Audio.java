@@ -11,6 +11,8 @@ public class Audio {
     public static final float minPitch = 1;
     public static final float maxPitch = 50;
     public static final float midPitch = (minPitch + maxPitch) / 2;
+    public static final float minVolume = 0;
+    public static final float maxVolume = 10;
 
 
     public Audio() {
@@ -44,10 +46,19 @@ public class Audio {
         channel.allNotesOff();
     }
 
-    public void setPitch(double n) {
+    public void setPitch(double num) {
         float scale = 8192 / midPitch;
-        channel.setPitchBend((int) (8192 + (n - midPitch) * scale));
-        System.out.println(channel.getPitchBend());
+        channel.setPitchBend((int) (8192 + (num - midPitch) * scale));
+    }
+
+    public void setVolume(int num) {
+        float scale = 125 / maxVolume;
+        channel.controlChange(7, (int) (num * scale));
+    }
+
+    public int getVolume() {
+        float scale = 125 / maxVolume;
+        return (int) (channel.getController(7) / scale);
     }
 
     private Instrument getInstrument(String name) {
