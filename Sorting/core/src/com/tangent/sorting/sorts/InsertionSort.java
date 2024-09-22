@@ -45,9 +45,6 @@ public class InsertionSort extends Sort{
                 }
             }
         }
-
-
-
         finished();
     }
 }

@@ -75,7 +75,7 @@ public class MainController {
     }
 
     public static void step() {
-        if (!arrayController.isSorted() && !sortThread.isAlive()) {
+        if (!sortThread.isAlive()) {
             newSort();
         }
 
@@ -124,6 +124,7 @@ public class MainController {
                 break;
         }
 
+        arrayController.resetStatistics();
         arrayController.setSortingStatus(true);
         sortThread = new Thread(sort, "sortThread");
         sortThread.start();

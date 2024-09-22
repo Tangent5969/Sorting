@@ -43,7 +43,6 @@ public class MergeSort extends Sort{
         }
         arrayController.addAuxWrites(lengthR);
 
-
         int[] renderQueue = new int[lengthL + lengthR];
         int indexMain = 0;
         MainController.specialBarsClear();

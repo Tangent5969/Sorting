@@ -18,13 +18,17 @@ public class ArrayController {
         resize(length);
     }
 
-    public void reset() {
-        sortingStatus = false;
-        populateArray();
+    public void resetStatistics() {
         comparisons = 0;
         swaps = 0;
         writes = 0;
         auxWrites = 0;
+    }
+
+    public void reset() {
+        sortingStatus = false;
+        populateArray();
+        resetStatistics();
     }
 
     public void resize(int length) {
