@@ -1,12 +1,13 @@
 package com.tangent.sorting.ui;
 
+import com.tangent.sorting.controls.Main;
 import com.tangent.sorting.controls.MainController;
 
 public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
         Shuffle, Reverse, // Shuffles
-        Bubble, Merge, Insertion, Selection, Bogo, Bozo // Sorts
+        Bubble, Merge, Insertion, Gnome, Selection, Bogo, Bozo // Sorts
     }
 
 
@@ -50,6 +51,9 @@ public class ButtonMethods {
                 break;
             case Insertion:
                 MainController.setSelectedSort(MainController.SortType.Insertion);
+                break;
+            case Gnome:
+                MainController.setSelectedSort(MainController.SortType.Gnome);
                 break;
             case Selection:
                 MainController.setSelectedSort(MainController.SortType.Selection);
