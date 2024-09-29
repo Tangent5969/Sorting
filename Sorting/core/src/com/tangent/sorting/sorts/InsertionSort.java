@@ -6,7 +6,7 @@ import com.tangent.sorting.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
 
-public class InsertionSort extends Sort{
+public class InsertionSort extends Sort {
 
     public InsertionSort(ArrayController arrayController) {
         super(arrayController, "Insertion");
@@ -14,6 +14,11 @@ public class InsertionSort extends Sort{
 
     @Override
     public void run() {
+        sort();
+        finished();
+    }
+
+    private void sort() {
         MainController.specialBarsClear();
         MainController.specialBarsAdd(null);
         MainController.specialBarsAdd(null);
@@ -45,6 +50,5 @@ public class InsertionSort extends Sort{
                 }
             }
         }
-        finished();
     }
 }

@@ -14,6 +14,11 @@ public class GnomeSort extends Sort {
 
     @Override
     public void run() {
+        sort();
+        finished();
+    }
+
+    private void sort() {
         int pos = 0;
         int maxIndex = 0;
         while (pos < arrayController.getLength()) {
@@ -44,6 +49,5 @@ public class GnomeSort extends Sort {
                 pos--;
             }
         }
-        finished();
     }
 }

@@ -14,6 +14,11 @@ public class SelectionSort extends Sort{
 
     @Override
     public void run() {
+        sort();
+        finished();
+    }
+
+    private void sort() {
         MainController.specialBarsClear();
         MainController.specialBarsAdd(null);
         MainController.specialBarsAdd(null);
@@ -44,6 +49,5 @@ public class SelectionSort extends Sort{
                 checkStatus();
             }
         }
-        finished();
     }
 }

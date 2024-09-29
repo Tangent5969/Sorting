@@ -14,6 +14,11 @@ public class BozoSort extends Sort{
 
     @Override
     public void run() {
+        sort();
+        finished();
+    }
+
+    private void sort() {
         int pos1, pos2;
         while (!arrayController.isSorted()) {
             MainController.specialBarsClear();
@@ -52,6 +57,5 @@ public class BozoSort extends Sort{
             checkStatus();
         }
         arrayController.addComparisons(arrayController.getLength() - 1);
-        finished();
     }
 }

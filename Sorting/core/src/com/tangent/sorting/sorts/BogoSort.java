@@ -14,8 +14,12 @@ public class BogoSort extends Sort{
 
     @Override
     public void run() {
-        while (!arrayController.isSorted()) {
+        sort();
+        finished();
+    }
 
+    private void sort() {
+        while (!arrayController.isSorted()) {
             MainController.specialBarsClear();
             MainController.specialBarsAdd(new IntColourPair(0, Color.GREEN));
             MainController.audio.playSound(arrayController.getElement(0));
@@ -41,6 +45,5 @@ public class BogoSort extends Sort{
             arrayController.shuffle();
         }
         arrayController.addComparisons(arrayController.getLength() - 1);
-        finished();
     }
 }

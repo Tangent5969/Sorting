@@ -76,9 +76,9 @@ public class Slider {
     public void renderText(SpriteBatch batch, BitmapFont font) {
         GlyphLayout layout;
         if (decimal) {
-            layout = new GlyphLayout(font, text + String.format("%.1f", value));
+            layout = new GlyphLayout(font, text + " " + String.format("%.1f", value));
         } else {
-            layout = new GlyphLayout(font, text + (int) value);
+            layout = new GlyphLayout(font, text + " " + (int) value);
         }
         font.draw(batch, layout, posX - layout.width / 2, posY + height + layout.height + radius);
     }

@@ -58,7 +58,6 @@ public class InputManager extends InputAdapter {
 
     @Override
     public boolean scrolled (float amountX, float amountY) {
-        System.out.println(amountY);
         // down positive
         Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), MainController.width, MainController.height);
         for (DropButton dropButton : Settings.dropButtonList) {

@@ -36,7 +36,7 @@ public class MainController {
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
     public enum SortType {
-        Bubble, Merge, Insertion, Gnome, Selection, Bogo, Bozo
+        Bubble, Merge, Insertion, Gnome, Selection, Quick, Bogo, Bozo
     }
 
 
@@ -121,6 +121,9 @@ public class MainController {
                 break;
             case Selection:
                 sort = new SelectionSort(arrayController);
+                break;
+            case Quick:
+                sort = new QuickSort(arrayController);
                 break;
             case Bogo:
                 sort = new BogoSort(arrayController);
