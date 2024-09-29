@@ -15,8 +15,13 @@ public class GnomeSort extends Sort {
     @Override
     public void run() {
         int pos = 0;
+        int maxIndex = 0;
         while (pos < arrayController.getLength()) {
+            if (pos > maxIndex) {
+                maxIndex++;
+            }
             MainController.specialBarsClear();
+            MainController.specialBarsAdd(new IntColourPair(maxIndex, Color.GREEN));
             MainController.specialBarsAdd(new IntColourPair(pos, Color.RED));
             Gdx.graphics.requestRendering();
             checkStatus();
