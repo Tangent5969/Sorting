@@ -67,7 +67,6 @@ public class ButtonMethods {
             case Bozo:
                 MainController.setSelectedSort(MainController.SortType.Bozo);
                 break;
-
         }
     }
 

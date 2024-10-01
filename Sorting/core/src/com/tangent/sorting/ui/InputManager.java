@@ -32,6 +32,7 @@ public class InputManager extends InputAdapter {
         for (Slider slider : Settings.sliderList) {
             if (slider.isSelected((int) coords.x, (int) coords.y)) {
                 selectedSlider = slider;
+                previousSlider = slider;
                 return true;
             }
         }
@@ -43,7 +44,6 @@ public class InputManager extends InputAdapter {
     public boolean touchUp (int x, int y, int pointer, int button) {
         if (selectedSlider != null) {
             selectedSlider.updateValue();
-            previousSlider = selectedSlider;
             selectedSlider = null;
             return true;
         }
@@ -79,6 +79,39 @@ public class InputManager extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
+        int amount;
+        switch (keycode) {
+            case Input.Keys.ENTER:
+                MainController.start();
+                return true;
+            case Input.Keys.SPACE:
+                MainController.step();
+                return true;
+            case Input.Keys.P:
+                MainController.pause();
+                return true;
+            case Input.Keys.R:
+                MainController.reset();
+                return true;
+            case Input.Keys.M:
+                MainController.audio.mute();
+                return true;
+            case Input.Keys.UP:
+                amount = 1;
+                break;
+            case Input.Keys.DOWN:
+                amount = -1;
+                break;
+            case Input.Keys.LEFT:
+                amount = -1;
+                break;
+            case Input.Keys.RIGHT:
+                amount = 1;
+                break;
+            default:
+                return false;
+        }
+
         Vector3 coords =  Utils.unproject(Gdx.input.getX(), Gdx.input.getY(), MainController.width, MainController.height);
 
         for (DropButton dropButton : Settings.dropButtonList) {
@@ -91,24 +124,6 @@ public class InputManager extends InputAdapter {
         }
 
         if (previousSlider != null) {
-            int amount;
-            switch (keycode) {
-                case Input.Keys.UP:
-                    amount = 1;
-                    break;
-                case Input.Keys.DOWN:
-                    amount = -1;
-                    break;
-                case Input.Keys.LEFT:
-                    amount = -1;
-                    break;
-                case Input.Keys.RIGHT:
-                    amount = 1;
-                    break;
-                default:
-                    return false;
-            }
-
             previousSlider.incrementValue(amount);
             previousSlider.updatePosition();
             previousSlider.updateValue();

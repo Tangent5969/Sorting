@@ -19,7 +19,7 @@ public class BubbleSort extends Sort {
     }
 
     private void sort() {
-        int end = arrayController.getLength()-1;
+        int end = arrayController.getLength() - 1;
         boolean swap;
         do {
             swap = false;

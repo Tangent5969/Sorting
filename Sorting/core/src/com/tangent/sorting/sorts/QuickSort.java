@@ -19,10 +19,16 @@ public class QuickSort extends Sort {
     }
 
     private void sort(int start, int end) {
-        int mid = start + (end - start) / 2;
+        // pos[0] = left, pos[1] = right
+        int[] pos = partition(start, end);
+        if (start < pos[1]) sort(start, pos[1]);
+        if (end > pos[0]) sort(pos[0], end);
+    }
+
+
+    private int[] partition(int left, int right) {
+        int mid = (left + right) / 2;
         int pivot = arrayController.getElement(mid);
-        int left = start;
-        int right = end;
 
         MainController.specialBarsClear();
         MainController.specialBarsAdd(new IntColourPair(mid, Color.GREEN));
@@ -67,12 +73,6 @@ public class QuickSort extends Sort {
             }
         }
 
-        if (start < right) {
-            sort(start, right);
-        }
-        if (end > left) {
-            sort(left, end);
-        }
-
+        return new int[] {left, right};
     }
 }
