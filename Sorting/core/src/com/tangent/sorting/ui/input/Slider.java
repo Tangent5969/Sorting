@@ -1,4 +1,4 @@
-package com.tangent.sorting.ui;
+package com.tangent.sorting.ui.input;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;

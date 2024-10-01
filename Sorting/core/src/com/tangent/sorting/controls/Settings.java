@@ -3,9 +3,9 @@ package com.tangent.sorting.controls;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.tangent.sorting.Audio;
-import com.tangent.sorting.Bar;
-import com.tangent.sorting.ui.*;
+import com.tangent.sorting.ui.sound.MidiAudio;
+import com.tangent.sorting.ui.input.*;
+import com.tangent.sorting.ui.visual.Bar;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Settings {
@@ -67,8 +67,8 @@ public class Settings {
 
         sliderList[0] = new Slider(MainController.minSpeed, MainController.maxSpeed, MainController.speed, settingsWidth/2, sliderStart, sliderWidth, false, ButtonMethods.SlideMethod.Speed, "Speed");
         sliderList[1] = new Slider(MainController.minElements, MainController.maxElements, MainController.arrayController.getLength(), settingsWidth/2, sliderStart - sliderSpacer, sliderWidth, false, ButtonMethods.SlideMethod.Size, "Size");
-        sliderList[2] = new Slider(Audio.minVolume, Audio.maxVolume, MainController.audio.getVolume(), settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth, false, ButtonMethods.SlideMethod.Volume, "Volume");
-        sliderList[3] = new Slider(Audio.minPitch, Audio.maxPitch, Audio.midPitch, settingsWidth/2, sliderStart - sliderSpacer * 3, sliderWidth, true, ButtonMethods.SlideMethod.Pitch, "Pitch");
+        sliderList[2] = new Slider(MidiAudio.minVolume, MidiAudio.maxVolume, MainController.audio.getVolume(), settingsWidth/2, sliderStart - sliderSpacer * 2, sliderWidth, false, ButtonMethods.SlideMethod.Volume, "Volume");
+        sliderList[3] = new Slider(MidiAudio.minPitch, MidiAudio.maxPitch, MidiAudio.midPitch, settingsWidth/2, sliderStart - sliderSpacer * 3, sliderWidth, true, ButtonMethods.SlideMethod.Pitch, "Pitch");
     }
 
     private static void offsetSettings() {

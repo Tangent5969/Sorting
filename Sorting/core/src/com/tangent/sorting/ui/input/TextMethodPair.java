@@ -1,4 +1,4 @@
-package com.tangent.sorting.ui;
+package com.tangent.sorting.ui.input;
 
 public class TextMethodPair {
     private final String text;

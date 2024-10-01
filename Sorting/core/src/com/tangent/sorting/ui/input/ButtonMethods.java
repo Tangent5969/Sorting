@@ -1,6 +1,5 @@
-package com.tangent.sorting.ui;
+package com.tangent.sorting.ui.input;
 
-import com.tangent.sorting.controls.Main;
 import com.tangent.sorting.controls.MainController;
 
 public class ButtonMethods {

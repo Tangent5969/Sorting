@@ -1,7 +1,6 @@
-package com.tangent.sorting;
+package com.tangent.sorting.ui.visual;
 
 import com.badlogic.gdx.graphics.Color;
-import com.tangent.sorting.ui.ButtonMethods;
 
 public class IntColourPair {
     private final int num;

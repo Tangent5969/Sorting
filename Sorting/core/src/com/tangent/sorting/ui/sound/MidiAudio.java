@@ -1,10 +1,10 @@
-package com.tangent.sorting;
+package com.tangent.sorting.ui.sound;
 
 import com.tangent.sorting.controls.MainController;
 
 import javax.sound.midi.*;
 
-public class Audio {
+public class MidiAudio {
     private Synthesizer synthesizer;
     private MidiChannel channel;
 
@@ -15,7 +15,7 @@ public class Audio {
     public static final float maxVolume = 10;
 
 
-    public Audio() {
+    public MidiAudio() {
         try {
             this.synthesizer = MidiSystem.getSynthesizer();
             synthesizer.open();

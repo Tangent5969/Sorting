@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
-import com.tangent.sorting.IntColourPair;
+import com.tangent.sorting.ui.visual.IntColourPair;
 
 public class BubbleSort extends Sort {
 

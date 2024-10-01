@@ -1,4 +1,4 @@
-package com.tangent.sorting;
+package com.tangent.sorting.ui.visual;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;

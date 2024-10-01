@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.tangent.sorting.Audio;
-import com.tangent.sorting.Bar;
-import com.tangent.sorting.IntColourPair;
+import com.tangent.sorting.ui.sound.MidiAudio;
+import com.tangent.sorting.ui.visual.Bar;
+import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.sorts.*;
 
 
@@ -29,7 +29,7 @@ public class MainController {
 
     private static SortType selectedSort;
     public static ArrayController arrayController;
-    public static Audio audio;
+    public static MidiAudio audio;
     public static Thread sortThread;
     public static final Object lock = new Object();
     private static final Random rand = new Random();
@@ -43,7 +43,7 @@ public class MainController {
     public static void initialise() {
         // initial array size
         arrayController = new ArrayController(10);
-        audio = new Audio();
+        audio = new MidiAudio();
         sortThread = new Thread("sortThread");
         Bar.setWidth();
     }

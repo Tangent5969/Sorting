@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.tangent.sorting.ui.InputManager;
+import com.tangent.sorting.ui.input.InputManager;
 
 
 // multi window support
@@ -39,8 +39,6 @@ public class Main extends ApplicationAdapter {
 
 		MainController.initialise();
 		Settings.initialise();
-
-
 	}
 
 	@Override
@@ -60,7 +58,6 @@ public class Main extends ApplicationAdapter {
 		font.getData().setScale(10);
 		Settings.renderText(batch, font);
 		batch.end();
-
 	}
 	
 	@Override
