@@ -154,6 +154,7 @@ public class MainController {
     }
 
     public static void setTotalElements(int totalElements) {
+        MainController.reset();
         MainController.arrayController.resize(totalElements);
         Bar.setWidth();
     }

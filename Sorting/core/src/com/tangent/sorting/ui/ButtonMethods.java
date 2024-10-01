@@ -79,7 +79,6 @@ public class ButtonMethods {
                 MainController.setSpeed((int) value);
                 break;
             case Size:
-                MainController.reset();
                 MainController.setTotalElements((int) value);
                 break;
             case Volume:

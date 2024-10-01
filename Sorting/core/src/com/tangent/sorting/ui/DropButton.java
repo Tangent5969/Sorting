@@ -62,7 +62,10 @@ public class DropButton extends Button{
   }
 
   protected boolean scrollDetect(int mouseX, int mouseY) {
-        return mouseX >= getPosX() && mouseX <= getPosX() + getWidth() && mouseY <= getPosY() && mouseY >= getPosY() - currentShown.length * getHeight();
+        if (show) {
+            return mouseX >= getPosX() && mouseX <= getPosX() + getWidth() && mouseY <= getPosY() && mouseY >= getPosY() - currentShown.length * getHeight();
+        }
+        return false;
   }
 
   protected void scroll(float scrollAmount) {

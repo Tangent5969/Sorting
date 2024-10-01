@@ -26,7 +26,7 @@ public class Slider {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
-        this.position = (int) ((posX - (float) width / 2) + (width * ((float) (value - min) / (max - min))));
+        this.position = (int) ((posX - (float) width / 2) + (width * ((value - min) / (max - min))));
         this.decimal = decimal;
         this.method = method;
         this.text = "";
@@ -38,7 +38,7 @@ public class Slider {
     }
 
 
-    private void updatePosition() {
+    protected void updatePosition() {
         this.position = (int) ((posX - (float) width / 2) + (width * ((value - min) / (max - min))));
     }
 
@@ -105,6 +105,13 @@ public class Slider {
 
     public void setValue(float value) {
         this.value = value;
+    }
+
+    public void incrementValue(float value) {
+        value += this.value;
+        if (value < min) this.value = min;
+        else if (value > max) this.value = max;
+        else this.value = value;
     }
 
     public int getPosX() {

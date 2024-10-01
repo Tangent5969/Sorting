@@ -135,8 +135,6 @@ public class ArrayController {
         sortingStatus = status;
     }
 
-
-
     public Random getRand() {
         return rand;
     }
