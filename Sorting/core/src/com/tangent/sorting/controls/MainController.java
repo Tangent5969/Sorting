@@ -36,7 +36,7 @@ public class MainController {
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
     public enum SortType {
-        Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Quick, Selection
+        Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection
     }
 
 
@@ -137,6 +137,9 @@ public class MainController {
             case OddEven:
                 sort = new OddEvenSort(arrayController);
                 break;
+            case Pancake:
+                sort = new PancakeSort(arrayController);
+                break;
             case Quick:
                 sort = new QuickSort(arrayController);
                 break;
@@ -226,6 +229,12 @@ public class MainController {
     public static void specialBarsClear() {
         synchronized (lock) {
             specialBars.clear();
+        }
+    }
+
+    public static int specialBarsLength() {
+        synchronized (lock) {
+            return specialBars.size();
         }
     }
 

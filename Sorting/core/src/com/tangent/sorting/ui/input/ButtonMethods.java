@@ -6,7 +6,7 @@ public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
         Shuffle, Reverse, // Shuffles
-        Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Quick, Selection // Sorts
+        Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection // Sorts
     }
 
 
@@ -72,6 +72,9 @@ public class ButtonMethods {
                 break;
             case OddEven:
                 MainController.setSelectedSort(MainController.SortType.OddEven);
+                break;
+            case Pancake:
+                MainController.setSelectedSort(MainController.SortType.Pancake);
                 break;
             case Quick:
                 MainController.setSelectedSort(MainController.SortType.Quick);
