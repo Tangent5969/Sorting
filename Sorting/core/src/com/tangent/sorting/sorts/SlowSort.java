@@ -1,0 +1,43 @@
+package com.tangent.sorting.sorts;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.tangent.sorting.controls.ArrayController;
+import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.ui.visual.IntColourPair;
+
+public class SlowSort extends Sort {
+
+    public SlowSort(ArrayController arrayController) {
+        super(arrayController, "Slow");
+    }
+
+    @Override
+    public void run() {
+        sort(0, arrayController.getLength() - 1);
+        finished();
+    }
+
+    private void sort(int start, int end) {
+        if (start >= end) return;
+        int mid = (start + end) / 2;
+        sort(start, mid);
+        sort(mid + 1, end);
+
+        arrayController.addComparisons(1);
+        MainController.specialBarsClear();
+        MainController.specialBarsAdd(new IntColourPair(mid, Color.RED));
+        MainController.specialBarsAdd(new IntColourPair(end, Color.RED));
+        MainController.audio.playSound(arrayController.getElement(end));
+        Gdx.graphics.requestRendering();
+        checkStatus();
+
+        if (arrayController.getElement(end) < arrayController.getElement(mid)) {
+            arrayController.swap(end, mid);
+            MainController.audio.playSound(arrayController.getElement(end));
+            Gdx.graphics.requestRendering();
+            checkStatus();
+        }
+        sort(start, end - 1);
+    }
+}
