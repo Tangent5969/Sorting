@@ -55,7 +55,7 @@ public class Main extends ApplicationAdapter {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 
-		font.getData().setScale(10);
+		font.getData().setScale(8);
 		Settings.renderText(batch, font);
 		batch.end();
 	}

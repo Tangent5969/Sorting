@@ -6,7 +6,7 @@ public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
         Shuffle, Reverse, // Shuffles
-        Bubble, Merge, Insertion, Gnome, Selection, Quick, Bogo, Bozo // Sorts
+        Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Quick, Selection // Sorts
     }
 
 
@@ -42,29 +42,42 @@ public class ButtonMethods {
             case Reverse:
                 MainController.reverse();
                 break;
-            case Bubble:
-                MainController.setSelectedSort(MainController.SortType.Bubble);
-                break;
-            case Merge:
-                MainController.setSelectedSort(MainController.SortType.Merge);
-                break;
-            case Insertion:
-                MainController.setSelectedSort(MainController.SortType.Insertion);
-                break;
-            case Gnome:
-                MainController.setSelectedSort(MainController.SortType.Gnome);
-                break;
-            case Selection:
-                MainController.setSelectedSort(MainController.SortType.Selection);
-                break;
-            case Quick:
-                MainController.setSelectedSort(MainController.SortType.Quick);
-                break;
+
             case Bogo:
                 MainController.setSelectedSort(MainController.SortType.Bogo);
                 break;
             case Bozo:
                 MainController.setSelectedSort(MainController.SortType.Bozo);
+                break;
+            case Bubble:
+                MainController.setSelectedSort(MainController.SortType.Bubble);
+                break;
+            case Cocktail:
+                MainController.setSelectedSort(MainController.SortType.Cocktail);
+                break;
+            case Comb:
+                MainController.setSelectedSort(MainController.SortType.Comb);
+                break;
+            case Exchange:
+                MainController.setSelectedSort(MainController.SortType.Exchange);
+                break;
+            case Gnome:
+                MainController.setSelectedSort(MainController.SortType.Gnome);
+                break;
+            case Insertion:
+                MainController.setSelectedSort(MainController.SortType.Insertion);
+                break;
+            case Merge:
+                MainController.setSelectedSort(MainController.SortType.Merge);
+                break;
+            case OddEven:
+                MainController.setSelectedSort(MainController.SortType.OddEven);
+                break;
+            case Quick:
+                MainController.setSelectedSort(MainController.SortType.Quick);
+                break;
+            case Selection:
+                MainController.setSelectedSort(MainController.SortType.Selection);
                 break;
         }
     }

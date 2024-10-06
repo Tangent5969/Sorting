@@ -23,7 +23,6 @@ public abstract class Sort implements Runnable{
                 synchronized (lock) {
                     lock.wait();
                 }
-
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

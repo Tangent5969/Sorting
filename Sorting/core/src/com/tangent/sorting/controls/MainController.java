@@ -36,7 +36,7 @@ public class MainController {
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
     public enum SortType {
-        Bubble, Merge, Insertion, Gnome, Selection, Quick, Bogo, Bozo
+        Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Quick, Selection
     }
 
 
@@ -107,32 +107,45 @@ public class MainController {
 
         Sort sort = null;
         switch (selectedSort) {
-            case Bubble:
-                sort = new BubbleSort(arrayController);
-                break;
-            case Merge:
-                sort = new MergeSort(arrayController);
-                break;
-            case Insertion:
-                sort = new InsertionSort(arrayController);
-                break;
-            case Gnome:
-                sort = new GnomeSort(arrayController);
-                break;
-            case Selection:
-                sort = new SelectionSort(arrayController);
-                break;
-            case Quick:
-                sort = new QuickSort(arrayController);
-                break;
             case Bogo:
                 sort = new BogoSort(arrayController);
                 break;
             case Bozo:
                 sort = new BozoSort(arrayController);
                 break;
+            case Bubble:
+                sort = new BubbleSort(arrayController);
+                break;
+            case Cocktail:
+                sort = new CocktailSort(arrayController);
+                break;
+            case Comb:
+                sort = new CombSort(arrayController);
+                break;
+            case Exchange:
+                sort = new ExchangeSort(arrayController);
+                break;
+            case Gnome:
+                sort = new GnomeSort(arrayController);
+                break;
+            case Insertion:
+                sort = new InsertionSort(arrayController);
+                break;
+            case Merge:
+                sort = new MergeSort(arrayController);
+                break;
+            case OddEven:
+                sort = new OddEvenSort(arrayController);
+                break;
+            case Quick:
+                sort = new QuickSort(arrayController);
+                break;
+            case Selection:
+                sort = new SelectionSort(arrayController);
+                break;
         }
 
+        specialBarsClear();
         arrayController.resetStatistics();
         arrayController.setSortingStatus(true);
         sortThread = new Thread(sort, "sortThread");

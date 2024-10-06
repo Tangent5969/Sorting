@@ -6,10 +6,9 @@ import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
 import com.tangent.sorting.ui.visual.IntColourPair;
 
-public class BubbleSort extends Sort {
-
-    public BubbleSort(ArrayController arrayController) {
-        super(arrayController, "Bubble");
+public class OddEvenSort extends Sort {
+    public OddEvenSort(ArrayController arrayController) {
+        super(arrayController, "Odd-Even");
     }
 
     @Override
@@ -19,12 +18,11 @@ public class BubbleSort extends Sort {
     }
 
     private void sort() {
-        int end = arrayController.getLength() - 1;
         boolean swap;
 
         do {
             swap = false;
-            for (int i = 0; i < end; i++) {
+            for (int i = 1; i < arrayController.getLength() - 1; i += 2) {
                 MainController.specialBarsClear();
                 MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
                 Gdx.graphics.requestRendering();
@@ -44,8 +42,10 @@ public class BubbleSort extends Sort {
                     checkStatus();
                 }
             }
-            end--;
+
+
         }
         while (swap);
+
     }
 }

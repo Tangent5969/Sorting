@@ -19,7 +19,6 @@ public class SelectionSort extends Sort{
     }
 
     private void sort() {
-        MainController.specialBarsClear();
         MainController.specialBarsAdd(null);
         MainController.specialBarsAdd(null);
         MainController.specialBarsAdd(null);
