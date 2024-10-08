@@ -32,11 +32,12 @@ public abstract class Sort implements Runnable{
     }
 
     protected void update() {
-        long time = System.nanoTime() - startTime;
-        arrayController.updateTime(time, MainController.speed);
+        //long time = System.nanoTime() - startTime;
+        //arrayController.updateTime(time, MainController.speed);
+        //System.out.println(arrayController.getRealTime());
         Gdx.graphics.requestRendering();
         checkStatus();
-        startTime = System.nanoTime();
+        //startTime = System.nanoTime();
     }
 
     private void greenBars() {
