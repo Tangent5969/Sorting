@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
@@ -14,6 +13,7 @@ public class MergeSort extends Sort{
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort(0, arrayController.getLength() - 1);
         finished();
     }
@@ -70,8 +70,7 @@ public class MergeSort extends Sort{
                 indexR++;
             }
             indexMain++;
-            Gdx.graphics.requestRendering();
-            checkStatus();
+            update();
         }
 
         MainController.specialBarsRemove(4);
@@ -80,8 +79,7 @@ public class MergeSort extends Sort{
             renderQueue[indexMain] = arrayL[indexL];
             if (first) {
                 MainController.specialBarsSet(3, new IntColourPair(left + indexL, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
             }
             indexL++;
             indexMain++;
@@ -94,8 +92,7 @@ public class MergeSort extends Sort{
             indexR++;
             if (first) {
                 MainController.specialBarsSet(3, new IntColourPair(mid + indexR, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
             }
             indexMain++;
             first = true;
@@ -106,8 +103,7 @@ public class MergeSort extends Sort{
             arrayController.setElement(left + i, renderQueue[i]);
             MainController.specialBarsSet(2, new IntColourPair(left + i, Color.RED));
             MainController.audio.playSound(renderQueue[i]);
-            Gdx.graphics.requestRendering();
-            checkStatus();
+            update();
         }
     }
 }

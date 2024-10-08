@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
@@ -14,6 +13,7 @@ public class QuickSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort(0, arrayController.getLength() - 1);
         finished();
     }
@@ -40,8 +40,7 @@ public class QuickSort extends Sort {
                 arrayController.addComparisons(1);
                 MainController.specialBarsSet(1, new IntColourPair(left, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(left));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 left++;
             }
@@ -51,8 +50,7 @@ public class QuickSort extends Sort {
                 arrayController.addComparisons(1);
                 MainController.specialBarsSet(2, new IntColourPair(right, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(right));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 right--;
             }
@@ -61,12 +59,10 @@ public class QuickSort extends Sort {
             if (left <= right) {
                 MainController.specialBarsSet(1, new IntColourPair(left, Color.RED));
                 MainController.specialBarsSet(2, new IntColourPair(right, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 arrayController.swap(left, right);
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 left++;
                 right--;

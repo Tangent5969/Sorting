@@ -14,6 +14,7 @@ public class CombSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort(arrayController.getLength());
         finished();
     }
@@ -31,21 +32,18 @@ public class CombSort extends Sort {
                 MainController.specialBarsClear();
                 MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(i));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 MainController.specialBarsSet(0, new IntColourPair(i + gap, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(i + gap));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 arrayController.addComparisons(1);
                 if (arrayController.getElement(i) > arrayController.getElement(i + gap)) {
                     arrayController.swap(i, i + gap);
                     sorted = false;
                     MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
-                    Gdx.graphics.requestRendering();
-                    checkStatus();
+                    update();
                 }
             }
         }

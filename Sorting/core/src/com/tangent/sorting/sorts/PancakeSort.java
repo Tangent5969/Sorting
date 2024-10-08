@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
@@ -14,6 +13,7 @@ public class PancakeSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort();
         finished();
     }
@@ -29,8 +29,7 @@ public class PancakeSort extends Sort {
                 MainController.specialBarsSet(1, new IntColourPair(i, Color.RED));
                 arrayController.addComparisons(1);
                 MainController.audio.playSound(arrayController.getElement(i));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 if (arrayController.getElement(i) > arrayController.getElement(max)) {
                     max = i;
@@ -41,13 +40,11 @@ public class PancakeSort extends Sort {
             if (max != length - 1) {
                 MainController.specialBarsSet(0, new IntColourPair(max, Color.GREEN));
                 MainController.specialBarsSet(1, new IntColourPair(0, Color.GREEN));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 flip(max);
                 MainController.specialBarsSet(0, new IntColourPair(length - 1, Color.GREEN));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 flip(length - 1);
             }
@@ -61,8 +58,7 @@ public class PancakeSort extends Sort {
             arrayController.swap(i, end - i);
             MainController.specialBarsSet(2, new IntColourPair(i, Color.RED));
             MainController.specialBarsSet(3, new IntColourPair(end - i, Color.RED));
-            Gdx.graphics.requestRendering();
-            checkStatus();
+            update();
         }
         MainController.specialBarsRemove(3);
         MainController.specialBarsRemove(2);

@@ -11,6 +11,8 @@ public class ArrayController {
     private int swaps;
     private int writes;
     private int auxWrites;
+    private long realTime;
+    private long estimatedTime;
     private boolean sortingStatus;
 
 
@@ -23,6 +25,8 @@ public class ArrayController {
         swaps = 0;
         writes = 0;
         auxWrites = 0;
+        realTime = 0;
+        estimatedTime = 0;
     }
 
     public void reset() {
@@ -53,10 +57,19 @@ public class ArrayController {
         System.out.println("Swaps : " + swaps);
         System.out.println("Writes : " + writes);
         System.out.println("Aux Writes : " + auxWrites);
+        System.out.println("Real Time : " + timeFormat(realTime));
+        System.out.println("Estimated Time : " + timeFormat(estimatedTime));
     }
 
     public String settingsDisplay() {
         return "\nComparisons\n" + comparisons + "\nSwaps\n" + swaps + "\nWrites\n" + writes + "\nAux Writes\n" + auxWrites;
+    }
+
+    private String timeFormat(long time) {
+        long mills = time / 1000;
+        int seconds = (int) (mills / 1000);
+        int mins = seconds / 60;
+        return "" + seconds;
     }
 
     public void shuffle() {
@@ -125,6 +138,27 @@ public class ArrayController {
 
     public int getAuxWrites() {
         return auxWrites;
+    }
+
+    public void addRealTime(long num) {
+        realTime += num;
+    }
+
+    public long getRealTime() {
+        return realTime;
+    }
+
+    public void addEstimatedTime(long num) {
+        estimatedTime += num;
+    }
+
+    public long getEstimatedTime() {
+        return estimatedTime;
+    }
+
+    public void updateTime(long time, int delay) {
+        realTime += time;
+        estimatedTime += time - delay * 1000L;
     }
 
     public boolean isSorting() {

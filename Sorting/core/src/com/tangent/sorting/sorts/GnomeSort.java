@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
@@ -14,6 +13,7 @@ public class GnomeSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort();
         finished();
     }
@@ -28,15 +28,13 @@ public class GnomeSort extends Sort {
             MainController.specialBarsClear();
             MainController.specialBarsAdd(new IntColourPair(maxIndex, Color.GREEN));
             MainController.specialBarsAdd(new IntColourPair(pos, Color.RED));
-            Gdx.graphics.requestRendering();
-            checkStatus();
+            update();
 
             if (pos > 0) {
                 arrayController.addComparisons(1);
                 MainController.specialBarsAdd(new IntColourPair(pos - 1, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(pos - 1));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
             }
 
             if (pos == 0 || arrayController.getElement(pos) >= arrayController.getElement(pos - 1)) {
@@ -44,8 +42,7 @@ public class GnomeSort extends Sort {
             }
             else {
                 arrayController.swap(pos, pos - 1);
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
                 pos--;
             }
         }

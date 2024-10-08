@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
@@ -14,6 +13,7 @@ public class ExchangeSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort();
         finished();
     }
@@ -29,13 +29,11 @@ public class ExchangeSort extends Sort {
                 arrayController.addComparisons(1);
                 MainController.specialBarsSet(1, new IntColourPair(j, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(j));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 if (arrayController.getElement(i) > arrayController.getElement(j)) {
                     arrayController.swap(i, j);
-                    Gdx.graphics.requestRendering();
-                    checkStatus();
+                    update();
                 }
             }
         }

@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
@@ -13,6 +12,7 @@ public class OddEvenSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort();
         finished();
     }
@@ -30,12 +30,10 @@ public class OddEvenSort extends Sort {
         for (int i = start; i < arrayController.getLength() - 1; i += 2) {
             MainController.specialBarsClear();
             MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
-            Gdx.graphics.requestRendering();
-            checkStatus();
+            update();
 
             MainController.specialBarsSet(0, new IntColourPair(i + 1, Color.RED));
-            Gdx.graphics.requestRendering();
-            checkStatus();
+            update();
 
             arrayController.addComparisons(1);
             MainController.audio.playSound(arrayController.getElement(i + 1));
@@ -43,8 +41,7 @@ public class OddEvenSort extends Sort {
                 arrayController.swap(i, i + 1);
                 swap = true;
                 MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
             }
         }
         return swap;

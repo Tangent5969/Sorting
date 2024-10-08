@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
@@ -14,6 +13,7 @@ public class ShellSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort();
         finished();
     }
@@ -35,13 +35,11 @@ public class ShellSort extends Sort {
                     arrayController.addComparisons(1);
                     MainController.specialBarsSet(1, new IntColourPair(j, Color.RED));
                     MainController.specialBarsSet(2, new IntColourPair(j - gap, Color.RED));
-                    Gdx.graphics.requestRendering();
-                    checkStatus();
+                    update();
 
                     arrayController.swap(j, j - gap);
                     MainController.audio.playSound(arrayController.getElement(j));
-                    Gdx.graphics.requestRendering();
-                    checkStatus();
+                    update();
                 }
             }
             gap /= 3;

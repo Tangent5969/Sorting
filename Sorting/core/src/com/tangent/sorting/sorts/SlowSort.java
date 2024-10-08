@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
@@ -14,6 +13,7 @@ public class SlowSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort(0, arrayController.getLength() - 1);
         finished();
     }
@@ -29,14 +29,12 @@ public class SlowSort extends Sort {
         MainController.specialBarsAdd(new IntColourPair(mid, Color.RED));
         MainController.specialBarsAdd(new IntColourPair(end, Color.RED));
         MainController.audio.playSound(arrayController.getElement(end));
-        Gdx.graphics.requestRendering();
-        checkStatus();
+        update();
 
         if (arrayController.getElement(end) < arrayController.getElement(mid)) {
             arrayController.swap(end, mid);
             MainController.audio.playSound(arrayController.getElement(end));
-            Gdx.graphics.requestRendering();
-            checkStatus();
+            update();
         }
         sort(start, end - 1);
     }

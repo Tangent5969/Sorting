@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
@@ -14,6 +13,7 @@ public class SelectionSort extends Sort{
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort();
         finished();
     }
@@ -32,8 +32,7 @@ public class SelectionSort extends Sort{
                 MainController.specialBarsSet(1, new IntColourPair(j, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(j));
                 arrayController.addComparisons(1);
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 if (arrayController.getElement(j) < arrayController.getElement(smallest)) {
                     smallest = j;
@@ -44,8 +43,7 @@ public class SelectionSort extends Sort{
                 arrayController.swap(i, smallest);
                 MainController.specialBarsSet(0, new IntColourPair(i, Color.RED));
                 MainController.specialBarsSet(1, null);
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
             }
         }
     }

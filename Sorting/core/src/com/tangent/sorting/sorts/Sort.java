@@ -9,14 +9,16 @@ import com.tangent.sorting.ui.visual.IntColourPair;
 import static com.tangent.sorting.controls.MainController.lock;
 
 public abstract class Sort implements Runnable{
-    protected ArrayController arrayController;
+    protected final ArrayController arrayController;
     protected final String name;
+    protected long startTime;
+
     Sort(ArrayController arrayController, String name) {
         this.arrayController = arrayController;
         this.name = name;
     }
 
-    protected void checkStatus() {
+    private void checkStatus() {
         try {
             Thread.sleep(MainController.speed);
             if (!MainController.sorting || MainController.stop) {
@@ -27,6 +29,14 @@ public abstract class Sort implements Runnable{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    protected void update() {
+        long time = System.nanoTime() - startTime;
+        arrayController.updateTime(time, MainController.speed);
+        Gdx.graphics.requestRendering();
+        checkStatus();
+        startTime = System.nanoTime();
     }
 
     private void greenBars() {

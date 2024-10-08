@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
@@ -14,6 +13,7 @@ public class CocktailSort extends Sort {
 
     @Override
     public void run() {
+        startTime = System.nanoTime();
         sort();
         finished();
     }
@@ -33,12 +33,10 @@ public class CocktailSort extends Sort {
 
             for (int i = start; i < end; i++) {
                 MainController.specialBarsSet(2, new IntColourPair(i, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 MainController.specialBarsSet(2, new IntColourPair(i + 1, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 arrayController.addComparisons(1);
                 MainController.audio.playSound(arrayController.getElement(i + 1));
@@ -46,8 +44,7 @@ public class CocktailSort extends Sort {
                     arrayController.swap(i, i + 1);
                     swap = true;
                     MainController.specialBarsSet(3, new IntColourPair(i, Color.RED));
-                    Gdx.graphics.requestRendering();
-                    checkStatus();
+                    update();
                     MainController.specialBarsSet(3, null);
                 }
             }
@@ -58,12 +55,10 @@ public class CocktailSort extends Sort {
 
             for (int i = end; i > start; i--) {
                 MainController.specialBarsSet(2, new IntColourPair(i, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 MainController.specialBarsSet(2, new IntColourPair(i - 1, Color.RED));
-                Gdx.graphics.requestRendering();
-                checkStatus();
+                update();
 
                 arrayController.addComparisons(1);
                 MainController.audio.playSound(arrayController.getElement(i - 1));
@@ -71,8 +66,7 @@ public class CocktailSort extends Sort {
                     arrayController.swap(i, i - 1);
                     swap = true;
                     MainController.specialBarsSet(3, new IntColourPair(i, Color.RED));
-                    Gdx.graphics.requestRendering();
-                    checkStatus();
+                    update();
                     MainController.specialBarsSet(3, null);
                 }
             }
