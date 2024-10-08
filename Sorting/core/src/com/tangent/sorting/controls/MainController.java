@@ -65,11 +65,13 @@ public class MainController {
             synchronized (lock) {
                 sorting = true;
                 lock.notify();
+                arrayController.startTimer();
             }
         }
     }
 
     public static void pause() {
+        arrayController.pauseTimer();
         sorting = false;
         audio.stopSound();
     }

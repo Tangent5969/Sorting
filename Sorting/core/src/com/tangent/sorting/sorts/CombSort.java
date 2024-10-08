@@ -1,6 +1,5 @@
 package com.tangent.sorting.sorts;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
@@ -14,7 +13,7 @@ public class CombSort extends Sort {
 
     @Override
     public void run() {
-        startTime = System.nanoTime();
+        arrayController.startTimer();
         sort(arrayController.getLength());
         finished();
     }

@@ -13,7 +13,7 @@ public class QuickSort extends Sort {
 
     @Override
     public void run() {
-        startTime = System.nanoTime();
+        arrayController.startTimer();
         sort(0, arrayController.getLength() - 1);
         finished();
     }

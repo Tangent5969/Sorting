@@ -13,7 +13,7 @@ public class SelectionSort extends Sort{
 
     @Override
     public void run() {
-        startTime = System.nanoTime();
+        arrayController.startTimer();
         sort();
         finished();
     }

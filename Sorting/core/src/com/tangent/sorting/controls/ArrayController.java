@@ -11,8 +11,8 @@ public class ArrayController {
     private int swaps;
     private int writes;
     private int auxWrites;
-    private long realTime;
-    private long estimatedTime;
+    private long startTime;
+    private long pauseTime;
     private boolean sortingStatus;
 
 
@@ -25,8 +25,7 @@ public class ArrayController {
         swaps = 0;
         writes = 0;
         auxWrites = 0;
-        realTime = 0;
-        estimatedTime = 0;
+        pauseTime = 0;
     }
 
     public void reset() {
@@ -52,24 +51,40 @@ public class ArrayController {
     }
 
     public void display() {
+        System.out.println("Time : " + getTime());
         System.out.println("Length : " + length);
         System.out.println("Comparisons : " + comparisons);
         System.out.println("Swaps : " + swaps);
         System.out.println("Writes : " + writes);
         System.out.println("Aux Writes : " + auxWrites);
-        System.out.println("Real Time : " + timeFormat(realTime));
-        System.out.println("Estimated Time : " + timeFormat(estimatedTime));
     }
 
     public String settingsDisplay() {
-        return "\nComparisons\n" + comparisons + "\nSwaps\n" + swaps + "\nWrites\n" + writes + "\nAux Writes\n" + auxWrites;
+        return "\nTime\n" + getTime() + "\nComparisons\n" + comparisons + "\nSwaps\n" + swaps + "\nWrites\n" + writes + "\nAux Writes\n" + auxWrites;
+    }
+
+    public void startTimer() {
+        startTime = System.nanoTime() - pauseTime;
+        pauseTime = 0;
+    }
+
+    public void pauseTimer() {
+        if (pauseTime == 0) pauseTime = System.nanoTime() - startTime;
+    }
+
+    public String getTime() {
+        if (pauseTime != 0) return timeFormat(pauseTime);
+        if (sortingStatus) return timeFormat(System.nanoTime() - startTime);
+        return null;
     }
 
     private String timeFormat(long time) {
-        long mills = time / 1000;
-        int seconds = (int) (mills / 1000);
-        int mins = seconds / 60;
-        return "" + seconds;
+        if (time < 1000000000) {
+            return String.format("%.1f", (time / 1000000F)) + "ms";
+        }
+        else {
+            return String.format("%.2f", (time / 1000000000F)) + "s";
+        }
     }
 
     public void shuffle() {
@@ -138,27 +153,6 @@ public class ArrayController {
 
     public int getAuxWrites() {
         return auxWrites;
-    }
-
-    public void addRealTime(long num) {
-        realTime += num;
-    }
-
-    public long getRealTime() {
-        return realTime;
-    }
-
-    public void addEstimatedTime(long num) {
-        estimatedTime += num;
-    }
-
-    public long getEstimatedTime() {
-        return estimatedTime;
-    }
-
-    public void updateTime(long time, int delay) {
-        realTime += time;
-        estimatedTime += time - delay * 1000L;
     }
 
     public boolean isSorting() {

@@ -11,7 +11,6 @@ import static com.tangent.sorting.controls.MainController.lock;
 public abstract class Sort implements Runnable{
     protected final ArrayController arrayController;
     protected final String name;
-    protected long startTime;
 
     Sort(ArrayController arrayController, String name) {
         this.arrayController = arrayController;
@@ -32,12 +31,8 @@ public abstract class Sort implements Runnable{
     }
 
     protected void update() {
-        //long time = System.nanoTime() - startTime;
-        //arrayController.updateTime(time, MainController.speed);
-        //System.out.println(arrayController.getRealTime());
         Gdx.graphics.requestRendering();
         checkStatus();
-        //startTime = System.nanoTime();
     }
 
     private void greenBars() {
@@ -62,10 +57,11 @@ public abstract class Sort implements Runnable{
     }
 
     protected void finished() {
+        arrayController.setSortingStatus(false);
+        arrayController.pauseTimer();
         display();
         greenBars();
         MainController.audio.stopSound();
-        arrayController.setSortingStatus(false);
         MainController.sorting = false;
     }
 
