@@ -69,8 +69,9 @@ public class ArrayController {
     }
 
     public void pauseTimer() {
-        if (pauseTime == 0) pauseTime = System.nanoTime() - startTime;
+        pauseTime = System.nanoTime() - startTime;
     }
+
 
     public String getTime() {
         if (pauseTime != 0) return timeFormat(pauseTime);

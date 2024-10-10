@@ -71,20 +71,23 @@ public class MainController {
     }
 
     public static void pause() {
-        arrayController.pauseTimer();
-        sorting = false;
-        audio.stopSound();
+        if (sorting) {
+            arrayController.pauseTimer();
+            sorting = false;
+            audio.stopSound();
+        }
     }
 
     public static void step() {
         if (!sortThread.isAlive()) {
             newSort();
         }
-
-        synchronized (lock) {
-            stop = true;
-            lock.notify();
-            stop = false;
+        if (!sorting && selectedSort != null) {
+            synchronized (lock) {
+                stop = true;
+                lock.notify();
+                stop = false;
+            }
         }
     }
 
