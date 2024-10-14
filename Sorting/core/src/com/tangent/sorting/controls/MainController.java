@@ -57,7 +57,7 @@ public class MainController {
     }
 
     public static void start() {
-        if (!sortThread.isAlive()) {
+        if (!sortThread.isAlive() && selectedSort != null) {
             sorting = true;
             newSort();
         }
@@ -79,10 +79,9 @@ public class MainController {
     }
 
     public static void step() {
-        if (!sortThread.isAlive()) {
-            newSort();
-        }
-        if (!sorting && selectedSort != null) {
+        if (selectedSort != null) {
+            if (!sortThread.isAlive()) newSort();
+            pause();
             synchronized (lock) {
                 stop = true;
                 lock.notify();
