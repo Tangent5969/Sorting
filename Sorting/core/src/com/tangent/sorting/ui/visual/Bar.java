@@ -7,7 +7,7 @@ import com.tangent.sorting.controls.MainController;
 public class Bar {
 
     private static final int maxHeight = (int) (MainController.height * 0.9);
-    private static int width;
+    private static float width;
     private final int height;
     Color colour;
     public Bar(int value) {
@@ -21,10 +21,10 @@ public class Bar {
     }
 
     public static void setWidth() {
-        width = (int) (MainController.width * MainController.widthMultiplier) / MainController.arrayController.getLength();
+        width = (MainController.width * MainController.widthMultiplier) / MainController.arrayController.getLength();
     }
 
-    public static int getWidth() {
+    public static float getWidth() {
         return width;
     }
 

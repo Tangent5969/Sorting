@@ -9,7 +9,7 @@ import com.tangent.sorting.ui.visual.Bar;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Settings {
-    private static final int startX = Bar.getWidth() * MainController.arrayController.getLength();
+    private static final int startX = (int) (MainController.width * MainController.widthMultiplier);
     private static final int settingsWidth = MainController.width - startX;
     private static final int heightMultiplier = 10;
     private static final int settingsHeight = MainController.height / heightMultiplier;
@@ -90,7 +90,6 @@ public class Settings {
         }
     }
 
-
     public static void render(ShapeRenderer sr) {
         for (Button button : buttonList) {
             button.render(sr);
@@ -120,5 +119,4 @@ public class Settings {
         }
         renderStatistics(batch, font);
     }
-
 }
