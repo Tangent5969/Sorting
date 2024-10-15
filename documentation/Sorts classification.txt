@@ -1,0 +1,22 @@
+Stupid sorts
+	Bogo
+	Bozo
+	Slow
+
+
+Bubble sort varients
+	Bubble
+	Cocktail Shaker
+	Comb
+	Odd Even
+
+
+Other
+	Exchange
+	Gnome
+	Insertion
+	Merge
+	Pancake
+	Quick
+	Selection
+	Shell
