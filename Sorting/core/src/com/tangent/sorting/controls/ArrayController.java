@@ -7,10 +7,10 @@ public class ArrayController {
 
     private int[] array;
     private int length;
-    private int comparisons;
-    private int swaps;
-    private int writes;
-    private int auxWrites;
+    private long comparisons;
+    private long swaps;
+    private long writes;
+    private long auxWrites;
     private long startTime;
     private long pauseTime;
     private boolean sortingStatus;
@@ -88,6 +88,12 @@ public class ArrayController {
         }
     }
 
+    private void populateArray() {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i + 1;
+        }
+    }
+
     public void shuffle() {
         for (int i = array.length - 1; i >= 0; i--) {
             swap(i, rand.nextInt(i, array.length));
@@ -128,7 +134,7 @@ public class ArrayController {
         comparisons += num;
     }
 
-    public int getComparisons() {
+    public long getComparisons() {
         return comparisons;
     }
 
@@ -136,7 +142,7 @@ public class ArrayController {
         swaps += num;
     }
 
-    public int getSwaps() {
+    public long getSwaps() {
         return swaps;
     }
 
@@ -144,7 +150,7 @@ public class ArrayController {
         writes += num;
     }
 
-    public int getWrites() {
+    public long getWrites() {
         return writes;
     }
 
@@ -152,7 +158,7 @@ public class ArrayController {
         auxWrites += num;
     }
 
-    public int getAuxWrites() {
+    public long getAuxWrites() {
         return auxWrites;
     }
 
@@ -166,12 +172,6 @@ public class ArrayController {
 
     public Random getRand() {
         return rand;
-    }
-
-    private void populateArray() {
-        for (int i = 0; i < array.length; i++) {
-            array[i] = i + 1;
-        }
     }
 
 }

@@ -196,9 +196,6 @@ public class MainController {
         }
         while (tempSort == selectedSort);
         setSelectedSort(tempSort);
-        // calling start() while sorting does not start random sort
-        sorting = true;
-        newSort();
     }
 
     public static String getSelectedSort() {

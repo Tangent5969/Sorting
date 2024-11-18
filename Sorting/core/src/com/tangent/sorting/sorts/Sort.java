@@ -57,12 +57,12 @@ public abstract class Sort implements Runnable{
     }
 
     protected void finished() {
-        arrayController.setSortingStatus(false);
         arrayController.pauseTimer();
         display();
         greenBars();
         MainController.audio.stopSound();
         MainController.sorting = false;
+        arrayController.setSortingStatus(false);
     }
 
     private void display() {
