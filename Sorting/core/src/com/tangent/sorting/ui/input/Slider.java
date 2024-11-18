@@ -68,7 +68,7 @@ public class Slider {
     }
 
     public void render(ShapeRenderer sr) {
-        sr.rect(posX - width / 2, posY - height / 2, width, height);
+        sr.rect(posX - (float) width / 2, posY - (float) height / 2, width, height);
         sr.circle(position, posY, radius);
 
     }
