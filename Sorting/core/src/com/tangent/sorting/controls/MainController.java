@@ -213,7 +213,7 @@ public class MainController {
             MainController.selectedSort = selectedSort;
         }
         else if (selectedSort != MainController.selectedSort) {
-            reset();
+            if (arrayController.isSorting()) reset();
             MainController.selectedSort = selectedSort;
         }
     }

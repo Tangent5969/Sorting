@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tangent.sorting.ui.sound.MidiAudio;
 import com.tangent.sorting.ui.input.*;
-import com.tangent.sorting.ui.visual.Bar;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Settings {
