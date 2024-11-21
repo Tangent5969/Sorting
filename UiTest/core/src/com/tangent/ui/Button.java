@@ -31,11 +31,11 @@ public class Button {
         this.text = text;
     }
 
-    public boolean collisionCheck (int mouseX, int mouseY) {
+    protected boolean collisionCheck (int mouseX, int mouseY) {
         return mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height;
     }
 
-    public boolean isPressed(int mouseX, int mouseY) {
+    protected boolean isPressed(int mouseX, int mouseY) {
         if (collisionCheck(mouseX, mouseY)) {
             ButtonMethods.activateMethod(method);
             return true;

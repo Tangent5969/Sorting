@@ -7,33 +7,42 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Slider {
     private static final int radius = 10;
-    private static final int height = 6;
-    private int min;
-    private int max;
-    private int value;
+    private static final int height = 5;
+    private float min;
+    private float max;
+    private float value;
     private int posX;
     private int posY;
     private int width;
     private int position;
     private String text;
+    private boolean decimal;
+    private ButtonMethods.SlideMethod method;
 
-    public Slider(int min, int max, int value, int posX, int posY, int width) {
+    public Slider(float min, float max, float value, int posX, int posY, int width, boolean decimal, ButtonMethods.SlideMethod method) {
         this.min = min;
         this.max = max;
         this.value = value;
         this.posX = posX;
         this.posY = posY;
         this.width = width;
-        this.position = (int) ((posX - (float) width / 2) + (width * ((float) (value - min) / (max - min))));
+        this.position = (int) ((posX - (float) width / 2) + (width * ((value - min) / (max - min))));
+        this.decimal = decimal;
+        this.method = method;
         this.text = "";
     }
 
-    public Slider(int min, int max, int value, int posX, int posY, int width, String text) {
-        this(min, max, value, posX, posY, width);
+    public Slider(float min, float max, float value, int posX, int posY, int width, boolean decimal, ButtonMethods.SlideMethod method, String text) {
+        this(min, max, value, posX, posY, width, decimal, method);
         this.text = text;
     }
 
-    public void updatePosition(int mouseX) {
+
+    protected void updatePosition() {
+        this.position = (int) ((posX - (float) width / 2) + (width * ((value - min) / (max - min))));
+    }
+
+    protected void updatePosition(int mouseX) {
         if (mouseX <= posX - width / 2) {
             position = posX - width / 2;
         }
@@ -43,50 +52,66 @@ public class Slider {
         else {
             position = mouseX;
         }
-        value = (int) (min + ((position - (posX - (float) width / 2)) / ((posX + (float) width / 2) - (posX - (float) width / 2))) * (max - min));
+        if (decimal) {
+            value = (min + ((position - (posX - (float) width / 2)) / ((posX + (float) width / 2) - (posX - (float) width / 2))) * (max - min));
+        } else {
+            value = (int) (min + ((position - (posX - (float) width / 2)) / ((posX + (float) width / 2) - (posX - (float) width / 2))) * (max - min));
+        }
     }
 
-    public void updateValue() {
-
+    protected void updateValue() {
+        ButtonMethods.updateSlideValue(method, value);
     }
 
-    public boolean isSelected(int mouseX, int mouseY) {
+    protected boolean isSelected(int mouseX, int mouseY) {
         return mouseX >= position - radius && mouseX <= position + radius && mouseY >= posY - radius && mouseY <= posY + radius;
     }
 
     public void render(ShapeRenderer sr) {
-        sr.rect(posX - width / 2, posY - height / 2, width, height);
+        sr.rect(posX - (float) width / 2, posY - (float) height / 2, width, height);
         sr.circle(position, posY, radius);
 
     }
 
     public void renderText(SpriteBatch batch, BitmapFont font) {
-        GlyphLayout layout = new GlyphLayout(font, text +  value);
+        GlyphLayout layout;
+        if (decimal) {
+            layout = new GlyphLayout(font, text + " " + String.format("%.1f", value));
+        } else {
+            layout = new GlyphLayout(font, text + " " + (int) value);
+        }
         font.draw(batch, layout, posX - layout.width / 2, posY + height + layout.height + radius);
     }
 
-    public int getMin() {
+    public float getMin() {
         return min;
     }
 
-    public void setMin(int min) {
+    public void setMin(float min) {
         this.min = min;
     }
 
-    public int getMax() {
+    public float getMax() {
         return max;
     }
 
-    public void setMax(int max) {
+    public void setMax(float max) {
         this.max = max;
     }
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
+    }
+
+    public void incrementValue(float value) {
+        value += this.value;
+        if (value < min) this.value = min;
+        else if (value > max) this.value = max;
+        else this.value = value;
     }
 
     public int getPosX() {
@@ -95,6 +120,7 @@ public class Slider {
 
     public void setPosX(int posX) {
         this.posX = posX;
+        updatePosition();
     }
 
     public int getPosY() {

@@ -18,6 +18,9 @@ public class Main extends ApplicationAdapter {
 	private Camera camera;
 	private StretchViewport viewport;
 
+	public static final int worldWidth = 1000;
+	public static final int worldHeight = 1000;
+
 	@Override
 	public void create () {
 		Gdx.input.setInputProcessor(new InputManager());
@@ -27,7 +30,7 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 
 		camera = new OrthographicCamera();
-		viewport = new StretchViewport(1000, 1000, camera);
+		viewport = new StretchViewport(worldWidth, worldHeight, camera);
 		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
 
 		Controller.logic();
@@ -35,7 +38,7 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(0, 0, 0, 1);
 
 		viewport.apply();
 		sr.setProjectionMatrix(camera.combined);

@@ -2,12 +2,13 @@ package com.tangent.ui;
 
 public class Controller
 {
-    static Button[] buttonList = new Button[2];
+    static Button[] buttonList = new Button[3];
     static DropButton[] dropButtonList = new DropButton[2];
     static Slider[] sliderList = new Slider[2];
     static void logic() {
-        buttonList[0] = new Button(100, 50, 100, 200, ButtonMethods.Method.Start);
-        buttonList[1] = new Button(100, 50, 150, 300, ButtonMethods.Method.Pause);
+        buttonList[0] = new Button(100, 50, 100, 200, ButtonMethods.Method.Blank);
+        buttonList[1] = new Button(100, 50, 150, 300, ButtonMethods.Method.Blank);
+        buttonList[2] = new ToggleButton(100, 50, 450, 300, "Toggle", ButtonMethods.Method.Blank);
 
         buttonList[0].setText("Start");
 
@@ -17,8 +18,8 @@ public class Controller
         dropButtonList[1] = new DropButton(100, 40, 600, 700, drop2);
         dropButtonList[0].setText("Drop");
 
-        sliderList[0] = new Slider(1, 100, 30, 400, 400, 150);
-        sliderList[1] = new Slider(-5, 9, 2, 450, 600, 400);
+        sliderList[0] = new Slider(1, 100, 30, 400, 400, 150, false, ButtonMethods.SlideMethod.Blank);
+        sliderList[1] = new Slider(-5, 9, 2, 450, 600, 400,false, ButtonMethods.SlideMethod.Blank);
 
         sliderList[1].setText("Number");
     }
