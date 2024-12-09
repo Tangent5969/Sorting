@@ -6,6 +6,12 @@ import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
 import com.tangent.sorting.ui.visual.IntColourPair;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static com.tangent.sorting.controls.MainController.lock;
 
 public abstract class Sort implements Runnable{
@@ -59,6 +65,7 @@ public abstract class Sort implements Runnable{
     protected void finished() {
         arrayController.pauseTimer();
         display();
+        fileOutput();
         greenBars();
         MainController.audio.stopSound();
         MainController.sorting = false;
@@ -66,7 +73,25 @@ public abstract class Sort implements Runnable{
     }
 
     private void display() {
-        System.out.println("Sort : " + name);
+        System.out.println("\nSort : " + name);
         arrayController.display();
     }
+
+    private void fileOutput() {
+        try {
+            File file = new File("data.csv");
+            boolean fileFlag = file.createNewFile();
+            FileWriter writer = new FileWriter(file, true);
+            if (fileFlag) {
+                writer.write("Date,Sort,Time (Short),Time (Raw),Comparisons,Swaps,Writes,Aux Writes");
+            }
+            String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+            writer.write(("\n" + currentTime + "," + name + "," + arrayController.export()));
+            writer.close();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -63,6 +63,10 @@ public class ArrayController {
         return "\nTime\n" + getTime() + "\nComparisons\n" + comparisons + "\nSwaps\n" + swaps + "\nWrites\n" + writes + "\nAux Writes\n" + auxWrites;
     }
 
+    public String export() {
+        return getTime() + "," + pauseTime + "," + comparisons + "," + swaps + "," + writes + "," + auxWrites;
+    }
+
     public void startTimer() {
         startTime = System.nanoTime() - pauseTime;
         pauseTime = 0;
