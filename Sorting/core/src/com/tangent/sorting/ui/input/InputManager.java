@@ -96,6 +96,9 @@ public class InputManager extends InputAdapter {
             case Input.Keys.M:
                 MainController.audio.mute();
                 return true;
+            case Input.Keys.BACKSPACE:
+                MainController.randomSort();
+                return true;
             case Input.Keys.UP:
                 amount = 1;
                 break;
