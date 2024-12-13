@@ -65,11 +65,19 @@ public abstract class Sort implements Runnable{
     protected void finished() {
         arrayController.pauseTimer();
         display();
-        fileOutput();
-        greenBars();
-        MainController.audio.stopSound();
-        MainController.sorting = false;
-        arrayController.setSortingStatus(false);
+        try {
+            fileOutput();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            greenBars();
+            MainController.audio.stopSound();
+            MainController.sorting = false;
+            arrayController.setSortingStatus(false);
+        }
+
     }
 
     private void display() {
@@ -77,8 +85,7 @@ public abstract class Sort implements Runnable{
         arrayController.display();
     }
 
-    private void fileOutput() {
-        try {
+    private void fileOutput() throws IOException {
             File file = new File("data.csv");
             boolean fileFlag = file.createNewFile();
             FileWriter writer = new FileWriter(file, true);
@@ -88,10 +95,6 @@ public abstract class Sort implements Runnable{
             String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
             writer.write(("\n" + currentTime + "," + name + "," + arrayController.export()));
             writer.close();
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }
