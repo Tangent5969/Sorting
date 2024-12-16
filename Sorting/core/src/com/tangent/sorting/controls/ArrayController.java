@@ -64,7 +64,7 @@ public class ArrayController {
     }
 
     public String export() {
-        return getTime() + "," + pauseTime + "," + comparisons + "," + swaps + "," + writes + "," + auxWrites;
+        return length + "," + getTime() + "," + pauseTime + "," + comparisons + "," + swaps + "," + writes + "," + auxWrites;
     }
 
     public void startTimer() {

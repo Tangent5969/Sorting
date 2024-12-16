@@ -90,7 +90,7 @@ public abstract class Sort implements Runnable{
             boolean fileFlag = file.createNewFile();
             FileWriter writer = new FileWriter(file, true);
             if (fileFlag) {
-                writer.write("Date,Sort,Time (Short),Time (Raw),Comparisons,Swaps,Writes,Aux Writes");
+                writer.write("Date,Sort,Elements,Time (Short),Time (Raw),Comparisons,Swaps,Writes,Aux Writes");
             }
             String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
             writer.write(("\n" + currentTime + "," + name + "," + arrayController.export()));
