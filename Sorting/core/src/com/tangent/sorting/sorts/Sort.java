@@ -69,9 +69,10 @@ public abstract class Sort implements Runnable{
         display();
         try {
             fileOutput();
+            MainController.setErrorCode(MainController.Error.FileGood);
         }
         catch (IOException e) {
-            MainController.setErrorCode(MainController.Error.File);
+            MainController.setErrorCode(MainController.Error.FileBad);
             throw new RuntimeException(e);
         }
         finally {

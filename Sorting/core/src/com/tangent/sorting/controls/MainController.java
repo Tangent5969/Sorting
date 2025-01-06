@@ -26,22 +26,25 @@ public class MainController {
     public static int speed = 25;
     public static boolean sorting = false;
     public static boolean stop = false;
+    private static Error errorCode;
+
 
     private static SortType selectedSort;
+    private static final Random rand = new Random();
+    private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
     public static ArrayController arrayController;
     public static MidiAudio audio;
     public static Thread sortThread;
     public static final Object lock = new Object();
-    private static final Random rand = new Random();
-    private static Error errorCode;
-    private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
+
 
     public enum SortType {
         Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection, Shell, Slow
     }
 
     public enum Error {
-        File("Unable to save. File open / not found"),
+        FileBad("Unable to save. File open / not found"),
+        FileGood("File saved successfully"),
         SortEnded("SortThread terminated");
 
         private String message;
@@ -263,7 +266,7 @@ public class MainController {
     }
 
     public static String getErrorMessage() {
-        if (errorCode != null) return errorCode.getMessage() + "\nPress C to clear";
-        return "";
+        if (errorCode == null) return "";
+        return errorCode.getMessage() + "\nPress C to clear";
     }
 }

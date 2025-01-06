@@ -102,12 +102,12 @@ public class Settings {
         }
     }
 
-    public static void renderStatistics(SpriteBatch batch, BitmapFont font) {
+    private static void renderStatistics(SpriteBatch batch, BitmapFont font) {
         GlyphLayout layout = new GlyphLayout(font, "Sort\n" + MainController.getSelectedSort() + MainController.arrayController.settingsDisplay());
         font.draw(batch, layout, startX + 10, (665) * heightMultiplier);
     }
 
-    public static void renderError(SpriteBatch batch, BitmapFont font) {
+    private static void renderError(SpriteBatch batch, BitmapFont font) {
         GlyphLayout layout = new GlyphLayout(font, MainController.getErrorMessage(), Color.RED, 990, 1000, true);
         font.draw(batch, layout, startX + 10, (150) * heightMultiplier);
     }
