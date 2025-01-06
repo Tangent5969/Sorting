@@ -140,6 +140,7 @@ public class InputManager extends InputAdapter {
     }
 
     // converts screen coordinates to world coordinates
+    // derived from camera.unproject
     private static Vector3 unproject (float x, float y) {
         // normalize screen coordinates
         x = (2 * x) / Gdx.graphics.getWidth() - 1;
