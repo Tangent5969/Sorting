@@ -33,12 +33,25 @@ public class MainController {
     public static Thread sortThread;
     public static final Object lock = new Object();
     private static final Random rand = new Random();
+    private static Error errorCode;
     private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
 
     public enum SortType {
         Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection, Shell, Slow
     }
 
+    public enum Error {
+        File("Unable to save. File open / not found"),
+        SortEnded("SortThread terminated");
+
+        private String message;
+        Error(String message) {
+            this.message = message;
+        }
+        public String getMessage() {
+            return message;
+        }
+    }
 
     public static void initialise() {
         // initial array size
@@ -245,4 +258,12 @@ public class MainController {
         }
     }
 
+    public static void setErrorCode(Error error) {
+        errorCode = error;
+    }
+
+    public static String getErrorMessage() {
+        if (errorCode != null) return errorCode.getMessage() + "\nPress C to clear";
+        return "";
+    }
 }

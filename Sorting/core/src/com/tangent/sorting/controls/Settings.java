@@ -1,5 +1,6 @@
 package com.tangent.sorting.controls;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -106,6 +107,11 @@ public class Settings {
         font.draw(batch, layout, startX + 10, (665) * heightMultiplier);
     }
 
+    public static void renderError(SpriteBatch batch, BitmapFont font) {
+        GlyphLayout layout = new GlyphLayout(font, MainController.getErrorMessage(), Color.RED, 990, 1000, true);
+        font.draw(batch, layout, startX + 10, (150) * heightMultiplier);
+    }
+
     public static void renderText(SpriteBatch batch, BitmapFont font) {
         for (Button button : buttonList) {
             button.renderText(batch, font);
@@ -117,5 +123,6 @@ public class Settings {
             slider.renderText(batch, font);
         }
         renderStatistics(batch, font);
+        renderError(batch, font);
     }
 }

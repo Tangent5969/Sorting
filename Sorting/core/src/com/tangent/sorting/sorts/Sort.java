@@ -32,6 +32,7 @@ public abstract class Sort implements Runnable{
                 }
             }
         } catch (InterruptedException e) {
+            MainController.setErrorCode(MainController.Error.SortEnded);
             throw new RuntimeException(e);
         }
     }
@@ -56,6 +57,7 @@ public abstract class Sort implements Runnable{
             try {
                 Thread.sleep(speed);
             } catch (InterruptedException e) {
+                MainController.setErrorCode(MainController.Error.SortEnded);
                 throw new RuntimeException(e);
             }
         }
@@ -69,6 +71,7 @@ public abstract class Sort implements Runnable{
             fileOutput();
         }
         catch (IOException e) {
+            MainController.setErrorCode(MainController.Error.File);
             throw new RuntimeException(e);
         }
         finally {
