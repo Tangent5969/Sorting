@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tangent.sorting.ui.input.InputManager;
+import com.tangent.sorting.ui.visual.Image;
 
 
 // multi window support
@@ -56,6 +57,7 @@ public class Main extends ApplicationAdapter {
 		batch.begin();
 
 		font.getData().setScale(8);
+		Image.renderBlankImage(batch);
 		Settings.renderText(batch, font);
 		batch.end();
 	}

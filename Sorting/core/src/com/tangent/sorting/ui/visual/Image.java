@@ -1,98 +1,83 @@
 package com.tangent.sorting.ui.visual;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.controls.Settings;
+import com.tangent.sorting.ui.input.Slider;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 
 public class Image {
+    private static final Texture blankImage = new Texture("blankImage.png");
     private static Color[][] imageArray;
     private static int width;
     private static int height;
     private static float xScale;
     private static float yScale;
 
-
-
-    private static boolean validFile(String path) {
-        int index = path.lastIndexOf(".");
-        if (index == -1) return false;
-        switch (path.substring(index)) {
-            case ".png":
-            case ".jpg":
-            case ".jpeg":
-                return true;
+    public static void selectImage(String path) throws IOException, NullPointerException {
+        BufferedImage image = ImageIO.read(new File(path));
+        if (image.getWidth() * image.getHeight() > MainController.maxElements) {
+            MainController.setErrorCode(MainController.Error.BigImage);
+            return;
         }
-        return false;
+
+        width = image.getWidth();
+        height = image.getHeight();
+        xScale = (float) MainController.width * MainController.widthMultiplier / width;
+        yScale = (float) MainController.height / height;
+
+        imageArray = convertImage(image);
+        MainController.setTotalElements(width * height);
+        for (Slider slider : Settings.sliderList) {
+            if (slider.getText().equals("Size")) {
+                slider.setValue(width * height);
+                slider.updatePosition();
+                break;
+            }
+        }
     }
 
-   public static void selectImage(String path) throws IOException {
-       System.out.println(path);
-       if(!validFile(path)) {
-           MainController.setErrorCode(MainController.Error.InvalidImage);
-           return;
-       }
-       BufferedImage tempImage = ImageIO.read(new File(path));
-       if (tempImage.getWidth() * tempImage.getHeight() > MainController.maxElements) {
-           MainController.setErrorCode(MainController.Error.BigImage);
-           return;
-       }
-       BufferedImage image = tempImage;
-       width = image.getWidth();
-       height = image.getHeight();
-       xScale = (float) MainController.width * MainController.widthMultiplier / width;
-       yScale = (float) MainController.height / height;
 
-       imageArray = convertImage(image);
-       MainController.setTotalElements(width * height);
-   }
-
+    public static void resetImage() {
+        if (imageArray != null) {
+            imageArray = null;
+            MainController.setErrorCode(MainController.Error.ImageReset);
+        }
+    }
 
     private static Color[][] convertImage(BufferedImage image) {
-        byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
-        Color[][] result = new Color[image.getHeight()][image.getWidth()];
-        int x = 0;
-        int y = image.getHeight() - 1;
-        if (image.getAlphaRaster() == null) {
-            for (int pixel = 0; pixel + 2 < pixels.length; pixel += 3) {
-                result[x][y] = new Color((pixels[pixel + 2] & 0xff) / 255f, (pixels[pixel + 1] & 0xff) / 255f, (pixels[pixel] & 0xff) / 255f, 1);
-                x++;
-                if (x == image.getWidth()) {
-                    x = 0;
-                    y--;
-                }
+        Color[][] pixels = new Color[image.getWidth()][image.getHeight()];
+        for (int x = 0; x < image.getWidth(); x++) {
+            for (int y = 0; y < image.getHeight(); y++) {
+                int rgb = image.getRGB(x, y);
+                // converts ARGB to RGBA
+                rgb = (rgb & 0x00FFFFFF) << 8 | (rgb & 0xFF000000) >>> 24;
+                pixels[x][image.getHeight() - y - 1] = new Color(rgb);
             }
         }
-        else {
-            for (int pixel = 0; pixel + 3 < pixels.length; pixel += 4) {
-                result[x][y] = new Color((pixels[pixel + 3] & 0xff) / 255f, (pixels[pixel + 2] & 0xff) / 255f, (pixels[pixel + 1] & 0xff) / 255f, (pixels[pixel] & 0xff) / 255f);
-                x++;
-                if (x == image.getWidth()) {
-                    x = 0;
-                    y--;
-                }
-            }
-        }
-        return result;
+        return pixels;
     }
 
     public static void renderArray(ArrayController arrayController, ShapeRenderer sr) {
-       if (imageArray == null) {
-           //MainController.setErrorCode(MainController.Error.NoImage);
-           return;
-       }
+        if (imageArray == null) return;
 
-       for (int i = 0; i < arrayController.getLength(); i++) {
-           sr.setColor(imageArray[(arrayController.getElement(i) - 1) % (width)][(arrayController.getElement(i) - 1) / width]);
+        for (int i = 0; i < arrayController.getLength(); i++) {
+            sr.setColor(imageArray[(arrayController.getElement(i) - 1) % (width)][(arrayController.getElement(i) - 1) / width]);
             sr.rect((i % width) * xScale, (i / width) * yScale, xScale, yScale);
-       }
+        }
+    }
 
-
+    public static void renderBlankImage(SpriteBatch batch) {
+        if (imageArray == null && MainController.getRenderMode() == MainController.RenderMethod.Image) {
+            batch.draw(blankImage, 0, 0, MainController.width * MainController.widthMultiplier, MainController.height, 0, 1, 1, 0);
+        }
     }
 }

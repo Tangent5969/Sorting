@@ -22,8 +22,9 @@ import java.util.Arrays;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	BufferedImage image;
-	Color[][] array;
+	static BufferedImage image;
+	static Color[][] array;
+	static Color[][] arrayB;
 	ShapeRenderer sr;
 
 
@@ -31,15 +32,27 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create() {
 		sr = new ShapeRenderer();
 		batch = new SpriteBatch();
-		try {
-			image = ImageIO.read(new File("assets/badlogicAlpha.png"));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		array = convertImage(image);
+
+
+
+
+
+
+
+
+/*
 		for (Color[] a : array) {
 			System.out.println(Arrays.toString(a));
 		}
+		System.out.println("\n\n\n");
+
+		for (Color[] a : arrayB) {
+			System.out.println(Arrays.toString(a));
+		}
+
+
+
+ */
 
 	}
 
@@ -50,10 +63,12 @@ public class MyGdxGame extends ApplicationAdapter {
 		sr.begin(ShapeRenderer.ShapeType.Filled);
 
 		int pixelSize = 1;
-		for (int x = 0; x < array.length; x++) {
-			for (int y = 0; y < array[0].length; y++) {
-				sr.setColor(array[x][y]);
-				sr.rect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+		if (array != null) {
+			for (int x = 0; x < array.length; x++) {
+				for (int y = 0; y < array[0].length; y++) {
+					sr.setColor(array[x][y]);
+					sr.rect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+				}
 			}
 		}
 
@@ -67,9 +82,19 @@ public class MyGdxGame extends ApplicationAdapter {
 	}
 
 
+	public static void selectImage(String path) throws IOException {
+		image = ImageIO.read(new File(path));
+		System.out.println(image.getWidth() + " x " + image.getHeight());
+		array = convertImage(image);
+		arrayB = convertImageB(image);
+	}
+
+
 	private static Color[][] convertImage(BufferedImage image) {
+		long time = System.nanoTime();
+
 		byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
-		Color[][] result = new Color[image.getHeight()][image.getWidth()];
+		Color[][] result = new Color[image.getWidth()][image.getHeight()];
 		int x = 0;
 		int y = image.getHeight() - 1;
 		if (image.getAlphaRaster() == null) {
@@ -92,8 +117,37 @@ public class MyGdxGame extends ApplicationAdapter {
 				}
 			}
 		}
+
+		System.out.println(timeFormat(System.nanoTime() - time));
 		return result;
 	}
-}
 
+	private static Color[][] convertImageB(BufferedImage image) {
+		long time = System.nanoTime();
+
+		Color[][] result = new Color[image.getWidth()][image.getHeight()];
+		for (int x = 0; x < image.getWidth(); x++) {
+			for (int y = 0; y < image.getHeight(); y++) {
+
+				int argb = image.getRGB(x, y);
+				argb = (argb & 0x00FFFFFF) << 8 | (argb & 0xFF000000) >>> 24;
+				result[x][image.getHeight() - y - 1] = new Color(argb);
+
+			}
+		}
+
+		System.out.println(timeFormat(System.nanoTime() - time));
+		return result;
+	}
+
+
+	private static String timeFormat(long time) {
+		if (time < 1000000000) {
+			return String.format("%.1f", (time / 1000000F)) + "ms";
+		}
+		else {
+			return String.format("%.2f", (time / 1000000000F)) + "s";
+		}
+	}
+}
 

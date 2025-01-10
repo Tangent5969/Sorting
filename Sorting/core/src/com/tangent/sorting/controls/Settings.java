@@ -28,7 +28,7 @@ public class Settings {
 
 
     private static void setButtons() {
-        buttonList = new Button[6];
+        buttonList = new Button[7];
         int buttonWidth = (settingsWidth / 2) - 50;
         int buttonHeight = 50;
         int buttonSpacer = 10;
@@ -39,6 +39,7 @@ public class Settings {
         buttonList[3] = new Button(buttonWidth, buttonHeight, buttonWidth + 100, settingsHeight - buttonHeight * 2 - buttonSpacer, "Reset", ButtonMethods.Method.Reset);
         buttonList[4] = new Button(buttonWidth, buttonHeight, 0, settingsHeight - buttonHeight * 3 - buttonSpacer * 2, "Mute", ButtonMethods.Method.Mute);
         buttonList[5] = new Button(buttonWidth, buttonHeight, buttonWidth + 100, settingsHeight - buttonHeight * 3 - buttonSpacer * 2, "Random", ButtonMethods.Method.Random);
+        buttonList[6] = new Button(settingsWidth, buttonHeight, 0, 0, "Render Switch", ButtonMethods.Method.Render);
     }
 
     private static void setDropButtons() {

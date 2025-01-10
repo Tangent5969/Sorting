@@ -38,7 +38,7 @@ public class Slider {
     }
 
 
-    protected void updatePosition() {
+    public void updatePosition() {
         this.position = (int) ((posX - (float) width / 2) + (width * ((value - min) / (max - min))));
     }
 

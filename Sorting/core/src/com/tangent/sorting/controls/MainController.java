@@ -28,7 +28,7 @@ public class MainController {
     public static boolean sorting = false;
     public static boolean stop = false;
     private static Error errorCode;
-    private static RenderMethod renderMode = MainController.RenderMethod.Bars;
+    private static RenderMethod renderMode = RenderMethod.Bars;
 
 
     private static SortType selectedSort;
@@ -52,10 +52,9 @@ public class MainController {
         FileBad("Unable to save. File open / not found"),
         FileGood("File saved successfully"),
         SortEnded("SortThread terminated"),
-        NoImage("No Image Selected. Drag file onto window"),
-        InvalidImage("File does not match requirements"),
+        ImageReset("Image reset"),
+        UnsupportedImage("Unsupported file type / corrupted file"),
         BigImage("Max image size " + maxElements + " pixels");
-                ;
 
         private String message;
         Error(String message) {
@@ -215,6 +214,10 @@ public class MainController {
 
     public static void setRenderMode(RenderMethod mode) {
         renderMode = mode;
+    }
+
+    public static RenderMethod getRenderMode() {
+        return renderMode;
     }
 
     public static void setTotalElements(int totalElements) {

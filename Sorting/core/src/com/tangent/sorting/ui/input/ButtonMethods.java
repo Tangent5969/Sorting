@@ -1,10 +1,11 @@
 package com.tangent.sorting.ui.input;
 
 import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.ui.visual.Image;
 
 public class ButtonMethods {
     public enum Method {
-        Blank, Start, Pause, Step, Reset, Mute, Random, // Buttons
+        Blank, Start, Pause, Step, Reset, Mute, Random, Render, // Buttons
         Shuffle, Reverse, // Shuffles
         Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection, Shell, Slow // Sorts
     }
@@ -35,6 +36,9 @@ public class ButtonMethods {
                 break;
             case Random:
                 MainController.randomSort();
+                break;
+            case Render:
+                MainController.toggleRenderMode();
                 break;
             case Shuffle:
                 MainController.shuffle();
@@ -99,6 +103,7 @@ public class ButtonMethods {
                 MainController.setSpeed((int) value);
                 break;
             case Size:
+                Image.resetImage();
                 MainController.setTotalElements((int) value);
                 break;
             case Volume:
