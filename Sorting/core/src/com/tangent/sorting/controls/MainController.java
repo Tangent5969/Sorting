@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.tangent.sorting.ui.sound.MidiAudio;
 import com.tangent.sorting.ui.visual.Bar;
+import com.tangent.sorting.ui.visual.Image;
 import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.sorts.*;
 
@@ -27,11 +28,12 @@ public class MainController {
     public static boolean sorting = false;
     public static boolean stop = false;
     private static Error errorCode;
+    private static RenderMethod renderMode = MainController.RenderMethod.Bars;
 
 
     private static SortType selectedSort;
     private static final Random rand = new Random();
-    private static ArrayList<IntColourPair> specialBars = new ArrayList<>();
+    private static ArrayList<IntColourPair> specialElements = new ArrayList<>();
     public static ArrayController arrayController;
     public static MidiAudio audio;
     public static Thread sortThread;
@@ -42,10 +44,18 @@ public class MainController {
         Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection, Shell, Slow
     }
 
+    public enum RenderMethod {
+        Bars, Image
+    }
+
     public enum Error {
         FileBad("Unable to save. File open / not found"),
         FileGood("File saved successfully"),
-        SortEnded("SortThread terminated");
+        SortEnded("SortThread terminated"),
+        NoImage("No Image Selected. Drag file onto window"),
+        InvalidImage("File does not match requirements"),
+        BigImage("Max image size " + maxElements + " pixels");
+                ;
 
         private String message;
         Error(String message) {
@@ -68,7 +78,7 @@ public class MainController {
         sortThread.interrupt();
         audio.stopSound();
         sorting = false;
-        specialBars.clear();
+        specialElements.clear();
         arrayController.reset();
     }
 
@@ -174,7 +184,7 @@ public class MainController {
                 break;
         }
 
-        specialBarsClear();
+        specialElementsClear();
         arrayController.resetStatistics();
         arrayController.setSortingStatus(true);
         sortThread = new Thread(sort, "sortThread");
@@ -182,17 +192,29 @@ public class MainController {
     }
 
     public static void renderArray(ShapeRenderer sr) {
-        for (int i = 0; i < arrayController.getLength(); i++) {
-            new Bar(arrayController.getElement(i)).render(i, sr);
+        switch (renderMode) {
+            case Bars:
+                Bar.renderArray(arrayController, specialElements, lock, sr);
+                break;
+            case Image:
+                Image.renderArray(arrayController, sr);
+                break;
         }
-        synchronized (lock) {
-            for (IntColourPair pair : specialBars) {
-                if (pair == null) {
-                    continue;
-                }
-                new Bar(arrayController.getElement(pair.getNum()), pair.getColour()).render(pair.getNum(), sr);
-            }
+    }
+
+    public static void toggleRenderMode() {
+        switch (renderMode) {
+            case Bars:
+                renderMode = RenderMethod.Image;
+                break;
+            case Image:
+                renderMode = RenderMethod.Bars;
+                break;
         }
+    }
+
+    public static void setRenderMode(RenderMethod mode) {
+        renderMode = mode;
     }
 
     public static void setTotalElements(int totalElements) {
@@ -231,33 +253,33 @@ public class MainController {
         }
     }
 
-    public static void specialBarsAdd(IntColourPair pair) {
+    public static void specialElementsAdd(IntColourPair pair) {
         synchronized (lock) {
-            specialBars.add(pair);
+            specialElements.add(pair);
         }
     }
 
-    public static void specialBarsSet(int i, IntColourPair pair) {
+    public static void specialElementsSet(int i, IntColourPair pair) {
         synchronized (lock) {
-            specialBars.set(i, pair);
+            specialElements.set(i, pair);
         }
     }
 
-    public static void specialBarsRemove(int i) {
+    public static void specialElementsRemove(int i) {
         synchronized (lock) {
-            specialBars.remove(i);
+            specialElements.remove(i);
         }
     }
 
-    public static void specialBarsClear() {
+    public static void specialElementsClear() {
         synchronized (lock) {
-            specialBars.clear();
+            specialElements.clear();
         }
     }
 
-    public static int specialBarsLength() {
+    public static int specialElementsLength() {
         synchronized (lock) {
-            return specialBars.size();
+            return specialElements.size();
         }
     }
 

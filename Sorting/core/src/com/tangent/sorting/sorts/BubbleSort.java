@@ -25,11 +25,11 @@ public class BubbleSort extends Sort {
         do {
             swap = false;
             for (int i = 0; i < end; i++) {
-                MainController.specialBarsClear();
-                MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+                MainController.specialElementsClear();
+                MainController.specialElementsAdd(new IntColourPair(i, Color.RED));
                 update();
 
-                MainController.specialBarsSet(0, new IntColourPair(i + 1, Color.RED));
+                MainController.specialElementsSet(0, new IntColourPair(i + 1, Color.RED));
                 update();
 
                 arrayController.addComparisons(1);
@@ -37,7 +37,7 @@ public class BubbleSort extends Sort {
                 if (arrayController.getElement(i) > arrayController.getElement(i + 1)) {
                     arrayController.swap(i, i + 1);
                     swap = true;
-                    MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+                    MainController.specialElementsAdd(new IntColourPair(i, Color.RED));
                     update();
                 }
             }

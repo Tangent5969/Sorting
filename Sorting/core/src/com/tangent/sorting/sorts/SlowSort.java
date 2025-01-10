@@ -25,9 +25,9 @@ public class SlowSort extends Sort {
         sort(mid + 1, end);
 
         arrayController.addComparisons(1);
-        MainController.specialBarsClear();
-        MainController.specialBarsAdd(new IntColourPair(mid, Color.RED));
-        MainController.specialBarsAdd(new IntColourPair(end, Color.RED));
+        MainController.specialElementsClear();
+        MainController.specialElementsAdd(new IntColourPair(mid, Color.RED));
+        MainController.specialElementsAdd(new IntColourPair(end, Color.RED));
         MainController.audio.playSound(arrayController.getElement(end));
         update();
 

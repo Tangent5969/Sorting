@@ -99,6 +99,9 @@ public class InputManager extends InputAdapter {
             case Input.Keys.BACKSPACE:
                 MainController.randomSort();
                 return true;
+            case Input.Keys.E:
+                MainController.toggleRenderMode();
+                return true;
             case Input.Keys.C:
                 MainController.setErrorCode(null);
                 return true;

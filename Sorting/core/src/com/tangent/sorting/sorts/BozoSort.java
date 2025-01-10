@@ -21,18 +21,18 @@ public class BozoSort extends Sort{
     private void sort() {
         int pos1, pos2;
         while (!arrayController.isSorted()) {
-            MainController.specialBarsClear();
-            MainController.specialBarsAdd(new IntColourPair(0, Color.GREEN));
+            MainController.specialElementsClear();
+            MainController.specialElementsAdd(new IntColourPair(0, Color.GREEN));
             MainController.audio.playSound(arrayController.getElement(0));
             update();
 
             for (int i = 1; i < arrayController.getLength(); i++) {
                 arrayController.addComparisons(1);
-                MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+                MainController.specialElementsAdd(new IntColourPair(i, Color.RED));
                 update();
 
                 if (arrayController.getElement(i) > arrayController.getElement(i - 1)) {
-                    MainController.specialBarsSet(i, new IntColourPair(i, Color.GREEN));
+                    MainController.specialElementsSet(i, new IntColourPair(i, Color.GREEN));
                     MainController.audio.playSound(arrayController.getElement(i));
                     update();
 
@@ -40,12 +40,12 @@ public class BozoSort extends Sort{
                     break;
                 }
             }
-            MainController.specialBarsClear();
+            MainController.specialElementsClear();
 
             pos1 = arrayController.getRand().nextInt(arrayController.getLength());
             pos2 = arrayController.getRand().nextInt(arrayController.getLength());
-            MainController.specialBarsAdd(new IntColourPair(pos1, Color.RED));
-            MainController.specialBarsAdd(new IntColourPair(pos2, Color.RED));
+            MainController.specialElementsAdd(new IntColourPair(pos1, Color.RED));
+            MainController.specialElementsAdd(new IntColourPair(pos2, Color.RED));
             update();
 
             arrayController.swap(pos1, pos2);

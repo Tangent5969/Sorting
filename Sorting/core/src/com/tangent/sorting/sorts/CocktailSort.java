@@ -24,18 +24,18 @@ public class CocktailSort extends Sort {
         boolean swap;
 
         do {
-            MainController.specialBarsClear();
-            MainController.specialBarsAdd(new IntColourPair(start, Color.GREEN));
-            MainController.specialBarsAdd(new IntColourPair(end, Color.GREEN));
-            MainController.specialBarsAdd(null);
-            MainController.specialBarsAdd(null);
+            MainController.specialElementsClear();
+            MainController.specialElementsAdd(new IntColourPair(start, Color.GREEN));
+            MainController.specialElementsAdd(new IntColourPair(end, Color.GREEN));
+            MainController.specialElementsAdd(null);
+            MainController.specialElementsAdd(null);
             swap = false;
 
             for (int i = start; i < end; i++) {
-                MainController.specialBarsSet(2, new IntColourPair(i, Color.RED));
+                MainController.specialElementsSet(2, new IntColourPair(i, Color.RED));
                 update();
 
-                MainController.specialBarsSet(2, new IntColourPair(i + 1, Color.RED));
+                MainController.specialElementsSet(2, new IntColourPair(i + 1, Color.RED));
                 update();
 
                 arrayController.addComparisons(1);
@@ -43,21 +43,21 @@ public class CocktailSort extends Sort {
                 if (arrayController.getElement(i) > arrayController.getElement(i + 1)) {
                     arrayController.swap(i, i + 1);
                     swap = true;
-                    MainController.specialBarsSet(3, new IntColourPair(i, Color.RED));
+                    MainController.specialElementsSet(3, new IntColourPair(i, Color.RED));
                     update();
-                    MainController.specialBarsSet(3, null);
+                    MainController.specialElementsSet(3, null);
                 }
             }
 
             end--;
-            MainController.specialBarsSet(1, new IntColourPair(end, Color.GREEN));
+            MainController.specialElementsSet(1, new IntColourPair(end, Color.GREEN));
             if (!swap) break;
 
             for (int i = end; i > start; i--) {
-                MainController.specialBarsSet(2, new IntColourPair(i, Color.RED));
+                MainController.specialElementsSet(2, new IntColourPair(i, Color.RED));
                 update();
 
-                MainController.specialBarsSet(2, new IntColourPair(i - 1, Color.RED));
+                MainController.specialElementsSet(2, new IntColourPair(i - 1, Color.RED));
                 update();
 
                 arrayController.addComparisons(1);
@@ -65,9 +65,9 @@ public class CocktailSort extends Sort {
                 if (arrayController.getElement(i - 1) > arrayController.getElement(i)) {
                     arrayController.swap(i, i - 1);
                     swap = true;
-                    MainController.specialBarsSet(3, new IntColourPair(i, Color.RED));
+                    MainController.specialElementsSet(3, new IntColourPair(i, Color.RED));
                     update();
-                    MainController.specialBarsSet(3, null);
+                    MainController.specialElementsSet(3, null);
                 }
             }
             start++;

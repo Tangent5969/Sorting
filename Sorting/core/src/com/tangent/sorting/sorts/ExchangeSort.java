@@ -19,15 +19,15 @@ public class ExchangeSort extends Sort {
     }
 
     private void sort() {
-        MainController.specialBarsAdd(null);
-        MainController.specialBarsAdd(null);
+        MainController.specialElementsAdd(null);
+        MainController.specialElementsAdd(null);
 
         for (int i = 0; i < arrayController.getLength(); i++) {
-            MainController.specialBarsSet(0, new IntColourPair(i, Color.RED));
+            MainController.specialElementsSet(0, new IntColourPair(i, Color.RED));
 
             for (int j = i + 1; j < arrayController.getLength(); j++) {
                 arrayController.addComparisons(1);
-                MainController.specialBarsSet(1, new IntColourPair(j, Color.RED));
+                MainController.specialElementsSet(1, new IntColourPair(j, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(j));
                 update();
 

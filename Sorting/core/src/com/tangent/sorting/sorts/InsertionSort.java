@@ -19,26 +19,26 @@ public class InsertionSort extends Sort {
     }
 
     private void sort() {
-        MainController.specialBarsAdd(null);
-        MainController.specialBarsAdd(null);
-        MainController.specialBarsAdd(null);
+        MainController.specialElementsAdd(null);
+        MainController.specialElementsAdd(null);
+        MainController.specialElementsAdd(null);
 
         for (int i = 1; i < arrayController.getLength(); i++) {
-            MainController.specialBarsSet(0, new IntColourPair(i, Color.GREEN));
+            MainController.specialElementsSet(0, new IntColourPair(i, Color.GREEN));
             for (int j = i; j > 0; j--) {
 
-                MainController.specialBarsSet(1, new IntColourPair(j, Color.RED));
-                MainController.specialBarsSet(2, null);
+                MainController.specialElementsSet(1, new IntColourPair(j, Color.RED));
+                MainController.specialElementsSet(2, null);
                 update();
 
-                MainController.specialBarsSet(1, new IntColourPair(j - 1, Color.RED));
+                MainController.specialElementsSet(1, new IntColourPair(j - 1, Color.RED));
                 update();
 
                 arrayController.addComparisons(1);
                 MainController.audio.playSound(arrayController.getElement(j - 1));
                 if (arrayController.getElement(j) < arrayController.getElement(j - 1)) {
                     arrayController.swap(j, j - 1);
-                    MainController.specialBarsSet(2, new IntColourPair(j, Color.RED));
+                    MainController.specialElementsSet(2, new IntColourPair(j, Color.RED));
                     update();
                 }
                 else {

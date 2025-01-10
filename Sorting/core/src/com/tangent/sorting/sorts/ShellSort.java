@@ -24,17 +24,17 @@ public class ShellSort extends Sort {
         while (gap < arrayController.getLength()) {
             gap = gap * 3 + 1;
         }
-        MainController.specialBarsAdd(null);
-        MainController.specialBarsAdd(null);
-        MainController.specialBarsAdd(null);
+        MainController.specialElementsAdd(null);
+        MainController.specialElementsAdd(null);
+        MainController.specialElementsAdd(null);
 
         while (gap >= 1) {
             for (int i = gap; i < arrayController.getLength(); i++) {
-                MainController.specialBarsSet(0, new IntColourPair(i, Color.GREEN));
+                MainController.specialElementsSet(0, new IntColourPair(i, Color.GREEN));
                 for (int j = i; j >= gap && arrayController.getElement(j) < arrayController.getElement(j - gap); j--) {
                     arrayController.addComparisons(1);
-                    MainController.specialBarsSet(1, new IntColourPair(j, Color.RED));
-                    MainController.specialBarsSet(2, new IntColourPair(j - gap, Color.RED));
+                    MainController.specialElementsSet(1, new IntColourPair(j, Color.RED));
+                    MainController.specialElementsSet(2, new IntColourPair(j - gap, Color.RED));
                     update();
 
                     arrayController.swap(j, j - gap);

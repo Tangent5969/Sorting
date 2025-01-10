@@ -45,19 +45,19 @@ public class MergeSort extends Sort{
 
         int[] renderQueue = new int[lengthL + lengthR];
         int indexMain = 0;
-        MainController.specialBarsClear();
-        MainController.specialBarsAdd(new IntColourPair(left, Color.GREEN));
-        MainController.specialBarsAdd(new IntColourPair(right, Color.GREEN));
-        MainController.specialBarsAdd(new IntColourPair(mid + 1, Color.GREEN));
-        MainController.specialBarsAdd(null);
-        MainController.specialBarsAdd(null);
+        MainController.specialElementsClear();
+        MainController.specialElementsAdd(new IntColourPair(left, Color.GREEN));
+        MainController.specialElementsAdd(new IntColourPair(right, Color.GREEN));
+        MainController.specialElementsAdd(new IntColourPair(mid + 1, Color.GREEN));
+        MainController.specialElementsAdd(null);
+        MainController.specialElementsAdd(null);
 
         int indexL = 0;
         int indexR = 0;
 
         while (indexL < lengthL && indexR < lengthR) {
-            MainController.specialBarsSet(3, new IntColourPair(left + indexL, Color.RED));
-            MainController.specialBarsSet(4, new IntColourPair(mid + indexR + 1, Color.RED));
+            MainController.specialElementsSet(3, new IntColourPair(left + indexL, Color.RED));
+            MainController.specialElementsSet(4, new IntColourPair(mid + indexR + 1, Color.RED));
             arrayController.addComparisons(1);
 
             if (arrayL[indexL] <= arrayR[indexR]) {
@@ -73,12 +73,12 @@ public class MergeSort extends Sort{
             update();
         }
 
-        MainController.specialBarsRemove(4);
+        MainController.specialElementsRemove(4);
         boolean first = false;
         while (indexL < lengthL) {
             renderQueue[indexMain] = arrayL[indexL];
             if (first) {
-                MainController.specialBarsSet(3, new IntColourPair(left + indexL, Color.RED));
+                MainController.specialElementsSet(3, new IntColourPair(left + indexL, Color.RED));
                 update();
             }
             indexL++;
@@ -91,17 +91,17 @@ public class MergeSort extends Sort{
             renderQueue[indexMain] = arrayR[indexR];
             indexR++;
             if (first) {
-                MainController.specialBarsSet(3, new IntColourPair(mid + indexR, Color.RED));
+                MainController.specialElementsSet(3, new IntColourPair(mid + indexR, Color.RED));
                 update();
             }
             indexMain++;
             first = true;
         }
 
-        MainController.specialBarsRemove(3);
+        MainController.specialElementsRemove(3);
         for (int i = 0; i < indexMain; i++) {
             arrayController.setElement(left + i, renderQueue[i]);
-            MainController.specialBarsSet(2, new IntColourPair(left + i, Color.RED));
+            MainController.specialElementsSet(2, new IntColourPair(left + i, Color.RED));
             MainController.audio.playSound(renderQueue[i]);
             update();
         }

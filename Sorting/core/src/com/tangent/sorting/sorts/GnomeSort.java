@@ -25,14 +25,14 @@ public class GnomeSort extends Sort {
             if (pos > maxIndex) {
                 maxIndex++;
             }
-            MainController.specialBarsClear();
-            MainController.specialBarsAdd(new IntColourPair(maxIndex, Color.GREEN));
-            MainController.specialBarsAdd(new IntColourPair(pos, Color.RED));
+            MainController.specialElementsClear();
+            MainController.specialElementsAdd(new IntColourPair(maxIndex, Color.GREEN));
+            MainController.specialElementsAdd(new IntColourPair(pos, Color.RED));
             update();
 
             if (pos > 0) {
                 arrayController.addComparisons(1);
-                MainController.specialBarsAdd(new IntColourPair(pos - 1, Color.RED));
+                MainController.specialElementsAdd(new IntColourPair(pos - 1, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(pos - 1));
                 update();
             }

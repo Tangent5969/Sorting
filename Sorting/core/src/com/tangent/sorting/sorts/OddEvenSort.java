@@ -28,11 +28,11 @@ public class OddEvenSort extends Sort {
 
     private boolean bubble(int start, boolean swap) {
         for (int i = start; i < arrayController.getLength() - 1; i += 2) {
-            MainController.specialBarsClear();
-            MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+            MainController.specialElementsClear();
+            MainController.specialElementsAdd(new IntColourPair(i, Color.RED));
             update();
 
-            MainController.specialBarsSet(0, new IntColourPair(i + 1, Color.RED));
+            MainController.specialElementsSet(0, new IntColourPair(i + 1, Color.RED));
             update();
 
             arrayController.addComparisons(1);
@@ -40,7 +40,7 @@ public class OddEvenSort extends Sort {
             if (arrayController.getElement(i) > arrayController.getElement(i + 1)) {
                 arrayController.swap(i, i + 1);
                 swap = true;
-                MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+                MainController.specialElementsAdd(new IntColourPair(i, Color.RED));
                 update();
             }
         }

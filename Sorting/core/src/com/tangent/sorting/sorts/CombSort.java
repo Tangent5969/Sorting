@@ -28,12 +28,12 @@ public class CombSort extends Sort {
             }
 
             for (int i = 0; i + gap < arrayController.getLength(); i++) {
-                MainController.specialBarsClear();
-                MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+                MainController.specialElementsClear();
+                MainController.specialElementsAdd(new IntColourPair(i, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(i));
                 update();
 
-                MainController.specialBarsSet(0, new IntColourPair(i + gap, Color.RED));
+                MainController.specialElementsSet(0, new IntColourPair(i + gap, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(i + gap));
                 update();
 
@@ -41,7 +41,7 @@ public class CombSort extends Sort {
                 if (arrayController.getElement(i) > arrayController.getElement(i + gap)) {
                     arrayController.swap(i, i + gap);
                     sorted = false;
-                    MainController.specialBarsAdd(new IntColourPair(i, Color.RED));
+                    MainController.specialElementsAdd(new IntColourPair(i, Color.RED));
                     update();
                 }
             }

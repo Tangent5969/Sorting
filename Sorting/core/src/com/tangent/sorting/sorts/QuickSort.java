@@ -30,15 +30,15 @@ public class QuickSort extends Sort {
         int mid = (left + right) / 2;
         int pivot = arrayController.getElement(mid);
 
-        MainController.specialBarsClear();
-        MainController.specialBarsAdd(new IntColourPair(mid, Color.GREEN));
-        MainController.specialBarsAdd(new IntColourPair(left, Color.RED));
-        MainController.specialBarsAdd(new IntColourPair(right, Color.RED));
+        MainController.specialElementsClear();
+        MainController.specialElementsAdd(new IntColourPair(mid, Color.GREEN));
+        MainController.specialElementsAdd(new IntColourPair(left, Color.RED));
+        MainController.specialElementsAdd(new IntColourPair(right, Color.RED));
 
         while (left <= right) {
             while (arrayController.getElement(left) < pivot) {
                 arrayController.addComparisons(1);
-                MainController.specialBarsSet(1, new IntColourPair(left, Color.RED));
+                MainController.specialElementsSet(1, new IntColourPair(left, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(left));
                 update();
 
@@ -48,7 +48,7 @@ public class QuickSort extends Sort {
 
             while (arrayController.getElement(right) > pivot) {
                 arrayController.addComparisons(1);
-                MainController.specialBarsSet(2, new IntColourPair(right, Color.RED));
+                MainController.specialElementsSet(2, new IntColourPair(right, Color.RED));
                 MainController.audio.playSound(arrayController.getElement(right));
                 update();
 
@@ -57,8 +57,8 @@ public class QuickSort extends Sort {
             arrayController.addComparisons(1);
 
             if (left <= right) {
-                MainController.specialBarsSet(1, new IntColourPair(left, Color.RED));
-                MainController.specialBarsSet(2, new IntColourPair(right, Color.RED));
+                MainController.specialElementsSet(1, new IntColourPair(left, Color.RED));
+                MainController.specialElementsSet(2, new IntColourPair(right, Color.RED));
                 update();
 
                 arrayController.swap(left, right);

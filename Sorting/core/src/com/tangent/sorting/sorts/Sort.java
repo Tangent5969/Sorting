@@ -43,7 +43,7 @@ public abstract class Sort implements Runnable{
     }
 
     private void greenBars() {
-        MainController.specialBarsClear();
+        MainController.specialElementsClear();
         int speed;
         if (MainController.speed == 0) {
             speed = 1;
@@ -51,7 +51,7 @@ public abstract class Sort implements Runnable{
             speed = MainController.speed;
         }
         for (int i = 0; i < arrayController.getLength(); i++) {
-            MainController.specialBarsAdd(new IntColourPair(i, Color.GREEN));
+            MainController.specialElementsAdd(new IntColourPair(i, Color.GREEN));
             Gdx.graphics.requestRendering();
             MainController.audio.playSound(i);
             try {
