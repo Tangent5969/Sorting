@@ -1,20 +1,19 @@
 package com.tangent.sorting.ui.input;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector3;
 import com.tangent.sorting.controls.MainController;
 import com.tangent.sorting.controls.Settings;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.math.Vector3;
 
 public class InputManager extends InputAdapter {
     private Slider selectedSlider;
     private Slider previousSlider;
 
     @Override
-    public boolean touchDown (int x, int y, int pointer, int button) {
+    public boolean touchDown(int x, int y, int pointer, int button) {
         Vector3 coords = unproject(x, y);
 
         for (Button current : Settings.buttonList) {
@@ -41,7 +40,7 @@ public class InputManager extends InputAdapter {
     }
 
     @Override
-    public boolean touchUp (int x, int y, int pointer, int button) {
+    public boolean touchUp(int x, int y, int pointer, int button) {
         if (selectedSlider != null) {
             selectedSlider.updateValue();
             selectedSlider = null;
@@ -52,7 +51,7 @@ public class InputManager extends InputAdapter {
     }
 
     @Override
-    public boolean touchDragged (int x, int y, int pointer) {
+    public boolean touchDragged(int x, int y, int pointer) {
         Vector3 coords = unproject(x, y);
 
         if (selectedSlider != null) {
@@ -64,7 +63,7 @@ public class InputManager extends InputAdapter {
     }
 
     @Override
-    public boolean scrolled (float amountX, float amountY) {
+    public boolean scrolled(float amountX, float amountY) {
         // down positive
         Vector3 coords = unproject(Gdx.input.getX(), Gdx.input.getY());
         for (DropButton dropButton : Settings.dropButtonList) {
@@ -138,20 +137,20 @@ public class InputManager extends InputAdapter {
             previousSlider.updateValue();
             return true;
         }
-        
+
         return false;
     }
 
     // converts screen coordinates to world coordinates
     // derived from camera.unproject
-    private static Vector3 unproject (float x, float y) {
+    private static Vector3 unproject(float x, float y) {
         // normalize screen coordinates
         x = (2 * x) / Gdx.graphics.getWidth() - 1;
         y = (2 * (Gdx.graphics.getHeight() - y)) / Gdx.graphics.getHeight() - 1;
 
         // generates the inverse of the orthographic projection matrix
         Matrix4 proj = new Matrix4();
-        proj.setToOrtho(0, MainController.width, 0,  MainController.height, 0, 1);
+        proj.setToOrtho(0, MainController.width, 0, MainController.height, 0, 1);
         Matrix4.inv(proj.val);
 
         return new Vector3(x, y, 0).prj(proj);

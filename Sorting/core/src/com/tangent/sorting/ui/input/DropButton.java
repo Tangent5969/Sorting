@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class DropButton extends Button{
+public class DropButton extends Button {
     private Button[] subButtons;
     private Boolean show;
     private Button[] currentShown;
@@ -17,8 +17,7 @@ public class DropButton extends Button{
         this.currentPos = 0;
         if (subParams.length < 5) {
             this.currentShown = new Button[subButtons.length];
-        }
-        else {
+        } else {
             this.currentShown = new Button[5];
         }
         populateSubButtons(subParams);
@@ -40,49 +39,48 @@ public class DropButton extends Button{
     private void updateCurrentShown() {
         System.arraycopy(subButtons, currentPos, currentShown, 0, currentShown.length);
         for (int i = 0; i < currentShown.length; i++) {
-            currentShown[i].setPosY(getPosY() - (i+1) * getHeight());
+            currentShown[i].setPosY(getPosY() - (i + 1) * getHeight());
         }
     }
 
-  @Override
-  protected boolean isPressed(int mouseX, int mouseY) {
-     if (collisionCheck(mouseX, mouseY)) {
-         show = !show;
-         return true;
-     }
+    @Override
+    protected boolean isPressed(int mouseX, int mouseY) {
+        if (collisionCheck(mouseX, mouseY)) {
+            show = !show;
+            return true;
+        }
 
-     if (show) {
-         for (Button sub : currentShown) {
-             if (sub.isPressed(mouseX, mouseY)) {
-                 return true;
-             }
-         }
-     }
-     return false;
-  }
+        if (show) {
+            for (Button sub : currentShown) {
+                if (sub.isPressed(mouseX, mouseY)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-  protected boolean scrollDetect(int mouseX, int mouseY) {
+    protected boolean scrollDetect(int mouseX, int mouseY) {
         if (show) {
             return mouseX >= getPosX() && mouseX <= getPosX() + getWidth() && mouseY <= getPosY() && mouseY >= getPosY() - currentShown.length * getHeight();
         }
         return false;
-  }
+    }
 
-  protected void scroll(float scrollAmount) {
-      // down positive
-      if (scrollAmount > 0) {
+    protected void scroll(float scrollAmount) {
+        // down positive
+        if (scrollAmount > 0) {
             if (currentPos + currentShown.length < subButtons.length) {
                 currentPos++;
                 updateCurrentShown();
             }
-        }
-        else {
+        } else {
             if (currentPos > 0) {
                 currentPos--;
                 updateCurrentShown();
             }
         }
-  }
+    }
 
     @Override
     public void render(ShapeRenderer sr) {
@@ -129,9 +127,7 @@ public class DropButton extends Button{
             sub.setHeight(height);
         }
         updateCurrentShown();
-
     }
-
 
 
     public Button[] getSubButtons() {

@@ -1,11 +1,11 @@
 package com.tangent.sorting.sorts;
 
 import com.badlogic.gdx.graphics.Color;
-import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.ui.visual.IntColourPair;
 
-public class BogoSort extends Sort{
+public class BogoSort extends Sort {
 
     public BogoSort(ArrayController arrayController) {
         super(arrayController, "Bogo");

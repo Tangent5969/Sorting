@@ -1,9 +1,9 @@
 package com.tangent.sorting.sorts;
 
 import com.badlogic.gdx.graphics.Color;
-import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.ui.visual.IntColourPair;
 
 public class InsertionSort extends Sort {
 
@@ -40,8 +40,7 @@ public class InsertionSort extends Sort {
                     arrayController.swap(j, j - 1);
                     MainController.specialElementsSet(2, new IntColourPair(j, Color.RED));
                     update();
-                }
-                else {
+                } else {
                     break;
                 }
             }

@@ -1,9 +1,9 @@
 package com.tangent.sorting.sorts;
 
 import com.badlogic.gdx.graphics.Color;
-import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.ui.visual.IntColourPair;
 
 public class GnomeSort extends Sort {
 
@@ -39,8 +39,7 @@ public class GnomeSort extends Sort {
 
             if (pos == 0 || arrayController.getElement(pos) >= arrayController.getElement(pos - 1)) {
                 pos++;
-            }
-            else {
+            } else {
                 arrayController.swap(pos, pos - 1);
                 update();
                 pos--;

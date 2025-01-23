@@ -18,63 +18,63 @@ import com.tangent.sorting.ui.visual.Image;
 
 
 public class Main extends ApplicationAdapter {
-	private ShapeRenderer sr;
-	private SpriteBatch batch;
-	private BitmapFont font;
-	private Camera camera;
-	private StretchViewport viewport;
+    private ShapeRenderer sr;
+    private SpriteBatch batch;
+    private BitmapFont font;
+    private Camera camera;
+    private StretchViewport viewport;
 
 
-	@Override
-	public void create () {
-		Gdx.graphics.setContinuousRendering(false);
-		Gdx.input.setInputProcessor(new InputManager());
+    @Override
+    public void create() {
+        Gdx.graphics.setContinuousRendering(false);
+        Gdx.input.setInputProcessor(new InputManager());
 
-		sr = new ShapeRenderer();
-		batch = new SpriteBatch();
-		font = new BitmapFont();
+        sr = new ShapeRenderer();
+        batch = new SpriteBatch();
+        font = new BitmapFont();
 
-		camera = new OrthographicCamera();
-		viewport = new StretchViewport(MainController.width, MainController.height, camera);
-		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
+        camera = new OrthographicCamera();
+        viewport = new StretchViewport(MainController.width, MainController.height, camera);
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
 
-		MainController.initialise();
-		Settings.initialise();
-	}
+        MainController.initialise();
+        Settings.initialise();
+    }
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(0, 0, 0, 1);
+    @Override
+    public void render() {
+        ScreenUtils.clear(0, 0, 0, 1);
 
-		viewport.apply();
-		sr.setProjectionMatrix(camera.combined);
-		sr.begin(ShapeRenderer.ShapeType.Filled);
-		MainController.renderArray(sr);
-		Settings.render(sr);
-		sr.end();
+        viewport.apply();
+        sr.setProjectionMatrix(camera.combined);
+        sr.begin(ShapeRenderer.ShapeType.Filled);
+        MainController.renderArray(sr);
+        Settings.render(sr);
+        sr.end();
 
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
 
-		font.getData().setScale(8);
-		Image.renderBlankImage(batch);
-		Settings.renderText(batch, font);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		MainController.sortThread.interrupt();
-		sr.dispose();
-		batch.dispose();
-		font.dispose();
-	}
+        font.getData().setScale(8);
+        Image.renderBlankImage(batch);
+        Settings.renderText(batch, font);
+        batch.end();
+    }
 
-	@Override
-	public void resize(int width, int height){
-		viewport.update(width, height);
-		viewport.setScreenPosition(viewport.getScreenX(), viewport.getScreenY());
-		camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
-	}
+    @Override
+    public void dispose() {
+        MainController.sortThread.interrupt();
+        sr.dispose();
+        batch.dispose();
+        font.dispose();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height);
+        viewport.setScreenPosition(viewport.getScreenX(), viewport.getScreenY());
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+    }
 
 }

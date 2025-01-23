@@ -3,6 +3,7 @@ package com.tangent.sorting.ui.input;
 public class TextMethodPair {
     private final String text;
     private final ButtonMethods.Method method;
+
     public TextMethodPair(String text, ButtonMethods.Method method) {
         this.text = text;
         this.method = method;

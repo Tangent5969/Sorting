@@ -1,14 +1,14 @@
 package com.tangent.sorting.controls;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import java.util.ArrayList;
-import java.util.Random;
-
+import com.tangent.sorting.sorts.*;
 import com.tangent.sorting.ui.sound.MidiAudio;
 import com.tangent.sorting.ui.visual.Bar;
 import com.tangent.sorting.ui.visual.Image;
 import com.tangent.sorting.ui.visual.IntColourPair;
-import com.tangent.sorting.sorts.*;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class MainController {
@@ -23,7 +23,7 @@ public class MainController {
     public static final int minSpeed = 0;
     public static final int maxSpeed = 100;
 
-
+    // default values
     public static int speed = 25;
     public static boolean sorting = false;
     public static boolean stop = false;
@@ -33,7 +33,7 @@ public class MainController {
 
     private static SortType selectedSort;
     private static final Random rand = new Random();
-    private static ArrayList<IntColourPair> specialElements = new ArrayList<>();
+    private static final ArrayList<IntColourPair> specialElements = new ArrayList<>();
     public static ArrayController arrayController;
     public static MidiAudio audio;
     public static Thread sortThread;
@@ -56,10 +56,12 @@ public class MainController {
         UnsupportedImage("Unsupported file type / corrupted file"),
         BigImage("Max image size " + maxElements + " pixels");
 
-        private String message;
+        private final String message;
+
         Error(String message) {
             this.message = message;
         }
+
         public String getMessage() {
             return message;
         }
@@ -85,8 +87,7 @@ public class MainController {
         if (!sortThread.isAlive() && selectedSort != null) {
             sorting = true;
             newSort();
-        }
-        else if (!sorting) {
+        } else if (!sorting) {
             synchronized (lock) {
                 sorting = true;
                 lock.notify();
@@ -123,6 +124,15 @@ public class MainController {
     public static void reverse() {
         MainController.reset();
         arrayController.reverse();
+    }
+
+    public static void randomSort() {
+        SortType tempSort;
+        do {
+            tempSort = SortType.values()[SortType.values().length - rand.nextInt(SortType.values().length) - 1];
+        }
+        while (tempSort == selectedSort);
+        setSelectedSort(tempSort);
     }
 
     private static void newSort() {
@@ -230,14 +240,6 @@ public class MainController {
         MainController.speed = speed;
     }
 
-    public static void randomSort() {
-        SortType tempSort;
-        do {
-            tempSort = SortType.values()[SortType.values().length - rand.nextInt(SortType.values().length) - 1];
-        }
-        while (tempSort == selectedSort);
-        setSelectedSort(tempSort);
-    }
 
     public static String getSelectedSort() {
         if (selectedSort == null) {
@@ -249,8 +251,7 @@ public class MainController {
     public static void setSelectedSort(SortType selectedSort) {
         if (MainController.selectedSort == null) {
             MainController.selectedSort = selectedSort;
-        }
-        else if (selectedSort != MainController.selectedSort) {
+        } else if (selectedSort != MainController.selectedSort) {
             if (arrayController.isSorting()) reset();
             MainController.selectedSort = selectedSort;
         }

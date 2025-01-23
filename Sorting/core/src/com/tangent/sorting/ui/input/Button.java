@@ -8,13 +8,13 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Button {
 
-    private Color colour;
     private int width;
     private int height;
     private int posX;
     private int posY;
-    private ButtonMethods.Method method;
     private String text;
+    private Color colour;
+    private ButtonMethods.Method method;
 
     public Button(int width, int height, int posX, int posY, ButtonMethods.Method method) {
         this.width = width;
@@ -31,7 +31,7 @@ public class Button {
         this.text = text;
     }
 
-    protected boolean collisionCheck (int mouseX, int mouseY) {
+    protected boolean collisionCheck(int mouseX, int mouseY) {
         return mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height;
     }
 

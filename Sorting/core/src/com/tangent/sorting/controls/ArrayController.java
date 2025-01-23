@@ -76,7 +76,6 @@ public class ArrayController {
         pauseTime = System.nanoTime() - startTime;
     }
 
-
     public String getTime() {
         if (pauseTime != 0) return timeFormat(pauseTime);
         if (sortingStatus) return timeFormat(System.nanoTime() - startTime);
@@ -86,8 +85,7 @@ public class ArrayController {
     private String timeFormat(long time) {
         if (time < 1000000000) {
             return String.format("%.1f", (time / 1000000F)) + "ms";
-        }
-        else {
+        } else {
             return String.format("%.2f", (time / 1000000000F)) + "s";
         }
     }
@@ -112,7 +110,7 @@ public class ArrayController {
 
     public boolean isSorted() {
         for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] > array[i+1]) {
+            if (array[i] > array[i + 1]) {
                 return false;
             }
         }

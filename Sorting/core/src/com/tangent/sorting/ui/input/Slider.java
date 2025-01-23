@@ -45,11 +45,9 @@ public class Slider {
     protected void updatePosition(int mouseX) {
         if (mouseX <= posX - width / 2) {
             position = posX - width / 2;
-        }
-        else if (mouseX >= posX + width / 2) {
+        } else if (mouseX >= posX + width / 2) {
             position = posX + width / 2;
-        }
-        else {
+        } else {
             position = mouseX;
         }
         if (decimal) {

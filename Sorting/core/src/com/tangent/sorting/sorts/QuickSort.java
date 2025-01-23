@@ -1,9 +1,9 @@
 package com.tangent.sorting.sorts;
 
 import com.badlogic.gdx.graphics.Color;
-import com.tangent.sorting.ui.visual.IntColourPair;
 import com.tangent.sorting.controls.ArrayController;
 import com.tangent.sorting.controls.MainController;
+import com.tangent.sorting.ui.visual.IntColourPair;
 
 public class QuickSort extends Sort {
 
@@ -69,6 +69,6 @@ public class QuickSort extends Sort {
             }
         }
 
-        return new int[] {left, right};
+        return new int[]{left, right};
     }
 }

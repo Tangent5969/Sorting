@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 import static com.tangent.sorting.controls.MainController.lock;
 
-public abstract class Sort implements Runnable{
+public abstract class Sort implements Runnable {
     protected final ArrayController arrayController;
     protected final String name;
 
@@ -61,7 +61,6 @@ public abstract class Sort implements Runnable{
                 throw new RuntimeException(e);
             }
         }
-
     }
 
     protected void finished() {
@@ -70,18 +69,15 @@ public abstract class Sort implements Runnable{
         try {
             fileOutput();
             MainController.setErrorCode(MainController.Error.FileGood);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             MainController.setErrorCode(MainController.Error.FileBad);
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             greenBars();
             MainController.audio.stopSound();
             MainController.sorting = false;
             arrayController.setSortingStatus(false);
         }
-
     }
 
     private void display() {
@@ -90,15 +86,15 @@ public abstract class Sort implements Runnable{
     }
 
     private void fileOutput() throws IOException {
-            File file = new File("data.csv");
-            boolean fileFlag = file.createNewFile();
-            FileWriter writer = new FileWriter(file, true);
-            if (fileFlag) {
-                writer.write("Date,Sort,Elements,Time (Short),Time (Raw),Comparisons,Swaps,Writes,Aux Writes");
-            }
-            String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
-            writer.write(("\n" + currentTime + "," + name + "," + arrayController.export()));
-            writer.close();
+        File file = new File("data.csv");
+        boolean fileFlag = file.createNewFile();
+        FileWriter writer = new FileWriter(file, true);
+        if (fileFlag) {
+            writer.write("Date,Sort,Elements,Time (Short),Time (Raw),Comparisons,Swaps,Writes,Aux Writes");
+        }
+        String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+        writer.write(("\n" + currentTime + "," + name + "," + arrayController.export()));
+        writer.close();
     }
 
 }
