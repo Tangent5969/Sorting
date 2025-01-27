@@ -49,6 +49,8 @@ public class MidiAudio {
     public void mute() {
         channel.allNotesOff();
         channel.setMute(!channel.getMute());
+        if (channel.getMute()) MainController.setErrorCode(MainController.Error.Muted);
+        else MainController.setErrorCode(MainController.Error.UnMuted);
     }
 
     public void stopSound() {

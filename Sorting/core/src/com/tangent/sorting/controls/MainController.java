@@ -54,7 +54,9 @@ public class MainController {
         SortEnded("SortThread terminated"),
         ImageReset("Image reset"),
         UnsupportedImage("Unsupported file type / corrupted file"),
-        BigImage("Max image size " + maxElements + " pixels");
+        BigImage("Max image size " + maxElements + " pixels"),
+        Muted("Audio Muted"),
+        UnMuted("Audio Unmuted");
 
         private final String message;
 
@@ -84,7 +86,8 @@ public class MainController {
     }
 
     public static void start() {
-        if (!sortThread.isAlive() && selectedSort != null) {
+        if (selectedSort == null) return;
+        if (!sortThread.isAlive()) {
             sorting = true;
             newSort();
         } else if (!sorting) {
