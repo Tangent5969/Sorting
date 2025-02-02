@@ -31,7 +31,7 @@ public class ShellSort extends Sort {
         while (gap >= 1) {
             for (int i = gap; i < arrayController.getLength(); i++) {
                 MainController.specialElementsSet(0, new IntColourPair(i, Color.GREEN));
-                for (int j = i; j >= gap && arrayController.getElement(j) < arrayController.getElement(j - gap); j--) {
+                for (int j = i; j >= gap && arrayController.getElement(j) < arrayController.getElement(j - gap); j -= gap) {
                     arrayController.addComparisons(1);
                     MainController.specialElementsSet(1, new IntColourPair(j, Color.RED));
                     MainController.specialElementsSet(2, new IntColourPair(j - gap, Color.RED));
