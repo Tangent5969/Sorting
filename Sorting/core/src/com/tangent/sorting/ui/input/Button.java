@@ -14,7 +14,7 @@ public class Button {
     private int posY;
     private String text;
     private Color colour;
-    private ButtonMethods.Method method;
+    final private ButtonMethods.Method method;
 
     public Button(int width, int height, int posX, int posY, ButtonMethods.Method method) {
         this.width = width;
@@ -95,10 +95,6 @@ public class Button {
 
     public ButtonMethods.Method getMethod() {
         return method;
-    }
-
-    public void setMethod(ButtonMethods.Method method) {
-        this.method = method;
     }
 
     public String getText() {

@@ -16,8 +16,8 @@ public class Slider {
     private int width;
     private int position;
     private String text;
-    private boolean decimal;
-    private ButtonMethods.SlideMethod method;
+    final private boolean decimal;
+    final private ButtonMethods.SlideMethod method;
 
     public Slider(float min, float max, float value, int posX, int posY, int width, boolean decimal, ButtonMethods.SlideMethod method) {
         this.min = min;
@@ -45,11 +45,8 @@ public class Slider {
     protected void updatePosition(int mouseX) {
         if (mouseX <= posX - width / 2) {
             position = posX - width / 2;
-        } else if (mouseX >= posX + width / 2) {
-            position = posX + width / 2;
-        } else {
-            position = mouseX;
-        }
+        } else position = Math.min(mouseX, posX + width / 2);
+
         if (decimal) {
             value = (min + ((position - (posX - (float) width / 2)) / ((posX + (float) width / 2) - (posX - (float) width / 2))) * (max - min));
         } else {
@@ -108,8 +105,7 @@ public class Slider {
     public void incrementValue(float value) {
         value += this.value;
         if (value < min) this.value = min;
-        else if (value > max) this.value = max;
-        else this.value = value;
+        else this.value = Math.min(value, max);
     }
 
     public int getPosX() {
@@ -143,6 +139,10 @@ public class Slider {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public ButtonMethods.SlideMethod getMethod() {
+        return method;
     }
 
     public String getText() {

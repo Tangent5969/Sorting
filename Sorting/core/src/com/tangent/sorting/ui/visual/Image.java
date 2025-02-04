@@ -18,7 +18,6 @@ public class Image {
     private static final Texture blankImage = new Texture("blankImage.png");
     private static Color[][] imageArray;
     private static int width;
-    private static int height;
     private static float xScale;
     private static float yScale;
 
@@ -30,7 +29,7 @@ public class Image {
         }
 
         width = image.getWidth();
-        height = image.getHeight();
+        int height = image.getHeight();
         xScale = (float) MainController.width * MainController.widthMultiplier / width;
         yScale = (float) MainController.height / height;
 

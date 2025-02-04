@@ -46,9 +46,11 @@ public class BozoSort extends Sort {
             pos2 = arrayController.getRand().nextInt(arrayController.getLength());
             MainController.specialElementsAdd(new IntColourPair(pos1, Color.RED));
             MainController.specialElementsAdd(new IntColourPair(pos2, Color.RED));
+            MainController.audio.playSound(arrayController.getElement(Math.min(pos1, pos2)));
             update();
 
             arrayController.swap(pos1, pos2);
+            MainController.audio.playSound(arrayController.getElement(Math.min(pos1, pos2)));
             update();
         }
         arrayController.addComparisons(arrayController.getLength() - 1);

@@ -5,8 +5,8 @@ import com.tangent.sorting.controls.MainController;
 import javax.sound.midi.*;
 
 public class MidiAudio {
-    private Synthesizer synthesizer;
-    private MidiChannel channel;
+    private final Synthesizer synthesizer;
+    private final MidiChannel channel;
 
     public static final float minPitch = 1;
     public static final float maxPitch = 50;
@@ -21,7 +21,10 @@ public class MidiAudio {
             synthesizer.open();
             synthesizer.loadAllInstruments(synthesizer.getDefaultSoundbank());
             this.channel = synthesizer.getChannels()[0];
-            channel.programChange(getInstrument("square").getPatch().getProgram());
+
+            // channel.programChange(getInstrument("square").getPatch().getProgram());
+            // Square Wave program number
+            channel.programChange(80);
 
         } catch (MidiUnavailableException e) {
             throw new RuntimeException(e);
@@ -76,6 +79,7 @@ public class MidiAudio {
     private Instrument getInstrument(String name) {
         for (Instrument instrument : synthesizer.getLoadedInstruments()) {
             if (instrument.getName().toLowerCase().contains(name)) {
+                System.out.println(instrument);
                 return instrument;
             }
         }

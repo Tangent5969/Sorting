@@ -12,7 +12,7 @@ public class Bar {
     private static final int maxHeight = (int) (MainController.height * 0.9);
     private static float width;
     private final int height;
-    Color colour;
+    private final Color colour;
 
     public Bar(int value) {
         this.height = (maxHeight / MainController.arrayController.getLength()) * value;
