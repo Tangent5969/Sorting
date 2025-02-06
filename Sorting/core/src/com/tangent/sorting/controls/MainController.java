@@ -198,7 +198,6 @@ public class MainController {
 
         specialElementsClear();
         arrayController.resetStatistics();
-        arrayController.setSortingStatus(true);
         sortThread = new Thread(sort, "sortThread");
         sortThread.start();
     }

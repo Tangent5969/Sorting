@@ -13,6 +13,7 @@ public class MergeSort extends Sort {
 
     @Override
     public void run() {
+        arrayController.setSortingStatus(true);
         arrayController.startTimer();
         sort(0, arrayController.getLength() - 1);
         finished();

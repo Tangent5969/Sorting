@@ -13,6 +13,7 @@ public class InsertionSort extends Sort {
 
     @Override
     public void run() {
+        arrayController.setSortingStatus(true);
         arrayController.startTimer();
         sort();
         finished();

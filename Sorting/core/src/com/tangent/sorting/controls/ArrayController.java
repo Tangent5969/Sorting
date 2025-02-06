@@ -79,7 +79,7 @@ public class ArrayController {
     public String getTime() {
         if (pauseTime != 0) return timeFormat(pauseTime);
         if (sortingStatus) return timeFormat(System.nanoTime() - startTime);
-        return null;
+        return "0.0ms";
     }
 
     private String timeFormat(long time) {
