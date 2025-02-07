@@ -39,10 +39,11 @@ The program is designed to be easy and intuitive to use with the window divided 
 visualiser and the settings panel.
 
 To get started expand the ***Sort*** dropdown to select an algorithm and adjust the ***Size*** slider to the 
-desired array size. Press the ***Start*** button to begin the sort.
+desired array size. Press the ***Start*** button to begin the sort. (It is not necessary to manually shuffle 
+the array before sorting.)
 
 To change the delay between operations, adjust the ***Speed*** slider between 0ms and 100ms. (A value of 0 may 
-be too fast for most array sizes and sorting algorithms).
+be too fast for most array sizes and sorting algorithms.)
 
 There are two modes for the visualiser - Bars and Image. Press the ***Render Switch*** button to switch between 
 the two.
