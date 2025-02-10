@@ -66,6 +66,8 @@ public abstract class Sort implements Runnable {
     protected void finished() {
         arrayController.pauseTimer();
         display();
+        MainController.sorting = false;
+        arrayController.setSortingStatus(false);
         try {
             fileOutput();
             MainController.setErrorCode(MainController.Error.FileGood);
@@ -75,8 +77,6 @@ public abstract class Sort implements Runnable {
         } finally {
             greenBars();
             MainController.audio.stopSound();
-            MainController.sorting = false;
-            arrayController.setSortingStatus(false);
         }
     }
 

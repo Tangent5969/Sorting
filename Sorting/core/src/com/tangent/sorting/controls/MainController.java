@@ -89,7 +89,7 @@ public class MainController {
         if (selectedSort == null) return;
         if (!sortThread.isAlive()) {
             sorting = true;
-            newSort();
+            newSort(false);
         } else if (!sorting) {
             synchronized (lock) {
                 sorting = true;
@@ -109,7 +109,7 @@ public class MainController {
 
     public static void step() {
         if (selectedSort != null) {
-            if (!sortThread.isAlive()) newSort();
+            if (!sortThread.isAlive()) newSort(true);
             pause();
             synchronized (lock) {
                 stop = true;
@@ -138,14 +138,9 @@ public class MainController {
         setSelectedSort(tempSort);
     }
 
-    private static void newSort() {
-        if (selectedSort == null) {
-            return;
-        }
-
-        if (arrayController.isSorted()) {
-            arrayController.shuffle();
-        }
+    private static void newSort(boolean step) {
+        if (selectedSort == null) return;
+        if (arrayController.isSorted()) arrayController.shuffle();
 
         Sort sort = null;
         switch (selectedSort) {
@@ -200,6 +195,9 @@ public class MainController {
         arrayController.resetStatistics();
         sortThread = new Thread(sort, "sortThread");
         sortThread.start();
+        arrayController.setSortingStatus(true);
+        arrayController.startTimer();
+        if (step) arrayController.pauseTimer();
     }
 
     public static void renderArray(ShapeRenderer sr) {

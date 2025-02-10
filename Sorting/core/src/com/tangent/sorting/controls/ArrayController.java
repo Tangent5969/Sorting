@@ -68,12 +68,14 @@ public class ArrayController {
     }
 
     public void startTimer() {
-        startTime = System.nanoTime() - pauseTime;
-        pauseTime = 0;
+        if (sortingStatus) {
+            startTime = System.nanoTime() - pauseTime;
+            pauseTime = 0;
+        }
     }
 
     public void pauseTimer() {
-        pauseTime = System.nanoTime() - startTime;
+        if (sortingStatus) pauseTime = System.nanoTime() - startTime;
     }
 
     public String getTime() {

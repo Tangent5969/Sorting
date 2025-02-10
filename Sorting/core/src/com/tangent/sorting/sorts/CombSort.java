@@ -13,8 +13,6 @@ public class CombSort extends Sort {
 
     @Override
     public void run() {
-        arrayController.setSortingStatus(true);
-        arrayController.startTimer();
         sort(arrayController.getLength());
         finished();
     }
