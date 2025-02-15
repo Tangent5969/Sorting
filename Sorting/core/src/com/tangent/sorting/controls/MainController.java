@@ -129,6 +129,11 @@ public class MainController {
         arrayController.reverse();
     }
 
+    public static void presetShuffle() {
+        MainController.reset();
+        arrayController.presetShuffle();
+    }
+
     public static void randomSort() {
         SortType tempSort;
         do {

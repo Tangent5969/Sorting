@@ -42,7 +42,7 @@ public class Settings {
     private static void setDropButtons() {
         dropButtonList = new DropButton[2];
 
-        TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse)};
+        TextMethodPair[] shuffleButton = {new TextMethodPair("Shuffle", ButtonMethods.Method.Shuffle), new TextMethodPair("Reverse", ButtonMethods.Method.Reverse), new TextMethodPair("Preset", ButtonMethods.Method.Preset)};
         // works on assumption SortType name matches that of equivalent ButtonMethod
         TextMethodPair[] sortButton = new TextMethodPair[MainController.SortType.values().length];
         for (int i = 0; i < MainController.SortType.values().length; i++) {

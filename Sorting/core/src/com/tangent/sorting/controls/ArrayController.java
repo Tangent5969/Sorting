@@ -1,5 +1,6 @@
 package com.tangent.sorting.controls;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class ArrayController {
@@ -107,6 +108,14 @@ public class ArrayController {
     public void reverse() {
         for (int i = 0; i < (length + 1) / 2; i++) {
             swap(i, length - i - 1);
+        }
+    }
+
+    public void presetShuffle() {
+        // [10, 9, 4, 6, 1, 3, 8, 2, 7, 5]
+        Random temp = new Random(0);
+        for (int i = array.length - 1; i >= 0; i--) {
+            swap(i, temp.nextInt(i, array.length));
         }
     }
 

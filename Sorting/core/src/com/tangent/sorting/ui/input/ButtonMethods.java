@@ -6,7 +6,7 @@ import com.tangent.sorting.ui.visual.Image;
 public class ButtonMethods {
     public enum Method {
         Blank, Start, Pause, Step, Reset, Mute, Random, Render, // Buttons
-        Shuffle, Reverse, // Shuffles
+        Shuffle, Reverse, Preset, // Shuffles
         Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection, Shell, Slow // Sorts
     }
 
@@ -45,6 +45,9 @@ public class ButtonMethods {
                 break;
             case Reverse:
                 MainController.reverse();
+                break;
+            case Preset:
+                MainController.presetShuffle();
                 break;
 
             case Bogo:
