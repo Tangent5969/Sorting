@@ -12,11 +12,6 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tangent.sorting.ui.input.InputManager;
 import com.tangent.sorting.ui.visual.Image;
 
-
-// multi window support
-// https://libgdx.com/wiki/graphics/querying-and-configuring-graphics#desktop--multi-window-api-of-the-lwjgl-3-backend
-
-
 public class Main extends ApplicationAdapter {
     private ShapeRenderer sr;
     private SpriteBatch batch;

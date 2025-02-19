@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.1">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.14">
   <diagram name="Page-1" id="FEsPFIbKTugEUAN5IUgI">
-    <mxGraphModel dx="1785" dy="1109" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="10000" pageHeight="2500" math="0" shadow="0">
+    <mxGraphModel dx="3457" dy="1887" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="10000" pageHeight="2500" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -741,61 +741,61 @@
         <mxCell id="hn12SPF73w_8lzz9H54t-4" value="Yes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1039" y="1391" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-27" value="sortThread Start" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-27" value="sortThread Start" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1450" y="1320" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-28" value="Start timer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-28" value="Start timer" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1450" y="1440" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-29" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-27" target="osv4oouRQZvf6SniK5nu-28">
+        <mxCell id="osv4oouRQZvf6SniK5nu-29" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-27" target="osv4oouRQZvf6SniK5nu-28" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1400" y="1130" as="sourcePoint" />
             <mxPoint x="1400" y="1200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-30" value="Sort method" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-30" value="Sort method" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1450" y="1570" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-31" value="Is sort&amp;nbsp;&lt;div&gt;finished&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-31" value="Is sort&amp;nbsp;&lt;div&gt;finished&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1470" y="1680" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-32" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-31">
+        <mxCell id="osv4oouRQZvf6SniK5nu-32" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-31" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1810" y="1623.53" as="sourcePoint" />
             <mxPoint x="1650" y="1720" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-33" value="Yes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-33" value="Yes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1560" y="1693.53" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-34" value="No" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-34" value="No" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1510" y="1784" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-35" value="Stop timer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-35" value="Stop timer" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1650" y="1690" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-36" value="Perform 1 step in sort" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-36" value="Perform 1 step in sort" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1450" y="1830" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-37" value="Render" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-37" value="Render" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1450" y="1950" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-38" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-36" target="osv4oouRQZvf6SniK5nu-37">
+        <mxCell id="osv4oouRQZvf6SniK5nu-38" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-36" target="osv4oouRQZvf6SniK5nu-37" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1520" y="1770" as="sourcePoint" />
             <mxPoint x="1520" y="1840" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-39" value="Is sort&amp;nbsp;&lt;div&gt;Paused&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-39" value="Is sort&amp;nbsp;&lt;div&gt;Paused&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1470" y="2060" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-37" target="osv4oouRQZvf6SniK5nu-39">
+        <mxCell id="osv4oouRQZvf6SniK5nu-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-37" target="osv4oouRQZvf6SniK5nu-39" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1650" y="2130" as="sourcePoint" />
             <mxPoint x="1700" y="2080" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-41" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-39">
+        <mxCell id="osv4oouRQZvf6SniK5nu-41" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-39" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1520" y="2020" as="sourcePoint" />
             <mxPoint x="1510" y="2060" as="targetPoint" />
@@ -805,16 +805,16 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-42" value="Yes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-42" value="Yes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1520" y="2030" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-43" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-43" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1510" y="1760" as="sourcePoint" />
             <mxPoint x="1510" y="1830" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-44" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-39" target="osv4oouRQZvf6SniK5nu-31">
+        <mxCell id="osv4oouRQZvf6SniK5nu-44" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-39" target="osv4oouRQZvf6SniK5nu-31" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1520" y="1770" as="sourcePoint" />
             <mxPoint x="1320" y="1830" as="targetPoint" />
@@ -825,38 +825,41 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-45" value="No" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-45" value="No" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1500" y="2140" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-46" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-30" target="osv4oouRQZvf6SniK5nu-31">
+        <mxCell id="osv4oouRQZvf6SniK5nu-46" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-30" target="osv4oouRQZvf6SniK5nu-31" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1520" y="1390" as="sourcePoint" />
             <mxPoint x="1520" y="1450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-28" target="osv4oouRQZvf6SniK5nu-30">
+        <mxCell id="osv4oouRQZvf6SniK5nu-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-28" target="osv4oouRQZvf6SniK5nu-30" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1530" y="1400" as="sourcePoint" />
             <mxPoint x="1530" y="1460" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-48" value="Output statistics to file" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-48" value="Output statistics to file" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1650" y="1830" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-49" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-35" target="osv4oouRQZvf6SniK5nu-48">
+        <mxCell id="osv4oouRQZvf6SniK5nu-49" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-35" target="osv4oouRQZvf6SniK5nu-48" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1560" y="1730" as="sourcePoint" />
             <mxPoint x="1660" y="1730" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-50" value="Display green bars" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="osv4oouRQZvf6SniK5nu-50" value="Display green bars" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1650" y="1970" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="osv4oouRQZvf6SniK5nu-51" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="osv4oouRQZvf6SniK5nu-48" target="osv4oouRQZvf6SniK5nu-50">
+        <mxCell id="osv4oouRQZvf6SniK5nu-51" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="osv4oouRQZvf6SniK5nu-48" target="osv4oouRQZvf6SniK5nu-50" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1720" y="1910" as="sourcePoint" />
             <mxPoint x="1660" y="1870" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="ZtclxiODWsm4lRRZegkl-15" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ArrayController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- rand: Random&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- array: int[]&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- comparisons: long&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- swaps: long&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- writes: long&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- auxWrites: long&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- startTime: long&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- pauseTime: long&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- sortingStatus: boolean&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ arrayController(int length)&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ resetStatistics(): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ reset(): void&lt;br&gt;+ resize(int length): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ swap(int pos1, int pos2): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ display(): void&lt;br&gt;+ settingsDisplay(): String&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ export(): String&lt;br&gt;+ startTimer(): void&lt;br&gt;+ pauseTimer(): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getTime(): String&lt;br&gt;+ shuffle(): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ reverse(): void&lt;br&gt;+ presetShuffle(): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ isSorted(): boolean&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getLength(): int&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getElement(int pos): int&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ setElement(int pos, int num): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ addComparisons(int num): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ addAuxWrites(int num): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ isSorting(): boolean&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ setSortingStatus(boolean status): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getRand(): Random&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- timeFortmat(long time): String&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- populateArray(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="2065" y="1230" width="230" height="540" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

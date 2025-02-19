@@ -10,7 +10,6 @@ public class ButtonMethods {
         Bogo, Bozo, Bubble, Cocktail, Comb, Exchange, Gnome, Insertion, Merge, OddEven, Pancake, Quick, Selection, Shell, Slow // Sorts
     }
 
-
     public enum SlideMethod {
         Blank, Speed, Size, Volume, Pitch
     }

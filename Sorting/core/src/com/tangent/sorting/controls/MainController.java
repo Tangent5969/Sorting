@@ -10,7 +10,6 @@ import com.tangent.sorting.ui.visual.IntColourPair;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class MainController {
     // window settings
     public static final int width = 10000;

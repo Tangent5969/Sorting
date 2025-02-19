@@ -6,6 +6,8 @@ of a variety of sorting algorithms.
 The tool was inspired by Timo Bingmann's own 'Sound of Sorting' application.  
 https://panthema.net/2013/sound-of-sorting/
 
+To get started, either download the latest release or see **Build Instructions** to build the program yourself.
+
 ## Features
 
 * 15 different sorting algorithms.
@@ -23,7 +25,7 @@ other operations), corresponding to the values of the data being compared.
 
 * Speed and playback controls - Start, Pause, Step.
 
-* Shuffle and reverse options.
+* Shuffle, reverse and preset options.
 
 * Live updating statistics displaying various measurements relating to 
 the current sort e.g. number of comparisons. At the end of a sort, these statistics are output to a CSV file 
@@ -66,7 +68,7 @@ The arrow keys can also be used to increment / decrement the sliders and scroll 
 
 ## Build Instructions
 
-To build the .jar yourself
+To build the .jar yourself:
 * Clone the repository `git clone https://github.com/Tangent5969/Sorting.git`  
 * Navigate to 'Sorting' `cd Sorting/Sorting`  
 * Build `gradlew desktop:dist`
