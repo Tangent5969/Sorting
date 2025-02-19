@@ -3,10 +3,12 @@
 **Sound Of Sorting** is designed to be an engaging yet educational tool for the demonstration and visualisation 
 of a variety of sorting algorithms. 
 
+To get started, either download the latest release or see **Build Instructions** to build the program yourself.
+
+See documentation.pdf for a more in-depth explanation of the program.
+
 The tool was inspired by Timo Bingmann's own 'Sound of Sorting' application.  
 https://panthema.net/2013/sound-of-sorting/
-
-To get started, either download the latest release or see **Build Instructions** to build the program yourself.
 
 ## Features
 
